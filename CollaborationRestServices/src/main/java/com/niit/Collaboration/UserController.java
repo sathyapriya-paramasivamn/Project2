@@ -1,0 +1,76 @@
+package com.niit.Collaboration;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.niit.Collaboration.DAO.UserDAO;
+import com.niit.Collaboration.Model.User;
+
+@RestController
+public class UserController {
+
+	@Autowired
+	private UserDAO userDAO;
+
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getUsers() {
+		List<User> listuser = userDAO.list();
+		return new ResponseEntity<List<User>>(listuser, HttpStatus.OK);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@DeleteMapping("/users/{id}")
+	public ResponseEntity deleteUser(@PathVariable("id") int userid) {
+		/*User user = userDAO.getByUserid(userid);
+		if (user == null) {
+			return new ResponseEntity("No User found for getByUserid " + userid, HttpStatus.NOT_FOUND);
+		}*/
+		userDAO.delete(userid);
+		return new ResponseEntity(userid, HttpStatus.OK);
+	}
+
+	@GetMapping("/users/{id}")
+	public ResponseEntity<User> getUserByID(@PathVariable("id") int id) {
+
+		User user = userDAO.getByUserid(id);  
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	@GetMapping("/users/mail/{id}")
+	public ResponseEntity<User> getByMailid(@PathVariable("id") String id) {
+		
+		User user = userDAO.getByMailid(id);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+ 	}
+	
+	
+	/*@PutMapping("/users/{id}")
+	public ResponseEntity updateUser(@PathVariable int id, @RequestBody User user) {
+
+		 userDAO.saveOrUpdate(user);
+
+		if (null == user) {
+			return new ResponseEntity("No User found for ID " + id, HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity(user, HttpStatus.OK);
+	}
+
+*/
+	
+}
