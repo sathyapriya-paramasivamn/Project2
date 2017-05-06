@@ -41,7 +41,7 @@ public class BlogTest {
 		JobDAO jobDAO=(JobDAO) context.getBean("JobDAO");
 		Job job=(Job)context.getBean("job");
 	
-		blog.setTitle("placement session");
+	blog.setTitle("placement session");
 	blog.setDescription("www.indiabixapp.com,www.mathcrack.com");
     blog.setStatus("active");
     blogDAO.save(blog);
@@ -54,26 +54,26 @@ public class BlogTest {
   user.setRole("student");
   user.setResidential("coimbatore");
   user.setPincode("642222");
-  userDAO.saveOrUpdate(user);
+  userDAO.save(user);
 
 	   
     event.setEventname("IEEE Conference");
     event.setEventcategory("Conference");
     event.setEventdatails("The 7th International Conference & Workshop" );
-  	eventDAO.saveOrUpdate(event);
+  	eventDAO.save(event);
       
   	forum.setName("Discussion board");
   	forum.setMessage("school system will change");
-  	forumDAO.saveOrUpdate(forum);
+  	forumDAO.save(forum);
     
   	
   	friend.setStatus("friend");
-   	friendDAO.saveOrUpdate(friend);
+   	friendDAO.save(friend);
 
    	job.setJobcategory("software engineer");
    	job.setJobdetails("company ntt data, qualification BE, Address coimbatore");
    	job.setJobname("software developer");
-   	jobDAO.saveOrUpdate(job);
+   	jobDAO.save(job);
 		}
 	
 }

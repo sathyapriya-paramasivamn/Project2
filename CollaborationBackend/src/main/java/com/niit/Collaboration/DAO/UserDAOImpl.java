@@ -31,10 +31,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public void saveOrUpdate(User user) {
+	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);
 	}
-
+	@Transactional
+	public void update(User user) {
+		sessionFactory.getCurrentSession().save(user);
+	}
 	@Transactional
 	public void delete(int userid) {
 		User userToDelete = new User();
@@ -68,10 +71,12 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
-
+	@Transactional
 	public User get(String empID) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class, empID);
 		return user;
 	}
+
+	
 
 }

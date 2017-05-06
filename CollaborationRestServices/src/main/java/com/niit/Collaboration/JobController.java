@@ -8,9 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.JobDAO;
+
 import com.niit.Collaboration.Model.Job;
 
 @RestController
@@ -45,4 +49,17 @@ public ResponseEntity<Job> geByID(@PathVariable("id") int id) {
 	Job job = jobDAO.getByJobid(id);  
 	return new ResponseEntity<Job>(job, HttpStatus.OK);
 }
+
+@PostMapping("/job")
+public ResponseEntity save(@RequestBody Job job)
+{
+	jobDAO.save(job);
+	return new ResponseEntity(job, HttpStatus.OK);
 }
+@PutMapping("/job")
+public ResponseEntity update(@RequestBody Job job)
+{
+	jobDAO.update(job);
+	return new ResponseEntity(job, HttpStatus.OK);
+}	
+} 

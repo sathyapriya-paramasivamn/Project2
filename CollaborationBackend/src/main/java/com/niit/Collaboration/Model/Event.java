@@ -15,13 +15,19 @@ import org.springframework.stereotype.Component;
 @Entity
 @Table(name="event")
 public class Event {
+	
 	@Id
 	@GeneratedValue
 	private int eid;
+	
 	private String eventname;
 	private String eventcategory;
 	private String eventdatails;
+	
+	
 	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+	
+	
 	public String getEventname() {
 		return eventname;
 	}

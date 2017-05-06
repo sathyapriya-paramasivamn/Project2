@@ -7,8 +7,8 @@ import com.niit.Collaboration.Model.User;
 public interface UserDAO {
 	public List<User> list();
 
-	public void saveOrUpdate(User user);
-
+	public void save(User user);
+	public void update(User user);
 	public void delete(int userid);
 
 	public User getByUserid(int userid);

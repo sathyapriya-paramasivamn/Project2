@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.EventDAO;
@@ -22,13 +25,10 @@ import com.niit.Collaboration.Model.Event;
 public class EventController {
 	@Autowired
 	private EventDAO eventDAO;
-	public EventDAO getEventDAO() {
-		return eventDAO;
-	}
-
-	public void setEventDAO(EventDAO eventDAO) {
-		this.eventDAO = eventDAO;
-	}
+	
+	
+	
+	
 	
 	@GetMapping("/event")
 	public ResponseEntity<List<Event>> getEvents() {
@@ -52,4 +52,17 @@ public class EventController {
 		return new ResponseEntity<Event>(event, HttpStatus.OK);
 	
 }
+	@PostMapping("/event")
+	public ResponseEntity<Event> save(@RequestBody Event event)
+	{
+		eventDAO.save(event);
+		return new ResponseEntity<Event>(event, HttpStatus.OK);
+	}
+	@PutMapping("/event")
+	public ResponseEntity update(@RequestBody Event event)
+	{
+		eventDAO.update(event);
+		return new ResponseEntity(event, HttpStatus.OK);
+	}
+
 }

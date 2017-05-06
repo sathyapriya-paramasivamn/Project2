@@ -26,10 +26,8 @@ public class FriendDAOImpl implements FriendDAO {
 		List<Friend> listFriend = sessionFactory.getCurrentSession().createQuery("from Friend").list();
 		return listFriend;
 	}
-@Transactional
-	public void saveOrUpdate(Friend friend) {
-	sessionFactory.getCurrentSession().saveOrUpdate(friend);
-	}
+
+	
 @Transactional
 	public void delete(int fid) {
 	Friend friendToDelete = new Friend();
@@ -43,11 +41,22 @@ public class FriendDAOImpl implements FriendDAO {
 
 	return Fid;
 	}
+@Transactional
 public Friend getByStatus(String status) {
 	Friend Status = (Friend) sessionFactory.getCurrentSession().get(Friend.class, status);
 
 	return Status;
 
+}
+@Transactional
+public void save(Friend friend) {
+	sessionFactory.getCurrentSession().save(friend);
+	
+}
+@Transactional
+public void update(Friend friend) {
+	
+	sessionFactory.getCurrentSession().update(friend);
 }
 
 

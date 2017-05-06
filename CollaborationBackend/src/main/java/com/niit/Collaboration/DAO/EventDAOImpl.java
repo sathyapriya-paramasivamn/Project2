@@ -25,11 +25,6 @@ public class EventDAOImpl implements EventDAO {
 		List<Event> listEvent = sessionFactory.getCurrentSession().createQuery("from Event").list();
 		return listEvent;
 	}
-	@Transactional   
-	public void saveOrUpdate(Event event) {
-		sessionFactory.getCurrentSession().saveOrUpdate(event);
-
-	}
 	@Transactional
 	public void delete(int eid) {
 		Event eventToDelete = new Event();
@@ -50,6 +45,16 @@ public class EventDAOImpl implements EventDAO {
 	public Event getByEid(int eid) {
 		Event Eid = (Event) sessionFactory.getCurrentSession().get(Event.class, eid);
 		return Eid;
+	}
+	@Transactional
+	public void save(Event event) {
+		sessionFactory.getCurrentSession().save(event);
+		
+	}
+	@Transactional
+	public void update(Event event) {
+		sessionFactory.getCurrentSession().update(event);
+		
 	}
 
 }

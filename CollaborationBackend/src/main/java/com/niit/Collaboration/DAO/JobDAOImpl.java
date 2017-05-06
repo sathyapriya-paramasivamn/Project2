@@ -26,10 +26,16 @@ public class JobDAOImpl implements JobDAO {
 		return listJob;
 	}
 	@Transactional
-	public void saveOrUpdate(Job job) {
-		sessionFactory.getCurrentSession().saveOrUpdate(job);
+	public void save(Job job) {
+		sessionFactory.getCurrentSession().save(job);
 
 	}
+	@Transactional
+	public void update(Job job) {
+		sessionFactory.getCurrentSession().update(job);
+
+	}
+
 	@Transactional
 	public void delete(int jobid) {
 		Job jobToDelete = new Job();

@@ -25,11 +25,7 @@ public class ForumDAOImpl implements ForumDAO {
 		List<Forum> listForum = sessionFactory.getCurrentSession().createQuery("from Forum").list();
 		return listForum;
 	}
-@Transactional
-	public void saveOrUpdate(Forum forum) {
-		sessionFactory.getCurrentSession().saveOrUpdate(forum);
 
-	}
 	
 @Transactional
 	public Forum getByForumid(int forumid) {	
@@ -49,6 +45,14 @@ public void delete(int forumid) {
 	Forum forumToDelete = new Forum();
 	forumToDelete.setForumid(forumid);
 	sessionFactory.getCurrentSession().delete(forumToDelete);
+}@Transactional
+public void save(Forum forum) {
+	sessionFactory.getCurrentSession().save(forum);
+	
+}
+@Transactional
+public void update(Forum forum) {
+	sessionFactory.getCurrentSession().update(forum);	
 }
   	
 

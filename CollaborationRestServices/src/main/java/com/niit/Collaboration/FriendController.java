@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.FriendDAO;
@@ -47,6 +50,19 @@ public class FriendController {
 		Friend friend = friendDAO.getByFid(id);  
 		return new ResponseEntity<Friend>(friend, HttpStatus.OK);
 	}
+	@PostMapping("friend")
+	public ResponseEntity save(@RequestBody Friend friend)
+	{
+		friendDAO.save(friend);
+		return new ResponseEntity(friend, HttpStatus.OK);
+	} 
+	@PutMapping("/friend")
+	public ResponseEntity update(@RequestBody Friend friend)
+	{
+		friendDAO.update(friend);
+		return new ResponseEntity(friend, HttpStatus.OK);
+	}	
 
-	
+
+
 }

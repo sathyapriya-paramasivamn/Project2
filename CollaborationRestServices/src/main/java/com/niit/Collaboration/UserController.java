@@ -8,10 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.UserDAO;
+
 import com.niit.Collaboration.Model.User;
 
 @RestController
@@ -59,18 +62,16 @@ public class UserController {
  	}
 	
 	
-	/*@PutMapping("/users/{id}")
-	public ResponseEntity updateUser(@PathVariable int id, @RequestBody User user) {
-
-		 userDAO.saveOrUpdate(user);
-
-		if (null == user) {
-			return new ResponseEntity("No User found for ID " + id, HttpStatus.NOT_FOUND);
-		}
-
+	@PostMapping("/user")
+	public ResponseEntity save(@RequestBody User user)
+	{
+		userDAO.save(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
-
-*/
-	
+	@PutMapping("/user")  
+	public ResponseEntity update(@RequestBody User user)
+	{
+		userDAO.update(user);
+		return new ResponseEntity(user, HttpStatus.OK);
+	}		
 }

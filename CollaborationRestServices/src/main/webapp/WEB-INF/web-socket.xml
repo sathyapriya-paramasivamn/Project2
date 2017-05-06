@@ -9,13 +9,13 @@
  
 	<websocket:message-broker
 		application-destination-prefix="/app">
-
-
+   
+  
 		<websocket:stomp-endpoint path="/chat_forum">
 			<websocket:sockjs />
 		</websocket:stomp-endpoint>
 
-		<websocket:simple-broker prefix="/topic, /queue" />
+		<websocket:simple-broker prefix="/topic, /queue" />   
 	</websocket:message-broker>
 
 </beans>

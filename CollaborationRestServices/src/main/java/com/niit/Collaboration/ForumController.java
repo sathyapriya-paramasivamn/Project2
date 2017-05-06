@@ -8,9 +8,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.ForumDAO;
+
 import com.niit.Collaboration.Model.Forum;
 
 
@@ -40,4 +44,18 @@ public class ForumController {
 		Forum forum = forumDAO.getByForumid(id);
 		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
+	@PostMapping("/forum")
+	public ResponseEntity save(@RequestBody Forum forum)
+	{
+		forumDAO.save(forum);
+		return new ResponseEntity(forum, HttpStatus.OK);
+	}
+
+	@PutMapping("/forum")
+	public ResponseEntity update(@RequestBody Forum forum)
+	{
+		forumDAO.update(forum);
+		return new ResponseEntity(forum, HttpStatus.OK);
+	}
+
 }
