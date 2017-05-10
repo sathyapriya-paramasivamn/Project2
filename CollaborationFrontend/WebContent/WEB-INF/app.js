@@ -5,13 +5,13 @@ angular.config(config);
 config.$inject = [ '$routeProvider'];
 
 app.config(function($routeProvider) {
-	$routeProvider
-
+	$routeProvider 
+ 
 	.when('/', {
 		templateUrl : 'index.html'
 
 	})
-
+ 
 	.when('/login', {
 		templateUrl : 'user/login.html'
 
@@ -25,4 +25,4 @@ app.config(function($routeProvider) {
 	.otherwise({
 		redirectTo : '/'
 	});
-});
+})();

@@ -1,9 +1,9 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head ng-app="myApp">
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -14,7 +14,16 @@
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
-<script type="text/javascript" src="app.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+  
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>   
 <style>
 <meta charset ="utf-8"> <meta name ="viewport" content="width=device-width, initial-scale =1"> <link rel ="stylesheet" href="https: //maxcdn.bootstrapcdn.com /bootstrap/3.3.7 /css/bootstrap.min.css"> <script src ="https: //ajax.googleapis.com /ajax/libs/jquery/3.2.1/jquery.min.js "> </script> 
 <script src ="https: //maxcdn.bootstrapcdn.com	/bootstrap/3.3.7 /js/bootstrap.min.js "> </script> 
@@ -28,7 +37,7 @@
 /* Add a gray background color and some padding to the footer */
 footer {
 	background-color: #f2f2f2;
-	padding: 25px;
+	padding: 200px;
 }
 
 .carousel-inner img {
@@ -117,75 +126,23 @@ img{
   width:50%;
   height:50%;
 }
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
-* {
-  margin:0;
-  padding:0;
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    width: 1500px;
+    height: 500px;
+    background-color: lightgrey;
 }
-body {
-  padding:10px;
-  font-size:16px;
-  background-color:#444;
-  font-family: 'Open Sans', sans-serif;
+
+.flex-item {
+    background-color:gray;
+    width: 1500px;
+    height: 600px;
+    margin: 10px;
 }
-#wrapper {
-  max-width:800px;
-  margin:30px auto 30px auto;
-  box-sizing:border-box;
-  background-color:#CCC;
-}
-#header {
-  max-width:800px;
-  margin:30px auto 30px auto;
-  box-sizing:border-box;
-  color:#FFF;
-}
-#main {
-  width:75%;
-  float:left;
-  box-sizing:border-box;
-  padding: 20px 20px 0px 20px;
-}
-#side {
-  width:25%;
-  float:right;
-  box-sizing:border-box;
-  padding: 20px 20px 0px 0px;
-  font-size:14px;
-}
-.side-item {
-  background-color:#FFF;
-  margin-bottom:20px;
-  padding: 10px 20px 10px 20px;
-  box-shadow:0px 2px 4px rgba(0,0,0,0.3);
-  border-top:5px solid Crimson;
-}
-.item {
-  background-color:#FFF;
-  margin-bottom:20px;  
-  padding: 20px 30px 20px 30px;
-  margin-bottom:20px;
-  box-shadow:0px 2px 4px rgba(0,0,0,0.3);
-  border-top:5px solid DodgerBlue;
-}
-#wrapper:after {
-    content: '';
-    display: table;
-    clear: both;
-}
-@media ( max-width : 600px ) {
-  #main {
-    float:none;
-    width:100%;
-  }
-  #side {
-    width:100%;
-    float:none;
-    padding: 0px 20px 0px 20px;
-  }
 </style>
 </head>
-<body>
+<body  ng-app="myApp">
 	<nav class="navbar navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -205,8 +162,9 @@ body {
 				<li><a href="#">careers</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+				<li><a href="#login"><span class="glyphicon glyphicon-log-in"></span>
 						Login</a></li>
+						<li><a href="#register"><span class="glyphicon glyphicon-user">register</li>
 			</ul>
 		</div>
 	</div>
@@ -248,33 +206,17 @@ body {
 			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			<span class="sr-only">Next</span>
 		</a>
-	</div>
+	</div>{{5+5}}
 
+<div class="flex-container">
+  <div class="flex-item">flex item 1 <button>sa</button></div>  
+ <div class="flex-item">flex item 2</div>
+  <div class="flex-item">flex item 3</div>  
+</div>
 
-<div id="header">
-  
-</div>
-<div id="wrapper">
-  <div id="main">
-    <div class="item">
-      <h2>BLOG</h2>
-      <p>Pellentesque habitant morbi tristique   senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-    </div>
-    <div class="item">
-      <h2>FORUM</h2>
-      <p>Pellentesque habitant morbi tristique   senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-    </div>
-  </div>
-  <div id="side">
-    <div class="side-item">
-      <h3>JOB</h3>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-    </div>
-  </div>
-</div>
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
 	</footer>
-
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
