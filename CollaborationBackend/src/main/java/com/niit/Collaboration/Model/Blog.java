@@ -17,7 +17,7 @@ public class Blog {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+	  
 	private String title;
 	private String description;
 	private String status;

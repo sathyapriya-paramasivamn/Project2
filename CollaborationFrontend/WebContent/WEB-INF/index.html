@@ -1,183 +1,138 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-  
-   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>   
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+<script type="text/javascript" src="app.js"></script>
+      <script type="text/javascript" src="user/UserController.js"></script>
+  	   <script type="text/javascript" src="user/UserService.js"></script>
+  	   <script type="text/javascript" src="forum/ForumController.js"></script>
+  	  <script type="text/javascript" src="forum/ForumService.js"></script>
 <style>
-<meta charset ="utf-8"> <meta name ="viewport" content="width=device-width, initial-scale =1"> <link rel ="stylesheet" href="https: //maxcdn.bootstrapcdn.com /bootstrap/3.3.7 /css/bootstrap.min.css"> <script src ="https: //ajax.googleapis.com /ajax/libs/jquery/3.2.1/jquery.min.js "> </script> 
-<script src ="https: //maxcdn.bootstrapcdn.com	/bootstrap/3.3.7 /js/bootstrap.min.js "> </script> 
-<link rel="stylesheet" href ="https: //www.w3schools.com /w3css/4/w3.css ">
-	/* Remove the navbar's default margin-bottom and rounded borders */
-	.navbar {
-	margin-bottom: 0;
+.navbar {    
+	margin-bottom: 0;  
 	border-radius: 0;
 }
-
-/* Add a gray background color and some padding to the footer */
-footer {
-	background-color: #f2f2f2;
-	padding: 200px;
-}
-
-.carousel-inner img {
-	width: 100%; /* Set width to 100% */
-	margin: auto;
-	min-height: 200px;
-}
-
-/* Hide the carousel text when the screen is less than 600 pixels wide */
-@media ( max-width : 600px) {
-	.carousel-caption {
-		display: none;
-	}
-	.box {
-		width: 300px;
-		border: 2px solid blue;
-		padding: 2px;
-		margin: 35px;
-		float: left;
-		possition:relative;
-	}
-}
-@import "compass/css3";
-
-$color: #009CC3;
-$texto: #333;
-
-.contenedor-loco{
-  padding:24px;
-  display: table;
-  width:900px;
-  margin: 0 auto 0 auto;
- }
-
-body{
-  font-family: Roboto;
-  font-size: 18px;
-  font-weight:400;
-  line-height: 1.7;
-}
-.contenedor{
-  width:33.333%;
-  display: table-cell ;
-  position: relative;
-  padding:15px;
-}
-.contenedor .h2 a{
-   border-top:6px solid;
-  border-color: $color;
-  text-decoration:none;
-  color: $texto;
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 150ms ease;
-  &:hover{
-    color: lighten(black, 50%);
-    transition: all 150ms ease;
-  }
-  &:active{
-   background-color: $color;
+.dropbtn {
+    background-color: #000000;
     color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #607D8B;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color:#607D8B ;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color:white}
+
+
+.show {display:block;}
+</style>
+<script>
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
   }
 }
-h2 a{
-  font-size: 1rem;
-}
-.loco{
-  background-color: red;
-}
-.mas{
-  font-weight:700;
-  color: $color;
-  text-decoration: none;
-    &:after{
-      content:' ';
-      background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+Cjxzdmcgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZpbGw9IiNiZmJmYmYiIGlkPSJzdmdfMSIgZD0ibTcuNSw0LjVsLTEuMDYsMS4wNmwzLjQ0LDMuNDRsLTMuNDQsMy40NGwxLjA2LDEuMDZsNC41LC00LjVsLTQuNSwtNC41eiIvPgogPC9nPgo8L3N2Zz4=') 
-        transparent
-        right
-        no-repeat;
-      padding:0px 9px 0 9px;
-     
-    }
-}
-
-img{
-  width:50%;
-  height:50%;
-}
-.flex-container {
-    display: -webkit-flex;
-    display: flex;
-    width: 1500px;
-    height: 500px;
-    background-color: lightgrey;
-}
-
-.flex-item {
-    background-color:gray;
-    width: 1500px;
-    height: 600px;
-    margin: 10px;
-}
-</style>
+</script>
 </head>
-<body  ng-app="myApp">
+<body ng-app="myApp">
 	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">EDUCATION</a>
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">EDUCATION</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<div class="dropdown">
+<button onclick="myFunction()" class="dropbtn">discover</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#blogform">blog</a>
+      <a href="#forum">forum</a>
+  </div>
+</div>
+				<li><a href="#event">Event</a></li>
+					<li><a href="#">prepare</a></li>
+					<li><a href="#">careers</a></li>
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="#register"><span
+							class="glyphicon glyphicon-user"></span>register</a></li>
+				</ul>
+			</div>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">discover</a></li>
-				<li><a href="#">events</a></li>
-				<li><a href="#">prepare</a></li>
-				<li><a href="#">careers</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#login"><span class="glyphicon glyphicon-log-in"></span>
-						Login</a></li>
-						<li><a href="#register"><span class="glyphicon glyphicon-user">register</li>
-			</ul>
-		</div>
-	</div>
 	</nav>
 
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-		<!-- Indicators -->
+
+
+	<div ng-view></div>
+
+
+
+	<!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		Indicators
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			<li data-target="#myCarousel" data-slide-to="1"></li>
 		</ol>
 
-		<!-- Wrapper for slides -->
+		Wrapper for slides
 		<div class="carousel-inner" role="listbox">
 			<div class="item active">
 				<img src="https://placehold.it/1200x400?text=IMAGE" alt="Image">
@@ -197,7 +152,7 @@ img{
 			</div>
 		</div>
 
-		<!-- Left and right controls -->
+		Left and right controls
 		<a class="left carousel-control" href="#myCarousel" role="button"
 			data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"
 			aria-hidden="true"></span> <span class="sr-only">Previous</span>
@@ -216,7 +171,7 @@ img{
 
 	<footer class="container-fluid text-center">
 	<p>Footer Text</p>
-	</footer>
-<script type="text/javascript" src="app.js"></script>
+	</footer> -->
+
 </body>
 </html>

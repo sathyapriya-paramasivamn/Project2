@@ -62,6 +62,7 @@ public class UserController {
  	}
 	
 	
+
 	@PostMapping("/user")
 	public ResponseEntity save(@RequestBody User user)
 	{
