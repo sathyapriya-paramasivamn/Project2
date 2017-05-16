@@ -21,7 +21,7 @@ private String name;
 private String message;
 private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 public String getName() {
-	return name;
+	return name;  
 }
 public void setName(String name) {
 	this.name = name;

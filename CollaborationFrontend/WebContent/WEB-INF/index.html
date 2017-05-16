@@ -8,7 +8,6 @@
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
@@ -17,10 +16,12 @@
   	   <script type="text/javascript" src="user/UserService.js"></script>
   	   <script type="text/javascript" src="forum/ForumController.js"></script>
   	  <script type="text/javascript" src="forum/ForumService.js"></script>
+  	  <script type="text/javascript" src="blog/BlogController.js"></script>
+  	  <script type="text/javascript" src="blog/BlogService.js"></script>
 <style>
 .navbar {    
 	margin-bottom: 0;  
-	border-radius: 0;
+	border-radius: 0;  
 }
 .dropbtn {
     background-color: #000000;
@@ -101,7 +102,7 @@ window.onclick = function(event) {
 					<div class="dropdown">
 <button onclick="myFunction()" class="dropbtn">discover</button>
   <div id="myDropdown" class="dropdown-content">
-    <a href="#blogform">blog</a>
+    <a href="#blog">blog</a>
       <a href="#forum">forum</a>
   </div>
 </div>

@@ -17,16 +17,18 @@ app.config(function($routeProvider) {
 	.when('/register', {
 		templateUrl : 'user/register.html',
 		controller : 'UserController',
-		controllerAs: 'ctrl'
+		controllerAs: 'uc'
 	})
 .when('/blog', {
-		templateUrl : 'blog/blogform.html'
+		templateUrl : 'blog/blog.html',
+		controller  :'BlogController',
+		controllerAs:'bc'
 
 	})
 	.when('/forum', {
 		templateUrl : 'forum/forum.html',
 		controller  : 'ForumController',
-		controllerAs: 'ctrl'
+		controllerAs: 'fc'
 	})
 	.otherwise({
 		redirectTo : '/'

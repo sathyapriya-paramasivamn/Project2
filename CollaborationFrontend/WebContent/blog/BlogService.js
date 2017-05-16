@@ -1,16 +1,16 @@
 'use strict';
  
-app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
+app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
 	
-	console.log("ForumService...")
+	console.log("blogService...")
 	
 	var BASE_URL='http://localhost:8085/CollaborationRestServices/'
 		
     return {
          
-            fetchAllForums: function() {
-            	console.log("calling fetchAllForums ")
-                    return $http.get(BASE_URL+'/listAllForumNotFriends')
+            fetchAllBlogs: function() {
+            	console.log("calling fetchAllblogs ")
+                    return $http.get(BASE_URL+'/listAllblogNotFriends')
                             .then(
                                     function(response){
                                         return response.data;
@@ -19,33 +19,38 @@ app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q,$roo
                             );  
             },
                                      
-            createForum: function(Forum){
-            	console.log("calling create Forum")
-                    return $http.post(BASE_URL+'/forum', Forum) //1
-                            .then(
-                                    function(response){
-                                          return response.data;
-                                    }, 
-                                    function(errResponse){
-                                        console.error('Error while creating Forum');
-                                        return $q.reject(errResponse);
-                                    }
-                            );
-            },
-             
-            updateForum: function(Forum, id){
-            	console.log("calling fetchAllForums ")
-                    return $http.put(BASE_URL+'/forum/', Forum)  //2
+            createBlog: function(Blog){
+            	console.log("calling create Blog")
+                    return $http.post(BASE_URL+'/blog', Blog) //1
                             .then(
                                     function(response){
                                         return response.data;
                                     }, 
                                     function(errResponse){
-                                        console.error('Error while updating Forum');
+                                        console.error('Error while creating Blog');
                                         return $q.reject(errResponse);
                                     }
                             );
-            },    
+            },
+             
+            updateBlog: function(Blog, id){
+            	console.log("calling fetchAllBlogs ")
+                    return $http.put(BASE_URL+'/Blog/', Blog)  //2
+                            .then(
+                                    function(response){
+                                        return response.data;
+                                    }, 
+                                    function(errResponse){
+                                        console.error('Error while updating Blog');
+                                        return $q.reject(errResponse);
+                                    }
+                            );
+            },
+             
+              
+     
+           
+         
     };
  
 }]);

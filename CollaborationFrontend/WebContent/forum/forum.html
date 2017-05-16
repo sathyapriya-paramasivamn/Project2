@@ -367,7 +367,7 @@ form button:hover {
 }
 </style>
 <script>
-	window.addEvent('domready', function() {
+/* 	window.addEvent('domready', function() {
 		var form = new FlippingContactForm($('contact-wrapper'), {});
 	});
 
@@ -485,36 +485,36 @@ form button:hover {
 				$('message').focus();
 			}).delay(500, this);
 		}
-	});
+	}); */
 </script>
 </head>
 <body >
 
 	<div id="content">
 		<section id="contact">
-			<div id="contact-wrapper">
+			<div id="contact-wrapper">  
 				<div class="inner">
 					<div class="card">
 						<div id="form-wrapper" class="face front">
 							<form
 								action=""
-								method="post" id="contact-form" ng-submit="ctrl.submit()">
+								method="post" id="contact-form" ng-submit="fc.submit()">
 								<p>    
 									<label for="name">name <sup>*</sup></label> <input type="text"
-										id="name" name="name" class="required" ng-model="ctrl.forum.name"/>
+										id="name" name="name" class="required" ng-model="fc.forum.name"/>
 								</p>
 
 								<p>
 									<label for="message">message <sup>*</sup></label>
-									<textarea ng-model="test" ng-trim="false" maxlength="1500" ng-model="ctrl.forum.message"></textarea>
+									<textarea ng-trim="false" maxlength="1500" ng-model="fc.forum.message"></textarea>
 								</p>
-								<span>{{150 - test.length}} left</span>
+								<span>{{fc.forum.message}} left</span>
 								<button type="submit">Send Message</button>
 							</form>
 						</div>
 					</div>
-				</div>
-			</div>
+				</div>   
+			</div>  
 
 			<div id="mail-slot"></div>
 		</section>

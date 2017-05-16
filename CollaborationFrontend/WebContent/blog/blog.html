@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
 
 <style>
 <link ref="text/css">
@@ -292,7 +292,7 @@ form {
 </style>
 <script>
 
-window.addEvent('domready', function() {  
+/* window.addEvent('domready', function() {  
   var form = new FlippingContactForm($('contact-wrapper'), {});
 });
 
@@ -383,12 +383,12 @@ var FlippingContactForm = new Class({
     $('message').set('value', '');
     (function() { $('message').focus(); }).delay(500, this);
   }
-});
+}); */
 
 </script>
 </head>
 <body>
-<body ng-app>
+<body >
 
 <div id="content">              
   <section id="contact"> 
@@ -397,27 +397,27 @@ var FlippingContactForm = new Class({
           <div class="card"> 
             <div id="form-wrapper" class="face front"> 
             
-              <form action="http://concepts.blackantmedia.com/flippingform/mock_send.php" method="post" id="contact-form"> 
+              <form action="" method="post" id="contact-form" ng-submit="bc.submit()"> 
                 <p> 
                   <label for="title">title <sup>*</sup></label> 
-                  <input type="text" id="title" name="title" class="required" ng-model="ctrl.user.title" /> 
+                  <input type="text" id="title" name="title" class="required" ng-model="bc.blog.title" /> 
                 </p> 
                 <p> 
                   <label for="status">status <sup>*</sup></label> 
-                  <input type="text" id="status" name="status" class="required" ng-model="ctrl.user.status"/> 
+                  <input type="text" id="status" name="status" class="required" ng-model="bc.blog.status"/> 
                 </p> 
                 <p> <label for="description">description <sup>*</sup></label>
-                   <textarea ng-model="test" ng-trim="false" maxlength="1500" ng-model="ctrl.user.description"></textarea>
+                   <textarea ng-trim="false" ng-model="bc.blog.description"></textarea>
                    </p>
-                   <span>{{150 - test.length}} left</span>
+                   <span>{{bc.blog.description}} left</span>
                 <button type="submit">Send Message</button> 
               </form> 
-            </div> 
+            </div>   
 
          </div>
 </div>
 </div>   
-      <div id="mail-slot"></div>                 
+     
   </section>             
  </div> 
 </body>
