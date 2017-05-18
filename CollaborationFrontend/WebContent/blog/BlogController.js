@@ -10,7 +10,8 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							$scope.orderByMe = function(x) {  
 								$scope.myOrderBy = x;
 							}  
-
+							 fetchAllBlogs();
+							    reset();
 							this.fetchAllBlogs = function() {
 								console.log("fetchAllBlogs...")
 								BlogService

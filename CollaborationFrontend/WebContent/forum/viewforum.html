@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>View forum</title>
+<style>
+<link ref="text/css">
+.grid {
+  border-spacing: $gutter 0;
+  display: table;
+  margin-left: - $gutter;
+  margin-bottom: $gutter * 2;
+  width: calc(100% + 20px); // $gutter * 2
+}
+
+.grid__item {
+  background: #F7F7F7;
+  border: 1px solid #EEE;
+  display: table-cell;
+  margin-bottom: $gutter;  
+  padding: 30px 20px;  
+}
+
+@media (max-width: 640px) {
+  .grid__item {
+    display: block;
+    width: auto !important;
+  }
+}
+
+.width-25 {
+  width: 25%;
+}
+body {
+  background: #C5EAFD;
+  margin: 0 auto;
+  padding: 60px 40px;
+  max-width: 1200px;
+}
+
+h2 {
+  color: #69C296;
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 14px;
+  
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+p {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+}
+</style>
+</head>
+<body>
+<div class="grid">
+  <div class="grid__item width-25">
+  
+  </div>
+  </div>
+</body>
+</html>

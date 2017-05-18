@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
-<!-- <script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+<title>add job</title>
 <style>
 <
 link
-
  
-
 ref
-
-
-="
-text
-/css"  
+="text/css"
 >
 @import "compass/css3";
 
@@ -346,7 +341,7 @@ form button:hover {
 	text-align: center;
 	padding-top: 70px;
 	-webkit-transform: rotate(-3deg);
-	-moz-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg); 
 	transform: rotate(-3deg);
 	display: none;
 }
@@ -367,158 +362,136 @@ form button:hover {
 }
 </style>
 <script>
-/* 	window.addEvent('domready', function() {
-		var form = new FlippingContactForm($('contact-wrapper'), {});
-	});
+	/* window.addEvent('domready', function() {  
+	 var form = new FlippingContactForm($('contact-wrapper'), {});
+	 });
 
-	var FlippingContactForm = new Class({
-		Implements : [ Options, Events ],
 
-		options : {
-			dropDelay : 2500,
-			thanksDelay : 3500
-		},
-		senderName : '',
-		senderEmail : '',
+	 var FlippingContactForm = new Class({
+	 Implements: [Options, Events],
+	
+	 options: {
+	 dropDelay: 2500,
+	 thanksDelay: 3500
+	 },
+	 senderName: '',
+	 senderEmail: '',
+	
+	 initialize: function(container, options) { 
+	 this.setOptions(options);
+	 this.container = $(container);
+	 this.form = this.container.getElement('form');
 
-		initialize : function(container, options) {
-			this.setOptions(options);
-			this.container = $(container);
-			this.form = this.container.getElement('form');
+	 if (!Modernizr.csstransforms3d) {
+	 $('envelope').morph({opacity: 0});
+	 }
 
-			if (!Modernizr.csstransforms3d) {
-				$('envelope').morph({
-					opacity : 0
-				});
-			}
+	 new Form.Validator.Inline(this.form);
+	 new Form.Request(this.form, null, {
+	 requestOptions: {
+	 useSpinner: false
+	 },
+	 onSend: function() {
+	 this.flipForm()
+	 }.bind(this),
+	 onComplete: function(target, response) {
+	 this.showThanks()
+	 }.bind(this),
+	 });
+	 $$('#send-another').addEvent('click', function(e) {
+	 e.stop();
+	 this.resetForm();
+	 }.bind(this));
+	 },
 
-			new Form.Validator.Inline(this.form);
-			new Form.Request(this.form, null, {
-				requestOptions : {
-					useSpinner : false
-				},
-				onSend : function() {
-					this.flipForm()
-				}.bind(this),
-				onComplete : function(target, response) {
-					this.showThanks()
-				}.bind(this),
-			});
-			$$('#send-another').addEvent('click', function(e) {
-				e.stop();
-				this.resetForm();
-			}.bind(this));
-		},
+	 flipForm: function() {
+	 $('from').set('html', $('name').get('value'));
+	 this.senderName = $('name').get('value');
+	 this.senderEmail = $('email').get('value');
+	 $$('#mail-slot').show();
+	 this.container.addClass('flip'); 
+	 (function() { this.dropForm(); }).delay(this.options.dropDelay, this);
+	 if (!Modernizr.csstransforms3d) {
+	 $('form-wrapper').morph({opacity: 0});
+	 $('envelope').morph({opacity: 1});
+	 }
+	 },
 
-		flipForm : function() {
-			$('from').set('html', $('name').get('value'));
-			this.senderName = $('name').get('value');
-			this.senderEmail = $('email').get('value');
-			$$('#mail-slot').show();
-			this.container.addClass('flip');
-			(function() {
-				this.dropForm();
-			}).delay(this.options.dropDelay, this);
-			if (!Modernizr.csstransforms3d) {
-				$('form-wrapper').morph({
-					opacity : 0
-				});
-				$('envelope').morph({
-					opacity : 1
-				});
-			}
-		},
+	 dropForm: function() {
+	 this.container.setStyle('overflow', 'hidden');
+	 this.container.getChildren('.inner').move({
+	 relativeTo: this.container,
+	 offset: {x: 0, y: 500},
+	 transition: Fx.Transitions.Quint.easeIn      
+	 });
+	 },
 
-		dropForm : function() {
-			this.container.setStyle('overflow', 'hidden');
-			this.container.getChildren('.inner').move({
-				relativeTo : this.container,
-				offset : {
-					x : 0,
-					y : 500
-				},
-				transition : Fx.Transitions.Quint.easeIn
-			});
-		},
+	 showThanks: function() {
+	 (function() { $('thanks').reveal({duration: 1000}); }).delay(this.options.thanksDelay, this);
+	 },
 
-		showThanks : function() {
-			(function() {
-				$('thanks').reveal({
-					duration : 1000
-				});
-			}).delay(this.options.thanksDelay, this);
-		},
+	 showErrorMessage: function() {
+	 (function() { $('error').reveal({duration: 1000}); }).delay(this.options.thanksDelay, this);
+	 },
 
-		showErrorMessage : function() {
-			(function() {
-				$('error').reveal({
-					duration : 1000
-				});
-			}).delay(this.options.thanksDelay, this);
-		},
-
-		resetForm : function() {
-			$$('#thanks').hide();
-			$$('#mail-slot').hide();
-			this.container.setStyle('overflow', 'visible');
-			this.container.removeClass('flip');
-			this.container.getChildren('.inner').move({
-				relativeTo : this.container,
-				offset : {
-					x : 0,
-					y : -500
-				},
-				transition : Fx.Transitions.Quint.easeOut
-			});
-			if (!Modernizr.csstransforms3d) {
-				$('form-wrapper').morph({
-					opacity : 1
-				});
-				$('envelope').morph({
-					opacity : 0
-				});
-			}
-			$('name').set('value', this.senderName);
-			$('email').set('value', this.senderEmail);
-			$('message').set('value', '');
-			(function() {
-				$('message').focus();
-			}).delay(500, this);
-		}
-	}); */
+	 resetForm: function() {
+	 $$('#thanks').hide();
+	 $$('#mail-slot').hide();    
+	 this.container.setStyle('overflow', 'visible');
+	 this.container.removeClass('flip');     
+	 this.container.getChildren('.inner').move({
+	 relativeTo: this.container,
+	 offset: {x: 0, y: -500},
+	 transition: Fx.Transitions.Quint.easeOut        
+	 });
+	 if (!Modernizr.csstransforms3d) {
+	 $('form-wrapper').morph({opacity: 1});
+	 $('envelope').morph({opacity: 0});
+	 }
+	 $('name').set('value', this.senderName);
+	 $('email').set('value', this.senderEmail);
+	 $('message').set('value', '');
+	 (function() { $('message').focus(); }).delay(500, this);
+	 }
+	 }); */
 </script>
 </head>
-<body >
+<body>
+<body>
 
 	<div id="content">
 		<section id="contact">
-			<div id="contact-wrapper">  
+			<div id="contact-wrapper">
 				<div class="inner">
 					<div class="card">
 						<div id="form-wrapper" class="face front">
-							<form
-								action=""
-								method="post" id="contact-form" ng-submit="fc.submit()">
-								<p>    
-									<label for="name">name <sup>*</sup></label> <input type="text"
-										id="name" name="name" class="required" ng-model="fc.forum.name"/>
-								</p>
 
+							<form action="" method="post" id="contact-form"
+								ng-submit="jc.submit()">
 								<p>
-									<label for="message">message <sup>*</sup></label>
-									<textarea ng-trim="false" maxlength="1500" ng-model="fc.forum.message"></textarea>
+									<label for="jobname">jobname <sup>*</sup></label> <input
+										type="text" id="jobname" name="jobname" class="required"
+										ng-model="jc.job.jobname" />
 								</p>
-								<span>{{fc.forum.message}} left</span>
-								<button type="submit">Send Message</button>
+								<p>
+									<label for="jobcategory">jobcategory <sup>*</sup></label> 
+									<input type="text" id="jobcategory" name="jobcategory"
+										class="required" ng-model="jc.job.jobcategory" />
+								</p>
+								<p>
+									<label for="jobdetails">jobdetails <sup>*</sup></label>
+									<textarea ng-trim="false" ng-model="jc.job.jobdetails"></textarea>
+								</p>
+								<span>{{jc.job.description}} left</span>
+								<button type="submit">Send Message</button>  
 							</form>
 						</div>
-					</div>   
-				</div>   
-			</div>  
 
-			<div id="mail-slot"></div>
+					</div>
+				</div>
+			</div>
+
 		</section>
 	</div>
-	
-</body>
+</body>  
 </html>

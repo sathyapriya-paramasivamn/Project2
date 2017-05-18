@@ -25,10 +25,33 @@ app.config(function($routeProvider) {
 		controllerAs:'bc'
 
 	})
+	.when('/viewblog', {
+		templateUrl : 'blog/viewblog.html',
+		controller  :'BlogController',
+		controllerAs:'bc'
+  
+	})
 	.when('/forum', {
 		templateUrl : 'forum/forum.html',
 		controller  : 'ForumController',
 		controllerAs: 'fc'
+	})
+	.when('/viewforum', {
+		templateUrl : 'forum/viewforum.html',
+		controller  :'ForumController',
+		controllerAs:'fc'
+  
+	})
+	.when('/job', {
+		templateUrl : 'job/job.html',
+		controller  : 'JobController',  
+		controllerAs: 'jc'
+	})
+	.when('/viewjob', {
+		templateUrl : 'job/viewjob.html',
+		controller  :'JobController',    
+		controllerAs:'jc'
+  
 	})
 	.otherwise({
 		redirectTo : '/'
