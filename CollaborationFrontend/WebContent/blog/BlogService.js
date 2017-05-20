@@ -10,7 +10,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
          
             fetchAllBlogs: function() {
             	console.log("calling fetchAllblogs ")
-                    return $http.get(BASE_URL+'/listAllblogNotFriends')
+                    return $http.get(BASE_URL+'/blog')
                             .then(
                                     function(response){
                                         return response.data;

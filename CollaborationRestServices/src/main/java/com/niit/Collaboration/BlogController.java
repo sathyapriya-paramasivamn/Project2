@@ -30,6 +30,11 @@ public class BlogController {
 		this.blogDAO = blogDAO;
 	}
 	
+	/*@GetMapping("/listAllblogNotFriends")
+	public ResponseEntity<List<Blog>> listAllblogNotFriends() {
+		List<Blog> listblog = blogDAO.list();
+		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
+	}*/
 	@GetMapping("/blog")
 	public ResponseEntity<List<Blog>> getBlogs() {
 		List<Blog> listblog = blogDAO.list();

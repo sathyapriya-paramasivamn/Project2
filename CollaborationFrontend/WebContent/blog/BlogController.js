@@ -4,14 +4,14 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							console.log("BlogController...")
 							// var this = this;
 							this.blog = {title : '',status: '',description:''};
-							this.blog = {title : '',status: '',description:''};
+						//	this.blog = {title : '',status: '',description:''};
 							this.blogs = []; // json array
 
 							$scope.orderByMe = function(x) {  
 								$scope.myOrderBy = x;
 							}  
-							 fetchAllBlogs();
-							    reset();
+							fetchAllBlogs();
+							  //  reset();
 							this.fetchAllBlogs = function() {
 								console.log("fetchAllBlogs...")
 								BlogService

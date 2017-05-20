@@ -50,15 +50,14 @@ p {
 }
 </style>
 </head>
-<body>
-<div class="grid" ng-repeat="b in blog.blogs">
+<body ng-init="fetchAllBlogs()">
+ hai<div class="grid" ng-repeat="b in blog.blogs">
  <div class="grid__item width-25">
  <h2><span ng-bind="b.title"></h2></span>
   <h2><span ng-bind="b.status"></span></h2> 
  <h2><span ng-bind="b.description"></span></h2> 
  <p>{{blog.description}}</p> -->
-   
-   
+     
    <button type="button" ng-click="blog.get(b)" style="float: right;">Read More ></button>
  </div>
   </div>
