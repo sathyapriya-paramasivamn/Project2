@@ -10,7 +10,7 @@ app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q,$roo
          
             fetchAllForums: function() {
             	console.log("calling fetchAllForums ")
-                    return $http.get(BASE_URL+'/listAllForumNotFriends')
+                    return $http.get(BASE_URL+'/forum')
                             .then(
                                     function(response){
                                         return response.data;

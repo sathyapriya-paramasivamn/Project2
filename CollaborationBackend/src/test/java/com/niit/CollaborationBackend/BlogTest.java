@@ -21,7 +21,7 @@ public class BlogTest {
 		@SuppressWarnings("resource")
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit.*");  
-		context.refresh();
+		context.refresh();  
 		
 		BlogDAO blogDAO = (BlogDAO) context.getBean("BlogDAO");
 		Blog blog = (Blog) context.getBean("blog");
@@ -47,15 +47,15 @@ public class BlogTest {
     blogDAO.save(blog);
     
     
-  user.setName("abi");  
+  user.setName("abi");    
   user.setMailid("abi@gmail.com");
   user.setMobileno("9878787898");
   user.setPassword("sa23");
   user.setRole("student");
   user.setResidential("coimbatore");
-  user.setPincode("642222");
-  userDAO.save(user);
-
+  user.setPincode("642222");   
+  //user.setOnline(0);
+		userDAO.save(user);
 	   
     event.setEventname("IEEE Conference");
     event.setEventcategory("Conference");
@@ -66,7 +66,7 @@ public class BlogTest {
   	forum.setMessage("school system will change");
   	forumDAO.save(forum);
     
-  	
+  	  
   	friend.setStatus("friend");
    	friendDAO.save(friend);
 
@@ -74,6 +74,6 @@ public class BlogTest {
    	job.setJobdetails("company ntt data, qualification BE, Address coimbatore");
    	job.setJobname("software developer");
    	jobDAO.save(job);
-		}
-	
+}
+	  
 }

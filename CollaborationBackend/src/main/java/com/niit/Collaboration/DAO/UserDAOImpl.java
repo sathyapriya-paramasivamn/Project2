@@ -14,7 +14,7 @@ import com.niit.Collaboration.Model.User;
 
 @Repository("UserDAO")
 public class UserDAOImpl implements UserDAO {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -33,15 +33,18 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);
+
 	}
+
 	@Transactional
 	public void update(User user) {
-		sessionFactory.getCurrentSession().save(user);
+		sessionFactory.getCurrentSession().saveOrUpdate(user);
 	}
+
 	@Transactional
 	public void delete(int userid) {
 		User userToDelete = new User();
-		userToDelete.setUserid(userid);
+		userToDelete.setId(userid);
 		sessionFactory.getCurrentSession().delete(userToDelete);
 	}
 
@@ -56,8 +59,8 @@ public class UserDAOImpl implements UserDAO {
 			return listUser.get(0);
 		}
 		return null;
-
-	}
+  
+	}  
 
 	@Transactional
 	public User getByMailid(String mailid) {
@@ -71,12 +74,26 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return null;
 	}
+
 	@Transactional
 	public User get(String empID) {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class, empID);
 		return user;
 	}
 
-	
+	@Transactional
+	public User login(User user) {
+		String hql = "from Userinfo where mailid=" + "'" + user.getMailid() + "'   and password = " + "'" + user.getPassword()
+				+ "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+
+		@SuppressWarnings("unchecked")
+		List<User> list = (List<User>) query.list();
+
+		if (list != null && !list.isEmpty()) {
+			return list.get(0);
+		}
+		return null;
+	}
 
 }

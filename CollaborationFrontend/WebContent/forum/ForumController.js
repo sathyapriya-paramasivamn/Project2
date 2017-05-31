@@ -2,39 +2,39 @@
 
 app.controller('ForumController',['$scope','ForumService','$location','$rootScope','$cookieStore','$http',function($scope, ForumService, $location, $rootScope,$cookieStore, $http) {
 							console.log("ForumController...")
-							// var this = this;
-							this.forum = {name : '',message: ''};
-							this.forum = {name : '',message: ''};
-							this.forums = []; // json array
+							var self = this;
+							self.forum = {forumid:'',name : '',message: ''};
+						//self.forum = {forumid:'',name : '',message: ''};
+							self.forums = []; // json array
 
-							$scope.orderByMe = function(x) {
+						/*	$scope.orderByMe = function(x) {  
 								$scope.myOrderBy = x;
-							}
+							}  */
+							fetchAllForums();
+							  reset();
+							  function fetchAllForums(){
+							    	ForumService.fetchAllForums()
+							            .then(
+							            function(d) {
+							                self.forums = d;
+							                console.log(self.forums)
+							            },
+							            function(errResponse){
+							                console.error('Error while fetching Forums');
+							            }
+							        );
+							    }
 
-							this.fetchAllForums = function() {
-								console.log("fetchAllForums...")
-								ForumService
-										.fetchAllForums()
-										.then(
-												function(d) {
-													this.forums = d; 
-												},
-												function(errResponse) {
-													console
-															.error('Error while fetching Forums');
-												});
-							};
+							// self.fatchAllForums();
 
-							 //this.fatchAllForums();
-
-							this.createForum = function(forum) {
+							self.createForum = function(forum) {
 								console.log("createForum...")
 								ForumService.createForum(forum)
 										.then(
 												function(d) {
 													alert("Thank you for creating message")
 													$location.path("/index")
-												},  
+												},
 												function(errResponse) {
 													console
 															.error('Error while creating Forum.');
@@ -45,54 +45,55 @@ app.controller('ForumController',['$scope','ForumService','$location','$rootScop
 
 							
 
-							this.reject = function(id) {
+							self.reject = function(id) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
 								ForumService.reject(id, reason).then(
 										function(d) {
-											this.Forum = d;
-											this.fetchAllForums
+											self.forum = d;
+											self.fetchAllForums
 											$location.path("/manage_Forums")
-											alert(this.Forum.errorMessage)
+											alert(self.Forum.errorMessage)
 
 										}, null);
 							};
 
-							this.updateForum = function(currentForum) {
+							self.updateForum = function(currentForum) {
 								console.log("updateForum...")
 								ForumService.updateForum(currentForum).then(
-										this.fetchAllForums, null);
+										self.fetchAllForums, null);
 							};
 
-							this.update = function() {
+							self.update = function() {
 								{
 									console.log('Update the Forum details',
 											$rootScope.currentForum);
-									this.updateForum($rootScope.currentForum);
+									self.updateForum($rootScope.currentForum);
 								}
-								this.reset();
+					 			self.reset();
 							};
 
 							
 							
 
-							// this.fetchAllForums(); //calling the method    
+							// self.fetchAllForums(); //calling the method    
 
 							// better to call fetchAllForums -> after login ???
 
 							
-
-							this.submit = function() {
+  
+							self.submit = function() {
 								{
-									console.log('Saving New Forum', this.forum);
-									this.createForum(this.forum);
+									console.log('Saving New Forum', self.forum);
+									self.createForum(self.forum);
 								}
-								this.reset();  
+								self.reset();  
 							};
 
-							this.reset = function() {  
-								this.forum = {forumid:null,name : '',message: ''};
-								$scope.myForm.$setPristine(); // reset Form
-							};
-
+						
+							 function reset(){
+							self.forum = {forumid:'',name : '',message: ''};
+							       //$scope.myform.$setPristine(); //reset Form
+							    }
+							    
 						} ]);

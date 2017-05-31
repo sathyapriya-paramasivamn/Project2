@@ -17,5 +17,5 @@
 
 		<websocket:simple-broker prefix="/topic, /queue" />   
 	</websocket:message-broker>
-
-</beans>
+   
+</beans>         

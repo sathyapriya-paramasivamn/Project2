@@ -2,32 +2,31 @@
 
 app.controller('BlogController',['$scope','BlogService','$location','$rootScope','$cookieStore','$http',function($scope, BlogService, $location, $rootScope,$cookieStore, $http) {
 							console.log("BlogController...")
-							// var this = this;
-							this.blog = {title : '',status: '',description:''};
-						//	this.blog = {title : '',status: '',description:''};
-							this.blogs = []; // json array
+							var self = this;
+							self.blog = {id:'',title : '',status: '',description:''};
+						//	self.blog = {id:'',title : '',status: '',description:''};
+							self.blogs = []; // json array
 
-							$scope.orderByMe = function(x) {  
+						/*	$scope.orderByMe = function(x) {  
 								$scope.myOrderBy = x;
-							}  
+							}  */
 							fetchAllBlogs();
-							  //  reset();
-							this.fetchAllBlogs = function() {
-								console.log("fetchAllBlogs...")
-								BlogService
-										.fetchAllBlogs()
-										.then(
-												function(d) {
-													this.blogs = d;
-												},
-												function(errResponse) {
-													console
-															.error('Error while fetching Blogs');
-												});
-							};
+							  reset();
+							  function fetchAllBlogs(){
+							    	BlogService.fetchAllBlogs()
+							            .then(
+							            function(d) {
+							                self.blogs = d;
+							                console.log(self.blogs)
+							            },
+							            function(errResponse){
+							                console.error('Error while fetching Blogs');
+							            }
+							        );
+							    }
 
 							// this.fatchAllBlogs();
-
+							  	
 							this.createBlog = function(blog) {
 								console.log("createBlog...")
 								BlogService.createBlog(blog)
@@ -41,10 +40,6 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 															.error('Error while creating Blog.');
 												});
 							};
-
-							
-
-							
 
 							this.reject = function(id) {
 								console.log("reject...")
@@ -91,9 +86,10 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								this.reset();  
 							};
 
-							this.reset = function() {
-								this.blog = {id:null,title : '',status: '',description:''};
-								$scope.myForm.$setPristine(); // reset Form
-							};
-
+						
+							 function reset(){
+								 self.blog = {id:null,title : '',status: '',description:''};
+							       //$scope.myform.$setPristine(); //reset Form
+							    }
+							    
 						} ]);

@@ -10,7 +10,7 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
          
             fetchAllJobs: function() {
             	console.log("calling fetchAlljobs ")
-                    return $http.get(BASE_URL+'/listAlljobNotFriends')
+                    return $http.get(BASE_URL+'/job')
                             .then(
                                     function(response){
                                         return response.data;

@@ -10,8 +10,9 @@ app.config(function($routeProvider) {
 	})
  */
 	.when('/login', {
-		templateUrl : 'user/login.html'
-
+		templateUrl : 'user/login.html',
+		controller : 'UserController',
+		controllerAs: 'ctrl'
 	})
 
 	.when('/register', {

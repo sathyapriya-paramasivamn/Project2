@@ -10,11 +10,15 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
+} 
+.label
+{
+text-align:left;
+} 
 
 /* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
+/* button {
+    background-color: #00aadc;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -22,39 +26,114 @@ button {
     cursor: pointer;
     width: 100%;
 }
-
 /* Extra styles for the cancel button */
 .cancelbtn {
     padding: 14px 20px;
     background-color: #f44336;
 }
-
 /* Float cancel and signup buttons and add an equal width */
 .cancelbtn,.signupbtn {
     float: left;
     width: 50%;
-}
-
+} */
 /* Add padding to container elements */
 .container {
     padding: 16px;
-}
-
+    text-align:initial;
+}  
 /* Clear floats */
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
 }
-
-/* Change styles for cancel button and signup button on extra small screens */
+/* /* Change styles for cancel button and signup button on extra small screens */
 @media screen and (max-width: 300px) {
     .cancelbtn, .signupbtn {
        width: 100%;
+    } 
+}*/
+//=== Drawing effect
+
+@mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
+  box-shadow: inset 0 0 0 $width $color;
+  color: $color;
+  transition: color $duration $duration/3;
+  position: relative;
+  
+  &::before,
+  &::after {
+    border: 0 solid transparent;
+    box-sizing: border-box;
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    width: 0; height: 0;
+    
+    #{$vertical}: 0; 
+    #{$horizontal}: 0;
+  }
+
+  &::before {
+    $h-side: if($horizontal == 'left', 'right', 'left');
+    
+    border-#{$vertical}-width: $width;
+    border-#{$h-side}-width: $width;
+  }
+  
+  &::after {
+    $v-side: if($vertical == 'top', 'bottom', 'top');
+    
+    border-#{$v-side}-width: $width;
+    border-#{$horizontal}-width: $width;
+  }
+  
+  &:hover {
+    color: $hover;
+    
+    &::before,
+    &::after {
+      border-color: $hover;
+      transition: border-color 0s, width $duration, height $duration;
+      width: 100%;
+      height: 100%;
     }
+    
+    &::before { transition-delay: 0s, 0s, $duration; }
+    
+    &::after { transition-delay: 0s, $duration, 0s; }
+  }
 }
+
+.draw-border {
+  @include btn-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
+}
+
+//=== Button styling, semi-ignore
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+  
+  &:focus { outline: 2px dotted #55d7dc; }
+}
+
+//=== Pen styling, ignore
+body { 
+  background: #1f1a25;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  
+}
+
 </style>
-<body>  
+<body>   
 
 <h2>Signup Form</h2>
 
@@ -81,10 +160,12 @@ button {
   <option value="Employee">Employee</option>
    
 </select>
-    <div class="clearfix">
+    <!-- <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <input type="submit" class="signupbtn" name="submit" value="Sign Up">
-    </div>
+    </div>   -->
+  <button type="submit" class="btn draw-border"  value="Sign up" >signup</button>
+  <button type="cancel" class="btn draw-border" value="cancel" >cancel</button>
   </div>
 </form>
 

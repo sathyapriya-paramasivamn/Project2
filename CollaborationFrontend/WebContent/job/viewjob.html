@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+<title>View Jobs</title>
+
 </head>
 <body>
-  
+hai
+<ul>
+<li ng-repeat="j in jobs">   
+<span ng-bind="j.jobname"></span> 
+ <span ng-bind="j.jobcategory"></span>
+ <span ng-bind="j.jobdetails"></span>
+ <p>{{j.jobdetails}}</p>
+     <p>hello</p>     
+   <button type="button" ng-click="jc.get(j)" style="float: right;">Read More ></button>
+
+  </li></ul>
 </body>
-</html>
+</html>   

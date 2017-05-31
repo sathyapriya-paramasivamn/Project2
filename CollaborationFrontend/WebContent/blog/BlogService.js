@@ -14,10 +14,11 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
                             .then(
                                     function(response){
                                         return response.data;
+                                    	console.log(response)
                                     },  
                                    null
                             );  
-            },
+            }, 
                                      
             createBlog: function(Blog){
             	console.log("calling create Blog")

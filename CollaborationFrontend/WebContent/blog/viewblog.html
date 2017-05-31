@@ -1,65 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+
 <title>View blog</title>
-<style>
-<link ref="text/css">
-.grid {
-  border-spacing: $gutter 0;
-  display: table;
-  margin-left: - $gutter;
-  margin-bottom: $gutter * 2;
-  width: calc(100% + 20px); // $gutter * 2
-}
 
-.grid__item {
-  border: 1px solid #EEE;
-  display: table-cell;
-  margin-bottom: $gutter;  
-  padding: 30px 20px;  
-}
-
-@media (max-width: 640px) {
-  .grid__item {
-    display: block;
-    width: auto !important;
-  }
-}
-
-.width-25 {
-  width: 25%;
-}
-
-h2 {
-  color: #69C296;
-  font-family: sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 14px;
-  
-  &:first-child {
-    margin-top: 0;
-  }
-}
-
-p {
-  font-family: sans-serif;
-  font-size: 16px;
-  line-height: 1.4;  
-}
-</style>
 </head>
-<body ng-init="fetchAllBlogs()">
- hai<div class="grid" ng-repeat="b in blog.blogs">
- <div class="grid__item width-25">
- <h2><span ng-bind="b.title"></h2></span>
-  <h2><span ng-bind="b.status"></span></h2> 
- <h2><span ng-bind="b.description"></span></h2> 
- <p>{{blog.description}}</p> -->
-     
-   <button type="button" ng-click="blog.get(b)" style="float: right;">Read More ></button>
- </div>
+<body>
+<!-- hai
+<ul>
+<li ng-repeat="u in blog.blogs">   
+
+
+<span ng-bind="u.title"></span> 
+ <span ng-bind="u.status"></span>
+ <span ng-bind="u.description"></span>
+ <p>{{u.description}}</p>
+     <p>hello</p>     
+   <button type="button" ng-click="bc.get(u)" style="float: right;">Read More ></button>
+
+  </li></ul> -->
+ <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#Blog">Create New Blog</a></h4>
+
+
+<div class="row "ng-repeat="u in blog.blogs">
+
+
+  <div class="viewBlog" style="margin-left: -1em; white-space: nowrap;">
+
+
+   <h3 style="margin-left: 0.5em; float: left; color: green;"><span ng-bind="u.title"></span></h3>
+
+   <a ng-click="blog.edit(u.blogId)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
+   <a  ng-click="blog.remove(u.blogId)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
+   <hr style="clear: both;" />
+ 
+
+  <div>
+   <h4><span ng-bind="u.description"></span></h4>
+
   </div>
-</body>
-</html>
+  <hr style="margin-top: 3em;">
+  <span ng-bind="u.content"></span>...
+  <hr style="margin-top: 0em;">
+  <div class="desc">
+  <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button>
+  </div>
+ </div>
+</div>  
+</body>  
+</html> 

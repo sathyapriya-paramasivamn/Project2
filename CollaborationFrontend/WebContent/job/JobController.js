@@ -1,35 +1,35 @@
-'use strict';
+ 'use strict';
 
 app.controller('JobController',['$scope','JobService','$location','$rootScope','$cookieStore','$http',function($scope, JobService, $location, $rootScope,$cookieStore, $http) {
 							console.log("JobController...")
-							// var this = this;
-							this.job = {jobname : '',jobcategory: '',jobdetails:''};
-							this.job = {jobname : '',jobcategory: '',jobdetails:''};
-							this.jobs = []; // json array
+							var self = this;
+							self.job = {jobname : '',jobcategory: '',jobdetails:''};
+							//this.job = {jobname : '',jobcategory: '',jobdetails:''};
+							self.jobs = []; // json array
 
-							$scope.orderByMe = function(x) {  
-								$scope.myOrderBy = x;
-							}  
-
-							this.fetchAllJobs = function() {
-								console.log("fetchAllJobs...")
-								JobService
-										.fetchAllJobs()    
-										.then(
-												function(d) {
-													this.jobs = d;
-												},
-												function(errResponse) {  
-													console
-															.error('Error while fetching Jobs');
-												});
-							};
+//							$scope.orderByMe = function(x) {  
+//								$scope.myOrderBy = x;
+//							}  
+							fetchAllJobs();
+							  reset();
+							  function fetchAllJobs(){
+							    	JobService.fetchAllJobs()
+							            .then(
+							            function(d) {
+							                self.jobs = d;
+							                console.log(self.jobs)
+							            },
+							            function(errResponse){
+							                console.error('Error while fetching Jobs');
+							            }
+							        );
+							    }
 
 							// this.fatchAllJobs();
 
-							this.createJob = function(job) {
+							this.createJob = function(blog) {
 								console.log("createJob...")
-								JobService.createJob(job)
+								BlogService.createJob(job)
 										.then(
 												function(d) {
 													alert("Thank you for creating message")
@@ -59,7 +59,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							};
 
 							this.updateJob = function(currentJob) {
-								console.log("updateJob...")  
+								console.log("updateJob...")
 								JobService.updateJob(currentJob).then(
 										this.fetchAllJobs, null);
 							};
@@ -76,23 +76,24 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							
 							
 
-							// this.fetchAllJobs(); //calling the method    
+							// this.fetchAllBlogs(); //calling the method    
 
-							// better to call fetchAllJobs -> after login ???
+							// better to call fetchAllBlogs -> after login ???
 
 							
-  
+
 							this.submit = function() {
 								{
 									console.log('Saving New Job', this.job);
-									this.createJob(this.job);
+									this.createBlog(this.job);
 								}
 								this.reset();  
 							};
 
-							this.reset = function() {
-								this.job = {jobid:null,jobname : '',jobcategory: '',jobdetails:''};
-								$scope.myForm.$setPristine(); // reset Form
-							};
-
+						
+							 function reset(){
+								 self.job = {jobname : '',jobcategory: '',jobdetails:''};
+							       //$scope.myform.$setPristine(); //reset Form
+							    }
+							    
 						} ]);

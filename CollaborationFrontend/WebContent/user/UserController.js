@@ -17,13 +17,11 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								console.log("fetchAllUsers...")
 								UserService
 										.fetchAllUsers()
-										.then(
-												function(d) {
+										.then(function(d) {
 													this.users = d;
 												},
 												function(errResponse) {
-													console
-															.error('Error while fetching Users');
+													console.error('Error while fetching Users');
 												});
 							};
 
@@ -38,8 +36,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 													$location.path("/login")
 												},
 												function(errResponse) {
-													console
-															.error('Error while creating User.');
+													console.error('Error while creating User.');
 												});
 							};
 
@@ -47,15 +44,12 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								console.log("myProfile...")
 								UserService
 										.myProfile()
-										.then(
-												function(d) {
+										.then(function(d) {
 													this.user = d;
-													$location
-															.path("/myProfile")
+													$location.path("/myProfile")
 												},
 												function(errResponse) {
-													console
-															.error('Error while fetch profile.');
+													console.error('Error while fetch profile.');
 												});
 							};
 
@@ -63,19 +57,16 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								console.log("accept...")
 								UserService
 										.accept(id)
-										.then(
-												function(d) {
+										.then(function(d) {
 													this.user = d;
 													this.fetchAllUsers
-													$location
-															.path("/manage_users")
+													$location.path("/manage_users")
 													alert(this.user.errorMessage)
 
 												},
 
 												function(errResponse) {
-													console
-															.error('Error while updating User.');
+													console.error('Error while updating User.');
 												});
 							};
 
@@ -109,56 +100,31 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							this.authenticate = function(user) {
 								console.log("authenticate...")
-								UserService
-										.authenticate(user)
-										.then(
-
-												function(d) {
-
+								UserService.authenticate(user)
+										.then(function(d) {
 													this.user = d;
-													console
-															.log("user.errorCode: "
-																	+ this.user.errorCode)
+													console.log("user.errorCode: "+ this.user.errorCode)
 													if (this.user.errorCode == "404")
-
 													{
 														alert(this.user.errorMessage)
-
-														this.user.id = "";
+														this.user.mailid = "";
 														this.user.password = "";
 
-													} else { // valid
-														// credentials
-														console
-																.log("Valid credentials. Navigating to home page")
-
+													} else { // valid credentials
+														console.log("Valid credentials. Navigating to home page")
 														if (this.user.role == "ROLE_ADMIN") {
-															console
-																	.log("You are admin")
-															this
-																	.fetchAllUsers();
+															console.log("You are admin")
+															this.fetchAllUsers();
 														}
-
-														console
-																.log('Current user : '
-																		+ this.user)
+														console.log('Current user : '+ this.user)
 														$rootScope.currentUser = this.user
-														$cookieStore.put(
-																'currentUser',
-																this.user);
-
-														$http.defaults.headers.common['Authorization'] = 'Basic '
-																+ $rootScope.currentUser;
-														$location
-																.path('/chat_forum');
-
+														$cookieStore.put('currentUser',this.user);
+														$http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.currentUser;
+														$location.path('/chat_forum');
 													}
-
 												},
 												function(errResponse) {
-
-													console
-															.error('Error while authenticate Users');
+													console.error('Error while authenticate Users');
 												});
 							};
   
@@ -173,7 +139,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							// this.fetchAllUsers(); //calling the method    
 
-							// better to call fetchAllUsers -> after login ???
+							// better to call fetchAllUsers -> after login ???  
 
 							this.login = function() {
 								{
