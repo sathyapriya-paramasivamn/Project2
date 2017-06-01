@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getByUserid(int userid) {
-		String hql = "from User where userid ='" + userid + "'";
+		String hql = "from userinfo where userid ='" + userid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getByMailid(String mailid) {
-		String hql = "from User where mailid ='" + mailid + "'";
+		String hql = "from userinfo where mailid ='" + mailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -83,15 +83,18 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User login(User user) {
-		String hql = "from Userinfo where mailid=" + "'" + user.getMailid() + "'   and password = " + "'" + user.getPassword()
-				+ "'";
+		System.out.println(user.getMailid());
+		System.out.println(user.getPassword());
+		String hql = "from User where mailid=" + "'" + user.getMailid() + "'   and password = " + "'"+ user.getPassword() +"'";
+	
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 
 		@SuppressWarnings("unchecked")
 		List<User> list = (List<User>) query.list();
 
 		if (list != null && !list.isEmpty()) {
-			return list.get(0);
+			return list.get(0);    
+			
 		}
 		return null;
 	}

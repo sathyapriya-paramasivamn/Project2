@@ -18,7 +18,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                    null
                             );
             },
-            
+              
             myProfile: function() {
             	console.log("calling myProfile ")
                     return $http.get(BASE_URL+'/myProfile')
@@ -97,10 +97,10 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
         
         
             
-            authenticate: function(user){
+            login: function(user){
             	   console.log("Calling the method authenticate with the user :"+user)
           		 
-                return $http.post(BASE_URL+'/login',user)
+                return $http.post(BASE_URL+'login',user)
                         .then(
                                 function(response){
                                     return response.data;   //user json object

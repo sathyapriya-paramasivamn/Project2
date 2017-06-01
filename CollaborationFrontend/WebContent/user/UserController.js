@@ -2,10 +2,10 @@
 
 app.controller('UserController',['$scope','UserService','$location','$rootScope','$cookieStore','$http',function($scope, UserService, $location, $rootScope,$cookieStore, $http) {
 							console.log("UserController...")
-							// var this = this;
-							this.user = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+							var self = this;
+							self.user = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 
-							this.currentUser = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+							self.currentUser = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 
 							this.users = []; // json array
 
@@ -15,10 +15,10 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							this.fetchAllUsers = function() {
 								console.log("fetchAllUsers...")
-								UserService
+								UserService  
 										.fetchAllUsers()
 										.then(function(d) {
-													this.users = d;
+												self.users = d;
 												},
 												function(errResponse) {
 													console.error('Error while fetching Users');
@@ -45,7 +45,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								UserService
 										.myProfile()
 										.then(function(d) {
-													this.user = d;
+													self.user = d;
 													$location.path("/myProfile")
 												},
 												function(errResponse) {
@@ -58,12 +58,12 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								UserService
 										.accept(id)
 										.then(function(d) {
-													this.user = d;
+													self.user = d;
 													this.fetchAllUsers
 													$location.path("/manage_users")
 													alert(this.user.errorMessage)
 
-												},
+												}, 
 
 												function(errResponse) {
 													console.error('Error while updating User.');
@@ -75,7 +75,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								var reason = prompt("Please enter the reason");
 								UserService.reject(id, reason).then(
 										function(d) {
-											this.user = d;
+											self.user = d;
 											this.fetchAllUsers
 											$location.path("/manage_users")
 											alert(this.user.errorMessage)
@@ -98,36 +98,38 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								this.reset();
 							};
 
-							this.authenticate = function(user) {
+							/*this.authenticate = function(user) { 
 								console.log("authenticate...")
 								UserService.authenticate(user)
 										.then(function(d) {
 													this.user = d;
-													console.log("user.errorCode: "+ this.user.errorCode)
-													if (this.user.errorCode == "404")
-													{
-														alert(this.user.errorMessage)
-														this.user.mailid = "";
-														this.user.password = "";
-
-													} else { // valid credentials
+													
 														console.log("Valid credentials. Navigating to home page")
-														if (this.user.role == "ROLE_ADMIN") {
+													
 															console.log("You are admin")
 															this.fetchAllUsers();
-														}
-														console.log('Current user : '+ this.user)
-														$rootScope.currentUser = this.user
-														$cookieStore.put('currentUser',this.user);
-														$http.defaults.headers.common['Authorization'] = 'Basic '+ $rootScope.currentUser;
-														$location.path('/chat_forum');
-													}
+															console.log("Valid credentials. Navigating to admin page")
+														
+													
 												},
 												function(errResponse) {
 													console.error('Error while authenticate Users');
 												});
-							};
+							};*/
   
+							this.login = function() {
+								UserService.login(this.user).then(function(response) {
+									console.log(response.status)
+									$scope.user = response.data
+									$rootScope.currentUser = response.data;
+									$cookieStore.put("currentUser", response.data);
+									$location.path('/blog')
+								}, function(response) {
+									console.log(response.status)
+									$scope.message = response.data.message
+									$location.path('/login')
+								})  
+							};
 							this.logout = function() {
 								console.log("logout")
 								$rootScope.currentUser = {};
@@ -141,14 +143,14 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							// better to call fetchAllUsers -> after login ???  
 
-							this.login = function() {
+						/*	this.login = function() {
 								{
 									console.log('login validation????????',
 											this.user);
 									this.authenticate(this.user);
 								}
 
-							};
+							};*/
 
 							this.submit = function() {
 								{
@@ -159,7 +161,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							};
 
 							this.reset = function() {
-								this.user = {userid:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+								self.user = {userid:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 								$scope.myForm.$setPristine(); // reset Form
 							};
 

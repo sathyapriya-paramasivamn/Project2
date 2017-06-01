@@ -46,7 +46,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								var reason = prompt("Please enter the reason");
 								BlogService.reject(id, reason).then(
 										function(d) {
-											this.blog = d;
+											self.blog = d;
 											this.fetchAllBlogs
 											$location.path("/manage_Blogs")
 											alert(this.Blog.errorMessage)
