@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+<title>add job</title>
+<style>
+<
+link
+ 
+ref
+="text/css"
+>
+@import "compass/css3";
+
+body {
+	font-family: helvetica, arial, sans-serif;
+	background-color: #CFD8DC;
+	color: #607D8B;
+	font-size: 16px;
+	line-height: 1.4em;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+a {
+	color: #2dbc24;
+	text-decoration: none;
+}
+
+a:active, a :-moz-any-link:focus {
+	outline: none;
+}
+
+#content {
+	width: 600px;
+	margin: 20px 0 0 50px;
+	padding-bottom: 3em;
+	position: relative;
+	z-index: 2;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h3 {
+	display: inline-block;
+	background-color: #607D8B;
+	padding: 0.2em 0.6em;
+	margin-bottom: 0.4em;
+	text-shadow: none;
+}
+
+h5 {
+	text-transform: uppercase;
+	font-weight: normal;
+	margin-bottom: 0.3em;
+	line-height: 1.2em;
+}
+
+h6 {
+	text-transform: uppercase;
+	font-size: 0.9em;
+	font-weight: normal;
+	margin-bottom: 0.8em;
+}
+
+p {
+	margin-bottom: 1em;
+}
+
+section {
+	margin-top: 2em;
+	*display: inline-block;
+}
+
+section:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+section h2 {
+	color: #000000;
+	font-size: 28px;
+	line-height: 42px;
+	margin-bottom: 0.5em;
+	position: relative;
+	left: -50px;
+	padding-left: 50px;
+}
+
+section#contact {
+	position: relative;
+}
+
+#contact-wrapper {
+	float: left;
+	width: 590px;
+	height: 338px;
+	position: relative;
+	z-index: 100;
+}
+
+#contact-wrapper .inner {
+	width: 590px;
+	height: 338px;
+	-webkit-perspective: 1000;
+	float: left;
+	position: absolute;
+}
+
+#contact-wrapper .inner .front {
+	z-index: 20;
+}
+
+#contact-wrapper .inner .back {
+	width: 590px;
+	height: 338px;
+	-webkit-transform: rotateX(180deg);
+	z-index: 10;
+	font-family: Georgia, helvetica, sans-serif;
+}
+
+#contact-wrapper .card {
+	width: 590px;
+	height: 338px;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 0.5s;
+}
+
+#contact-wrapper .face {
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+}
+
+#contact-wrapper.flip .card {
+	-webkit-transform: rotateX(180deg);
+}
+
+.no-csstransforms3d #contact-wrapper .inner .back {
+	opacity: 0;
+}
+
+#form-wrapper {
+	width: 566px;
+	background-color: #fff;
+	padding: 12px;
+	opacity: 0.9;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#envelope {
+	background: #607D8B
+		url(http://concepts.blackantmedia.com/flippingform/images/texture-envelope.jpg)
+		0 0 repeat;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform: rotateX(180deg);
+	width: 590px;
+	height: 198px !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 40px;
+	line-height: 1em;
+	text-shadow: none;
+	color: #333;
+	text-align: center;
+	padding-top: 140px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#envelope img {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+span {
+	float: right;
+}
+
+form {
+	margin-top: 42px;
+	padding: 50px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #607D8B;
+	border: solid 1px #211c1c;
+	-webkit-box-shadow: inset 0 0px 30px rgba(192, 192, 192, 0.3);
+	-moz-box-shadow: inset 0 0px 30px rgba(192, 192, 192, 0.3);
+	box-shadow: inset 0 0px 30px rgba(192, 192, 192, 0.3);
+	*display: inline-block;
+}
+
+form:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+form label {
+	font-size: 0.9em;
+	width: 120px;
+	text-align: right;
+	float: left;
+	line-height: 1.8em;
+	color: #f1f1f1;
+}
+
+form sup {
+	color: #00BCD4;
+}
+
+form p {
+	margin-bottom: 0.8em;
+	*display: inline-block;
+}
+
+form p:after {
+	content: " ";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+form input {
+	float: right;
+	width: 390px;
+	font-size: 14px;
+	padding: 0.4em 0.3em;
+	background-color: #CFD8DC;
+	color: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-family: helvetica, arial;
+	border: solid 1px #211c1c;
+	-webkit-box-shadow: rgba(192, 192, 192, 0.3);
+	-moz-box-shadow: rgba(192, 192, 192, 0.3);
+	box-shadow: 0 1px 0 #454545;
+}
+
+form textarea {
+	width: 390px;
+	height: 108px;
+	float: right;
+	font-size: 14px;
+	padding: 0.4em 0.3em;
+	color: #fff;
+	background-color: #CFD8DC;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-family: helvetica, arial;
+	border: solid 1px #211c1c;
+	-webkit-box-shadow: 0 1px 0 #454545;
+	-moz-box-shadow: 0 1px 0 #454545;
+	box-shadow: 0 1px 0 #454545;
+}
+
+form input:focus, form textarea:focus {
+	outline: none;
+	border-color: #607D8B;
+	-webkit-box-shadow: rgba(192, 192, 192, 0.3);
+	-moz-box-shadow: #6ce164 0 0 5px;
+	box-shadow: #6ce164 0 0 5px;
+}
+
+form button {
+	margin-left: 135px;
+	background: #009688;
+	background: -moz-linear-gradient(top, #2dbc24 0%, #607D8B 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #607D8B),
+		color-stop(100%, #607D8B));
+	-moz-box-shadow: inset 0 1px 0 0 #607D8B, 0 1px 1px 0 #AED581;
+	-webkit-box-shadow: inset 0 1px 0 0 #607D8B, 0 1px 1px 0 #607D8B;
+	-webkit-background-clip: padding-box;
+	border-top: 1px solid #607D8B;
+	border-right: 1px solid #607D8B;
+	border-bottom: 1px solid #607D8B;
+	border-left: 1px solid #607D8B;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 13px;
+	line-height: 1;
+	height: 28px;
+	padding: 0 1em 0.25em 1em;
+	text-shadow: 0 -1px rgba(0, 0, 0, 0.2);
+}
+
+form button:hover {
+	background: #78909C;
+	background: -moz-linear-gradient(top, #2aaf22 0%, #208419 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #78909C),
+		color-stop(100%, #78909C));
+	-moz-box-shadow: inset 0 1px 0 0 #78909C, 0 1px 1px 0 #78909C;
+	-webkit-box-shadow: inset 0 1px 0 0 #78909C, 0 1px 1px 0 #607D8B;
+	border-top: 1px solid #78909C;
+	border-right: 1px solid #78909C;
+	border-bottom: 1px solid #78909C;
+	border-left: 1px solid #607D8B;
+	cursor: pointer;
+}
+
+.validation-advice {
+	float: right;
+	width: 400px;
+	font-size: 12px;
+	color: #ff0;
+}
+
+#mail-slot {
+	width: 624px;
+	height: 11px;
+	position: absolute;
+	bottom: 0;
+	left: -17px;
+	background: transparent
+		url(http://concepts.blackantmedia.com/flippingform/images/mail-slot.png)
+		0 0 no-repeat;
+	display: none;
+}
+
+#thanks, #error {
+	font-family: Georgia, helvetica, sans-serif;
+	color: #fff;
+	text-align: center;
+	padding-top: 70px;
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg); 
+	transform: rotate(-3deg);
+	display: none;
+}
+
+#thanks h5, #error h5 {
+	font-size: 50px;
+	margin-bottom: 0.5em;
+	text-transform: none;
+}
+
+#thanks p, #error p {
+	font-size: 35px;
+	margin-bottom: 1em;
+}
+
+#thanks a#send-another, #error a#send-another {
+	font-size: 22px;
+}
+</style>
+<script>
+	/* window.addEvent('domready', function() {  
+	 var form = new FlippingContactForm($('contact-wrapper'), {});
+	 });
+
+
+	 var FlippingContactForm = new Class({
+	 Implements: [Options, Events],
+	
+	 options: {
+	 dropDelay: 2500,
+	 thanksDelay: 3500
+	 },
+	 senderName: '',
+	 senderEmail: '',
+	
+	 initialize: function(container, options) { 
+	 this.setOptions(options);
+	 this.container = $(container);
+	 this.form = this.container.getElement('form');
+
+	 if (!Modernizr.csstransforms3d) {
+	 $('envelope').morph({opacity: 0});
+	 }
+
+	 new Form.Validator.Inline(this.form);
+	 new Form.Request(this.form, null, {
+	 requestOptions: {
+	 useSpinner: false
+	 },
+	 onSend: function() {
+	 this.flipForm()
+	 }.bind(this),
+	 onComplete: function(target, response) {
+	 this.showThanks()
+	 }.bind(this),
+	 });
+	 $$('#send-another').addEvent('click', function(e) {
+	 e.stop();
+	 this.resetForm();
+	 }.bind(this));
+	 },
+
+	 flipForm: function() {
+	 $('from').set('html', $('name').get('value'));
+	 this.senderName = $('name').get('value');
+	 this.senderEmail = $('email').get('value');
+	 $$('#mail-slot').show();
+	 this.container.addClass('flip'); 
+	 (function() { this.dropForm(); }).delay(this.options.dropDelay, this);
+	 if (!Modernizr.csstransforms3d) {
+	 $('form-wrapper').morph({opacity: 0});
+	 $('envelope').morph({opacity: 1});
+	 }
+	 },
+
+	 dropForm: function() {
+	 this.container.setStyle('overflow', 'hidden');
+	 this.container.getChildren('.inner').move({
+	 relativeTo: this.container,
+	 offset: {x: 0, y: 500},
+	 transition: Fx.Transitions.Quint.easeIn      
+	 });
+	 },
+
+	 showThanks: function() {
+	 (function() { $('thanks').reveal({duration: 1000}); }).delay(this.options.thanksDelay, this);
+	 },
+
+	 showErrorMessage: function() {
+	 (function() { $('error').reveal({duration: 1000}); }).delay(this.options.thanksDelay, this);
+	 },
+
+	 resetForm: function() {
+	 $$('#thanks').hide();
+	 $$('#mail-slot').hide();    
+	 this.container.setStyle('overflow', 'visible');
+	 this.container.removeClass('flip');     
+	 this.container.getChildren('.inner').move({
+	 relativeTo: this.container,
+	 offset: {x: 0, y: -500},
+	 transition: Fx.Transitions.Quint.easeOut        
+	 });
+	 if (!Modernizr.csstransforms3d) {
+	 $('form-wrapper').morph({opacity: 1});
+	 $('envelope').morph({opacity: 0});
+	 }
+	 $('name').set('value', this.senderName);
+	 $('email').set('value', this.senderEmail);
+	 $('message').set('value', '');
+	 (function() { $('message').focus(); }).delay(500, this);
+	 }
+	 }); */
+</script>
+</head>
+<body>
+<body>
+
+	<div id="content">
+		<section id="contact">
+			<div id="contact-wrapper">
+				<div class="inner">
+					<div class="card">
+						<div id="form-wrapper" class="face front">
+
+							<form action="" method="post" id="contact-form"
+								ng-submit="jc.submit()">
+								<p>
+									<label for="jobname">jobname <sup>*</sup></label> <input
+										type="text" id="jobname" name="jobname" class="required"
+										ng-model="jc.job.jobname" />
+								</p>
+								<p>
+									<label for="jobcategory">jobcategory <sup>*</sup></label> 
+									<input type="text" id="jobcategory" name="jobcategory"
+										class="required" ng-model="jc.job.jobcategory" />
+								</p>
+								<p>
+									<label for="jobdetails">jobdetails <sup>*</sup></label>
+									<textarea ng-trim="false" ng-model="jc.job.jobdetails"></textarea>
+								</p>
+								<span>{{jc.job.jobdetails}} left</span>
+								<button type="submit">Send Message</button>  
+							</form>
+						</div>
+
+					</div>
+				</div> 
+			</div>
+
+		</section>
+	</div>
+</body>  
+</html>

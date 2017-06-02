@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>View Forum</title>
+
+</head>
+<body>
+hai
+<ul>
+<li ng-repeat="f in forums">   
+<span ng-bind="f.name"></span> 
+ <span ng-bind="f.message"></span>
+ <p>{{f.message}}</p>
+     <p>hello</p>     
+   <button type="button" ng-click="fc.get(f)" style="float: right;">Read More ></button>
+
+  </li></ul>
+</body>
+</html>   
