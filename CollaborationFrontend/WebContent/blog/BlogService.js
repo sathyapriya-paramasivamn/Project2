@@ -4,7 +4,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
 	
 	console.log("blogService...")
 	
-	var BASE_URL='http://localhost:8085/CollaborationRestServices/'
+	var BASE_URL='http://localhost:8085/CollaborationRestServices'
 		
     return {
          

@@ -4,7 +4,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							console.log("JobController...")
 							var self = this;
 							self.job = {jobname : '',jobcategory: '',jobdetails:''};
-							//this.job = {jobname : '',jobcategory: '',jobdetails:''};
+							//self.job = {jobname : '',jobcategory: '',jobdetails:''};
 							self.jobs = []; // json array
 
 //							$scope.orderByMe = function(x) {  
@@ -25,9 +25,9 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							        );
 							    }
 
-							// this.fatchAllJobs();
+							// self.fatchAllJobs();
 
-							this.createJob = function(blog) {
+							self.createJob = function(blog) {
 								console.log("createJob...")
 								BlogService.createJob(job)
 										.then(
@@ -45,49 +45,49 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 
 							
 
-							this.reject = function(id) {
+							self.reject = function(id) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
 								JobService.reject(id, reason).then(
 										function(d) {
-											this.job = d;
-											this.fetchAllJobs
+											self.job = d;
+											self.fetchAllJobs
 											$location.path("/manage_Jobs")
-											alert(this.Job.errorMessage)
+											alert(self.Job.errorMessage)
 
 										}, null);
 							};
 
-							this.updateJob = function(currentJob) {
+							self.updateJob = function(currentJob) {
 								console.log("updateJob...")
 								JobService.updateJob(currentJob).then(
-										this.fetchAllJobs, null);
+										self.fetchAllJobs, null);
 							};
 
-							this.update = function() {
+							self.update = function() {
 								{
 									console.log('Update the Job details',
 											$rootScope.currentJob);
-									this.updateJob($rootScope.currentJob);
+									self.updateJob($rootScope.currentJob);
 								}
-					 			this.reset();
+					 			self.reset();
 							};
 
 							
 							
 
-							// this.fetchAllBlogs(); //calling the method    
+							// self.fetchAllBlogs(); //calling the method    
 
 							// better to call fetchAllBlogs -> after login ???
 
 							
 
-							this.submit = function() {
+							self.submit = function() {
 								{
-									console.log('Saving New Job', this.job);
-									this.createBlog(this.job);
+									console.log('Saving New Job', self.job);
+									self.createBlog(self.job);
 								}
-								this.reset();  
+								self.reset();  
 							};
 
 						

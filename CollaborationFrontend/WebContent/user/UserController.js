@@ -6,14 +6,14 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							self.user = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 
 							self.currentUser = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
-
-							this.users = []; // json array
+  
+							self.users = []; // json array
 
 							$scope.orderByMe = function(x) {
 								$scope.myOrderBy = x;
 							}
 
-							this.fetchAllUsers = function() {
+							self.fetchAllUsers = function() {
 								console.log("fetchAllUsers...")
 								UserService  
 										.fetchAllUsers()
@@ -25,9 +25,9 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 												});
 							};
 
-							// this.fatchAllUsers();
+							// self.fatchAllUsers();
 
-							this.createUser = function(user) {
+							self.createUser = function(user) {
 								console.log("createUser...")
 								UserService.createUser(user)
 										.then(
@@ -40,7 +40,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 												});
 							};
 
-							this.myProfile = function() {
+							self.myProfile = function() {
 								console.log("myProfile...")
 								UserService
 										.myProfile()
@@ -53,15 +53,15 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 												});
 							};
 
-							this.accept = function(id) {
+							self.accept = function(id) {
 								console.log("accept...")
 								UserService
 										.accept(id)
 										.then(function(d) {
 													self.user = d;
-													this.fetchAllUsers
+													self.fetchAllUsers
 													$location.path("/manage_users")
-													alert(this.user.errorMessage)
+													alert(self.user.errorMessage)
 
 												}, 
 
@@ -70,44 +70,44 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 												});
 							};
 
-							this.reject = function(id) {
+							self.reject = function(id) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
 								UserService.reject(id, reason).then(
 										function(d) {
 											self.user = d;
-											this.fetchAllUsers
+											self.fetchAllUsers
 											$location.path("/manage_users")
-											alert(this.user.errorMessage)
+											alert(self.user.errorMessage)
 
 										}, null);
 							};
 
-							this.updateUser = function(currentUser) {
+							self.updateUser = function(currentUser) {
 								console.log("updateUser...")
 								UserService.updateUser(currentUser).then(
-										this.fetchAllUsers, null);
+										self.fetchAllUsers, null);
 							};
 
-							this.update = function() {
+							self.update = function() {
 								{
 									console.log('Update the user details',
 											$rootScope.currentUser);
-									this.updateUser($rootScope.currentUser);
+									self.updateUser($rootScope.currentUser);
 								}
-								this.reset();
+								self.reset();
 							};
 
-							/*this.authenticate = function(user) { 
+							/*self.authenticate = function(user) { 
 								console.log("authenticate...")
 								UserService.authenticate(user)
 										.then(function(d) {
-													this.user = d;
+													self.user = d;
 													
 														console.log("Valid credentials. Navigating to home page")
 													
 															console.log("You are admin")
-															this.fetchAllUsers();
+															self.fetchAllUsers();
 															console.log("Valid credentials. Navigating to admin page")
 														
 													
@@ -117,8 +117,8 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 												});
 							};*/
   
-							this.login = function() {
-								UserService.login(this.user).then(function(response) {
+							self.login = function() {
+								UserService.login(self.user).then(function(response) {
 									console.log(response.status)
 									$scope.user = response.data
 									$rootScope.currentUser = response.data;
@@ -130,7 +130,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 									$location.path('/login')
 								})  
 							};
-							this.logout = function() {
+							self.logout = function() {
 								console.log("logout")
 								$rootScope.currentUser = {};
 								$cookieStore.remove('currentUser');
@@ -139,28 +139,28 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							}
 
-							// this.fetchAllUsers(); //calling the method    
+							// self.fetchAllUsers(); //calling the method    
 
 							// better to call fetchAllUsers -> after login ???  
 
-						/*	this.login = function() {
+						/*	self.login = function() {
 								{
 									console.log('login validation????????',
-											this.user);
-									this.authenticate(this.user);
+											self.user);
+									self.authenticate(self.user);
 								}
 
 							};*/
 
-							this.submit = function() {
+							self.submit = function() {
 								{
-									console.log('Saving New User', this.user);
-									this.createUser(this.user);
+									console.log('Saving New User', self.user);
+									self.createUser(self.user);
 								}
-								this.reset();
+								self.reset();
 							};
 
-							this.reset = function() {
+							self.reset = function() {
 								self.user = {userid:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 								$scope.myForm.$setPristine(); // reset Form
 							};

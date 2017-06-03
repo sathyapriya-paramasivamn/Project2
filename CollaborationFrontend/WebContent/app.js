@@ -12,10 +12,15 @@ app.config(function($routeProvider) {
 	.when('/login', {
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
-		controllerAs: 'ctrl'
+		controllerAs: 'uc'
 	})
+	.when('/logout', {
+		templateUrl : 'home/home.html',
+		controller : 'UserController',
+		controllerAs: 'ctrl'
+	})   
 
-	.when('/register', {
+	.when('/register', { 
 		templateUrl : 'user/register.html',
 		controller : 'UserController',
 		controllerAs: 'uc'

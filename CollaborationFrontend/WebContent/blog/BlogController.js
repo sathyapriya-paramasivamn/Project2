@@ -10,13 +10,16 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 						/*	$scope.orderByMe = function(x) {  
 								$scope.myOrderBy = x;
 							}  */
+							
+							
+							
 							fetchAllBlogs();
 							  reset();
 							  function fetchAllBlogs(){
 							    	BlogService.fetchAllBlogs()
 							            .then(
 							            function(d) {
-							                self.blogs = d;
+							                self.blogs = d; 
 							                console.log(self.blogs)
 							            },
 							            function(errResponse){
@@ -25,15 +28,15 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							        );
 							    }
 
-							// this.fatchAllBlogs();
+							// self.fatchAllBlogs();
 							  	
-							this.createBlog = function(blog) {
+							self.createBlog = function(blog) {
 								console.log("createBlog...")
 								BlogService.createBlog(blog)
 										.then(
 												function(d) {
 													alert("Thank you for creating message")
-													$location.path("/index")
+													$location.path("/viewblog")
 												},
 												function(errResponse) {
 													console
@@ -41,49 +44,49 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 												});
 							};
 
-							this.reject = function(id) {
+							self.reject = function(id) {
 								console.log("reject...")
 								var reason = prompt("Please enter the reason");
 								BlogService.reject(id, reason).then(
 										function(d) {
 											self.blog = d;
-											this.fetchAllBlogs
+											self.fetchAllBlogs
 											$location.path("/manage_Blogs")
-											alert(this.Blog.errorMessage)
+											alert(self.Blog.errorMessage)
 
 										}, null);
 							};
 
-							this.updateBlog = function(currentBlog) {
+							self.updateBlog = function(currentBlog) {
 								console.log("updateBlog...")
 								BlogService.updateBlog(currentBlog).then(
-										this.fetchAllBlogs, null);
+										self.fetchAllBlogs, null);
 							};
 
-							this.update = function() {
+							self.update = function() {
 								{
 									console.log('Update the Blog details',
 											$rootScope.currentBlog);
-									this.updateBlog($rootScope.currentBlog);
+									self.updateBlog($rootScope.currentBlog);
 								}
-					 			this.reset();
+					 			self.reset();
 							};
 
 							
 							
 
-							// this.fetchAllBlogs(); //calling the method    
+							// self.fetchAllBlogs(); //calling the method    
 
 							// better to call fetchAllBlogs -> after login ???
 
 							
   
-							this.submit = function() {
+							self.submit = function() {
 								{
-									console.log('Saving New Blog', this.blog);
-									this.createBlog(this.blog);
+									console.log('Saving New Blog', self.blog);
+									self.createBlog(self.blog);
 								}
-								this.reset();  
+								self.reset();  
 							};
 
 						
