@@ -48,7 +48,7 @@ public class UserDAOImpl implements UserDAO {
 		sessionFactory.getCurrentSession().delete(userToDelete);
 	}
 
-	@Transactional
+	@Transactional  
 	public User getByUserid(int userid) {
 		String hql = "from userinfo where userid ='" + userid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
@@ -80,7 +80,7 @@ public class UserDAOImpl implements UserDAO {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class, empID);
 		return user;
 	}
-
+  
 	@Transactional
 	public User login(User user) {
 		System.out.println(user.getMailid());

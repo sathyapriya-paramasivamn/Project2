@@ -41,20 +41,22 @@ public class BlogTest {
 		JobDAO jobDAO=(JobDAO) context.getBean("JobDAO");
 		Job job=(Job)context.getBean("job");
 	
+	blog.setUsermailid("abi@gmail.com");
+	blog.setUsername("abi");
 	blog.setTitle("placement session");
 	blog.setDescription("www.indiabixapp.com,www.mathcrack.com");
     blog.setStatus("active");
     blogDAO.save(blog);
+   
     
-    
-  user.setName("abi");    
+  user.setName("abi");      
   user.setMailid("abi@gmail.com");
   user.setMobileno("9878787898");
   user.setPassword("sa23");
   user.setRole("student");
   user.setResidential("coimbatore");
-  user.setPincode("642222");   
-  //user.setOnline(0);
+  user.setPincode("642222");      
+  //user.setOnline(0); 
 		userDAO.save(user);
 	   
     event.setEventname("IEEE Conference");

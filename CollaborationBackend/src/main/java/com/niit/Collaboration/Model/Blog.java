@@ -17,10 +17,11 @@ public class Blog {
 	@Id
 	@GeneratedValue
 	private int id;
-	  
+	private String username;
+	private String usermailid; 
 	private String title;
 	private String description;
-	private String status;
+	private String status; 
 	
 	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
@@ -49,7 +50,7 @@ public class Blog {
 	}
 
 	public String getStatus() {
-		return status;
+		return status;  
 	}
 
 	public void setStatus(String status) {
@@ -64,4 +65,23 @@ public class Blog {
 		this.timeStamp = timeStamp;
 	}
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getUsermailid() {
+		return usermailid;
+	}
+
+	public void setUsermailid(String usermailid) {
+		this.usermailid = usermailid;
+	}
+
+ 
+
 }
+  

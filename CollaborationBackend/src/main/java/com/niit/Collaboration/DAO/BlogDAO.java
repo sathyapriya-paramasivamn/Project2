@@ -1,4 +1,4 @@
-package com.niit.Collaboration.DAO;
+ package com.niit.Collaboration.DAO;
 
 import java.util.List;
 
@@ -12,5 +12,7 @@ public void update(Blog blog);
 public void delete (int id);
 public Blog getById(int id);
 public Blog getByTitle(String title);
+public Blog getByUsermailid(String usermailid);
+
 
 }

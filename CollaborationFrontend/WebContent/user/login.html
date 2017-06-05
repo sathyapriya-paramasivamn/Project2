@@ -101,26 +101,26 @@ form button[type=submit] {
     
 </form>
 </div> -->
-<div ng-controller="UserController as ctrl">
+<div ng-controller="UserController as uc">
 
-	<div ng-show='ctrl.user.errorMessage'>
+	<div ng-show='uc.user.errorMessage'>
 		<div class="alert alert-danger fade in">
 			{{message}}</div>
 
 	</div>
 
 
-	<span ng-hide="ctrl.userLoggedIn">
-		<form name="form" ng-submit="ctrl.login()" role="form">
+	<span ng-hide="uc.userLoggedIn">
+		<form name="form" ng-submit="uc.login()" role="form">
  
 		<div class="form-group"
 				ng-class="{ 'has-error': form.name.$dirty && form.name.$error.required }">
 				<label for="mailid">Mailid</label> 
 				
-				  
+				    
 				<input type="text"
 					name="mailid" id="mailid" class="form-control"
-					ng-model="ctrl.user.mailid" required /> 
+					ng-model="uc.user.mailid" required /> 
 					  
 					
 					<span
@@ -133,7 +133,7 @@ form button[type=submit] {
 				ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
 				<label for="password">Password</label> <input type="password"
 					name="password" id="password" class="form-control"
-					ng-model="ctrl.user.password" required /> <span
+					ng-model="uc.user.password" required /> <span
 					ng-show="form.password.$dirty && form.password.$error.required"
 					class="help-block">Password is required</span>
 			</div>

@@ -2,9 +2,74 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>home</title>
+<style type="text/css">
+<
+style type ="text/css">.abc:hover {
+	-moz-box-shadow: 0 0 10px #ccc;
+	-webkit-box-shadow: 0 0 10px #ccc;
+	box-shadow: 0 0 10px #ccc;
+	background-color: #F5F5F9;
+}
+</style>
 </head>
-<body>
+<body style="padding-left: 0em;">
+	<div class="column-content-region col-sm-3"
+		ng-controller="ForumController as fc">
+		<h3>Forums</h3>
+		<div class="abc" ng-repeat="f in fc.forums" ng-click="forum.get(f)">
+			<h5>
+				<span ng-bind="f.name"></span>
+			</h5>
+			<h6>
+				<span ng-bind="f.message"></span>  
+			</h6>
+			<h6>
+				<span ng-bind="f.timeStamp"></span>
+			</h6>
+			<a href="" ng-click="fc.get(f)">Read More</a>
+		</div>
 
+	</div>
+
+	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
+		ng-controller="BlogController as bc">
+		<h3>Blogs</h3>
+		<div class="abc" ng-repeat="b in bc.blogs" ng-click="blog.get(b)">
+			<h2>
+				<span ng-bind="b.title"></span>
+			</h2>
+			<p>
+				<span ng-bind="b.status"></span>
+			</p>
+			<p>
+				<span ng-bind="b.description"></span>
+			</p>
+			<p>
+				<span ng-bind="b.timeStamp"></span>
+			</p>
+			<a href="" ng-click="bc.get(b)">Read More</a>
+		</div>
+	</div>
+
+	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
+		ng-controller="JobController as jc">
+		<h3>Jobs</h3>
+		<div class="abc" ng-repeat="j in jc.jobs" ng-click="job.get(j)">
+			<h2>
+				<span ng-bind="j.jobname"></span>
+			</h2>
+			<p>
+				<span ng-bind="j.jobcategory"></span>
+			</p> 
+			<p>
+				<span ng-bind="j.jobdetails"></span>
+			</p>
+			<a href="" ng-click="jc.get(j)">Read More</a>
+
+
+
+		</div>  
+	</div>
 </body>
 </html>

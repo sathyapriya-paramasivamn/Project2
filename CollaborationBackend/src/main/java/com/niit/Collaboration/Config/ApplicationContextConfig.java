@@ -49,7 +49,7 @@ public class ApplicationContextConfig {
 		dataSource.setUsername("SYSTEM1");
 		dataSource.setPassword("sa");
 
-		return dataSource;
+		return dataSource;   
 	}
 
 	private Properties getHibernateProperties() {
@@ -88,7 +88,7 @@ public class ApplicationContextConfig {
 	}
 
 	@Autowired(required = true)
-	@Bean(name = "blogDAO")
+	@Bean(name = "blogDAO")  
 	public BlogDAO getBlogDAO(SessionFactory sessionFactory) {
 		return new BlogDAOImpl(sessionFactory);
 	}

@@ -71,7 +71,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								}
 					 			self.reset();
 							};
-
+  
 							
 							
 
@@ -79,8 +79,13 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 
 							// better to call fetchAllBlogs -> after login ???
 
-							
-  
+							self.get=function (blog){  
+								$scope.bc=blog;
+								console.log($scope.bc);
+								$rootScope.viewblog=$scope.bc;
+								$location.path("/viewb");   
+							};  
+        
 							self.submit = function() {
 								{
 									console.log('Saving New Blog', self.blog);
@@ -88,8 +93,6 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								}
 								self.reset();  
 							};
-
-						
 							 function reset(){
 								 self.blog = {id:null,title : '',status: '',description:''};
 							       //$scope.myform.$setPristine(); //reset Form

@@ -7,7 +7,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
 	var BASE_URL='http://localhost:8085/CollaborationRestServices/'
 		
     return {
-         
+           
             fetchAllUsers: function() {
             	console.log("calling fetchAllUsers ")
                     return $http.get(BASE_URL+'/listAllUsersNotFriends')
@@ -103,7 +103,9 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                 return $http.post(BASE_URL+'login',user)
                         .then(
                                 function(response){
-                                    return response.data;   //user json object
+                                    return response.data; 
+                                    $rootScope.userId=user.userid;
+                                    $rootScope.userName=user.name;//user json object
                                 }, 
                                null
                         );

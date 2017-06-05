@@ -80,16 +80,17 @@ public class UserController {
 		userDAO.update(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}	
-	
+	  
 @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ResponseEntity<?> login(@RequestBody User user,HttpSession session) {
 		User validUser = userDAO.login(user);
 		if (validUser == null) {
 			Error error = new Error("Invalid credentials.. please enter valid username and password");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
-		} else {
+		} 
+		else { 
 			session.setAttribute("user", validUser);
-			
+			  
 			
 			System.out.println(validUser.getMailid());
 			System.out.println(validUser.getName());

@@ -43,7 +43,7 @@ app.controller('ForumController',['$scope','ForumService','$location','$rootScop
 
 							
 
-							
+							  
 
 							self.reject = function(id) {
 								console.log("reject...")
@@ -72,7 +72,7 @@ app.controller('ForumController',['$scope','ForumService','$location','$rootScop
 								}
 					 			self.reset();
 							};
-
+ 
 							
 							
 
@@ -87,10 +87,17 @@ app.controller('ForumController',['$scope','ForumService','$location','$rootScop
 									console.log('Saving New Forum', self.forum);
 									self.createForum(self.forum);
 								}
-								self.reset();  
+								self.reset();     
 							};
 
-						
+							self.get=function (forum){  
+								$scope.fc=forum;
+								console.log($scope.fc);
+								$rootScope.viewjob=$scope.fc;
+								$location.path("/viewf");   
+							};
+							  
+							  
 							 function reset(){
 							self.forum = {forumid:'',name : '',message: ''};
 							       //$scope.myform.$setPristine(); //reset Form

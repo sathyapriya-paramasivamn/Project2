@@ -28,7 +28,7 @@ public class BlogDAOImpl implements BlogDAO {
 	public void save(Blog blog) {
 		sessionFactory.getCurrentSession().save(blog);
 		
-	}
+	}  
 
 	@Transactional
 	public void delete(int id) {
@@ -41,7 +41,7 @@ public class BlogDAOImpl implements BlogDAO {
 		Blog Id = (Blog) sessionFactory.getCurrentSession().get(Blog.class, id);
 
 		return Id;
-	}
+	} 
 	@Transactional
 	public Blog getByTitle(String title) {
 		Blog Title = (Blog) sessionFactory.getCurrentSession().get(Blog.class,title);
@@ -52,6 +52,13 @@ public class BlogDAOImpl implements BlogDAO {
 	public void update(Blog blog) {
 		sessionFactory.getCurrentSession().update(blog);
 		
+	}  
+	@Transactional
+	public Blog getByUsermailid(String usermailid) {
+		Blog Usermailid = (Blog) sessionFactory.getCurrentSession().get(Blog.class,usermailid);
+
+		return Usermailid;  
+	  
 	} 
 }
  

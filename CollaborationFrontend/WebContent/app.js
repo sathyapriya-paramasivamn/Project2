@@ -2,14 +2,15 @@ var app = angular.module('myApp', [ 'ngRoute', 'ngCookies' ]);
 
 app.config(function($routeProvider) {
 
-	$routeProvider 
- 
-	/*.when('/', {
-		templateUrl : 'index.html'
-
+	$routeProvider   
+	.when('/', {
+		templateUrl : 'home/home.html'
 	})
- */
-	.when('/login', {
+	.when('/home', {
+		templateUrl : 'home/home.html'
+	})
+
+	.when('/login', {  
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
 		controllerAs: 'uc'
@@ -17,8 +18,8 @@ app.config(function($routeProvider) {
 	.when('/logout', {
 		templateUrl : 'home/home.html',
 		controller : 'UserController',
-		controllerAs: 'ctrl'
-	})   
+		controllerAs: 'uc' 
+	})     
 
 	.when('/register', { 
 		templateUrl : 'user/register.html',
@@ -33,10 +34,14 @@ app.config(function($routeProvider) {
 	})
 	.when('/viewblog', {
 		templateUrl : 'blog/viewblog.html',
-		controller  :'BlogController',
+		controller  :'BlogController',  
 		controllerAs:'bc'
-  
+     
 	})
+	.when('/viewb', {
+		templateUrl : 'blog/blogdetails.html'
+	})
+	
 	.when('/forum', {
 		templateUrl : 'forum/forum.html',
 		controller  : 'ForumController',
@@ -48,6 +53,9 @@ app.config(function($routeProvider) {
 		controllerAs:'fc'
   
 	})
+	.when('/viewf', {
+		templateUrl : 'forum/forumdetails.html'
+	})  
 	.when('/job', {
 		templateUrl : 'job/job.html',
 		controller  : 'JobController',  
@@ -56,10 +64,14 @@ app.config(function($routeProvider) {
 	.when('/viewjob', {
 		templateUrl : 'job/viewjob.html',
 		controller  :'JobController',    
-		controllerAs:'jc'
-  
-	})
-	.otherwise({
-		redirectTo : '/'
+		controllerAs:'jc' 
+    
+	})  
+	.when('/viewj', {
+		templateUrl : 'job/jobdetails.html'
+	})    
+	
+	.otherwise( {
+		templateUrl : 'home/home.html'
 	});
 });
