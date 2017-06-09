@@ -2,6 +2,8 @@ package com.niit.Collaboration;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.BlogDAO;
 import com.niit.Collaboration.Model.Blog;
+import com.niit.Collaboration.Model.User;
 
 @RestController
 public class BlogController {
 
-	@Autowired
+	@Autowired(required = true)
 	private BlogDAO blogDAO;
 
 	public BlogDAO getBlogDAO() {
@@ -56,8 +59,13 @@ public class BlogController {
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 	@PostMapping("/blog")
-	public ResponseEntity save(@RequestBody Blog blog)
+	public ResponseEntity save(@RequestBody Blog blog, HttpSession session)
 	{
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.getMailid());
+		System.out.println(user.getMobileno());
+		blog.setUsermailid(user.getMailid());
+		blog.setUsername(user.getName());
 		blogDAO.save(blog);
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}

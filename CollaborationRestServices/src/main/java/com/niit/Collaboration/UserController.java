@@ -2,6 +2,7 @@ package com.niit.Collaboration;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.UserDAO;
-
 import com.niit.Collaboration.Model.User;
 
 @RestController
@@ -81,8 +81,9 @@ public class UserController {
 		return new ResponseEntity(user, HttpStatus.OK);
 	}	
 	  
-@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestBody User user,HttpSession session) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ResponseEntity<?> login(@RequestBody User user,HttpServletRequest request) {
+	HttpSession session = request.getSession();
 		User validUser = userDAO.login(user);
 		if (validUser == null) {
 			Error error = new Error("Invalid credentials.. please enter valid username and password");
@@ -97,6 +98,7 @@ public class UserController {
 			return new ResponseEntity<User>(validUser, HttpStatus.OK);
 		}
 	}
+
 	@RequestMapping(value="/logout",method=RequestMethod.PUT)
 	public ResponseEntity<?> logout(HttpSession session){
 		User user=(User)session.getAttribute("user");

@@ -2,6 +2,8 @@ package com.niit.Collaboration;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.niit.Collaboration.DAO.ForumDAO;
 
 import com.niit.Collaboration.Model.Forum;
+import com.niit.Collaboration.Model.User;
 
 
 @RestController
@@ -45,8 +48,13 @@ public class ForumController {
 		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
 	@PostMapping("/forum")
-	public ResponseEntity save(@RequestBody Forum forum)
+	public ResponseEntity save(@RequestBody Forum forum, HttpSession session)
 	{
+		User user = (User) session.getAttribute("user");
+		System.out.println(user.getMailid());
+		System.out.println(user.getMobileno());
+		forum.setUsermailid(user.getMailid()); 
+		forum.setUsername(user.getName());
 		forumDAO.save(forum);
 		return new ResponseEntity(forum, HttpStatus.OK);
 	}
@@ -55,7 +63,8 @@ public class ForumController {
 	public ResponseEntity update(@RequestBody Forum forum)
 	{
 		forumDAO.update(forum);
-		return new ResponseEntity(forum, HttpStatus.OK);
+		return new ResponseEntity(forum, HttpStatus.OK); 
 	}
 
 }
+   
