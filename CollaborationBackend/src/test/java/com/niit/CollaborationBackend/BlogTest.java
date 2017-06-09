@@ -18,12 +18,12 @@ import com.niit.Collaboration.Model.User;
 public class BlogTest {  
 	public static void main (String[] args) {
 
-		@SuppressWarnings("resource")
+	
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.scan("com.niit.*");  
 		context.refresh();  
 		
-		BlogDAO blogDAO = (BlogDAO) context.getBean("BlogDAO");
+		BlogDAO blogDAO = (BlogDAO) context.getBean("blogDAO");
 		Blog blog = (Blog) context.getBean("blog");
 	
 		UserDAO userDAO=(UserDAO) context.getBean("UserDAO");

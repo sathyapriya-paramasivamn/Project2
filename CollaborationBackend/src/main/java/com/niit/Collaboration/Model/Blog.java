@@ -3,9 +3,12 @@ package com.niit.Collaboration.Model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -13,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "blog")
-public class Blog {
+public class Blog { 
 	@Id
 	@GeneratedValue
 	private int id;
@@ -23,9 +26,12 @@ public class Blog {
 	private String description;
 	private String status; 
 	
-	private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
-	public int getId() {
+private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+/*		 @OneToOne(cascade = CascadeType.ALL)
+		@JoinColumn(name = "id")
+	 private Comment comment;  */
+	 
+	public int getId() {  
 		return id;
 	}
 
