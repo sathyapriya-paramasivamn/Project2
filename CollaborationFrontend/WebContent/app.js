@@ -9,17 +9,17 @@ app.config(function($routeProvider) {
 	.when('/home', {
 		templateUrl : 'home/home.html'
 	})
-
+  
 	.when('/login', {  
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
 		controllerAs: 'uc'
 	})
-	.when('/logout', {
+/*	.when('/logout', {
 		templateUrl : 'home/home.html',
 		controller : 'UserController',
-		controllerAs: 'uc' 
-	})     
+		controllerAs: 'uc'  
+	})  */   
 
 	.when('/register', { 
 		templateUrl : 'user/register.html',
@@ -56,7 +56,7 @@ app.config(function($routeProvider) {
 	.when('/viewf', {
 		templateUrl : 'forum/forumdetails.html'
 	})  
-	.when('/job', {
+	.when('/job', {  
 		templateUrl : 'job/job.html',
 		controller  : 'JobController',  
 		controllerAs: 'jc'

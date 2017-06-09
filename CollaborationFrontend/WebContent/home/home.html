@@ -14,6 +14,8 @@ style type ="text/css">.abc:hover {
 </style>
 </head>
 <body style="padding-left: 0em;">
+
+{{user.userid}}{{user.name}}{{userName}}
 	<div class="column-content-region col-sm-3"
 		ng-controller="ForumController as fc">
 		<h3>Forums</h3>
@@ -49,7 +51,7 @@ style type ="text/css">.abc:hover {
 				<span ng-bind="b.timeStamp"></span>
 			</p>
 			<a href="" ng-click="bc.get(b)">Read More</a>
-		</div>
+		</div>  
 	</div>
 
 	<div class="column-content-region col-sm-3" style="margin-left: 2em;"

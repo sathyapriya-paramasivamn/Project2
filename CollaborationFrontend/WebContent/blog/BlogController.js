@@ -3,7 +3,7 @@
 app.controller('BlogController',['$scope','BlogService','$location','$rootScope','$cookieStore','$http',function($scope, BlogService, $location, $rootScope,$cookieStore, $http) {
 							console.log("BlogController...")
 							var self = this;
-							self.blog = {id:'',title : '',status: '',description:''};
+							self.blog = {id:'',title : '',status: '',description:'',};
 						//	self.blog = {id:'',title : '',status: '',description:''};
 							self.blogs = []; // json array
 
@@ -45,7 +45,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							};
 
 							self.reject = function(id) {
-								console.log("reject...")
+						 		console.log("reject...")
 								var reason = prompt("Please enter the reason");
 								BlogService.reject(id, reason).then(
 										function(d) {
@@ -97,5 +97,5 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								 self.blog = {id:null,title : '',status: '',description:''};
 							       //$scope.myform.$setPristine(); //reset Form
 							    }
-							    
+							      
 						} ]);

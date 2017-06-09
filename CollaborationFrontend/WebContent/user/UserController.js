@@ -12,7 +12,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							$scope.orderByMe = function(x) {
 								$scope.myOrderBy = x;
 							}  
-
+  
 							self.fetchAllUsers = function() {
 								console.log("fetchAllUsers...")
 								UserService  
@@ -120,7 +120,8 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							self.login = function() {
 								UserService.login(self.user).then(function(response) {
 									console.log(response.status)
-									$scope.user = response.data
+									$scope.user = response.data;
+								
 									$rootScope.currentUser = response.data;
 									$cookieStore.put("currentUser", response.data);
 									$location.path('/home')

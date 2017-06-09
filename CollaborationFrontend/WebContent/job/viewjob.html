@@ -14,7 +14,7 @@
     text-align: center;
     box-shadow: 1px 1px 2px #e6e6e6;
     cursor: default;
-    background: #fff url(../images/bgimg.jpg) no-repeat center center
+    background: #fff 
 }
 .view .mask, .view .content {
     width: 300px;
@@ -109,17 +109,16 @@
 <body>
 <div ng-repeat="j in jc.jobs"> 
 <div class="view view-first">  
-  <img src="http://lorempixel.com/nature/500/500" />  
+  <img src="images/job.jpg" >  
      <div class="mask">  
      <h2><span ng-bind="j.jobname"></span> </h2>  
      <p><span ng-bind="j.jobcategory"></span></p>
-<p>    <span ng-bind="j.jobdetails"></span></p>  
+<p><span ng-bind="j.jobdetails"></span></p>  
          <a href="#" class="info">Read More</a>  
      </div>  
 </div> 
-</div>
-<!-- <ul>
-<li ng-repeat="j in jobs">   
+<!-- <ul>  
+<li ng-repeat="j in jobs">     
 <span ng-bind="j.jobname"></span> 
  <span ng-bind="j.jobcategory"></span>
  <span ng-bind="j.jobdetails"></span>

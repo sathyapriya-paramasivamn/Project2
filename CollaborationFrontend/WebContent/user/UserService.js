@@ -103,9 +103,9 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                 return $http.post(BASE_URL+'login',user)
                         .then(
                                 function(response){
-                                    return response.data; 
-                                    $rootScope.userId=user.userid;
-                                    $rootScope.userName=user.name;//user json object
+                                    return response; 
+                                  /*  $scope.userId=user.userid;
+                                    $scope.userName=user.name;*///user json object
                                 }, 
                                null
                         );

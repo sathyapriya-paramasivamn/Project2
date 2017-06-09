@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="" method="post" id="contact-form" ng-submit="cc.submit()"> 
+  NAME: <input type='text' name='name' id='name' ng-model="cc.comment.name" /><br />
+
+  Email: <input type='text' name='email' id='email'  ng-model="cc.comment.email"  /><br />
+
+  Comment:<br />
+  <textarea name='comment' id='comment'  ng-model="cc.comment.comment" ></textarea><br />
+
+  <input type='submit' value='Submit' />  
+</form>
+
+</body>
+</html>

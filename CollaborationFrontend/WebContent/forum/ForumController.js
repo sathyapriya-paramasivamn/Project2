@@ -93,9 +93,9 @@ app.controller('ForumController',['$scope','ForumService','$location','$rootScop
 							self.get=function (forum){  
 								$scope.fc=forum;
 								console.log($scope.fc);
-								$rootScope.viewjob=$scope.fc;
+								$rootScope.viewforum=$scope.fc;
 								$location.path("/viewf");   
-							};
+							};  
 							  
 							  
 							 function reset(){

@@ -1,33 +1,4 @@
-<!-- 
- <h4 style="float: right; margin: 0px 0px 0px 0px;"><a href="#Blog">Create New Blog</a></h4>
 
-
-<div class="row" ng-repeat="u in bc.blogs">
-
-hai
-  <div class="viewBlog" style="margin-left: -1em; white-space: nowrap;">
-
-
-   <h3 style="margin-left: 0.5em; float: left; color: green;"><span ng-bind="u.title"></span></h3>
-
-   <a ng-click="blog.edit(u.id)"><span class="glyphicon glyphicon-pencil editContent"></span></a>
-   <a  ng-click="blog.remove(u.id)" ><span class="glyphicon glyphicon-trash editContent"></span></a>
-   <hr style="clear: both;" />
- 
-
-  <div>
-   <h4><span ng-bind="u.description"></span></h4>
-
-  </div>
-  <hr style="margin-top: 3em;">
-  <span ng-bind="u.status"></span>...
-  <hr style="margin-top: 0em;">
-  <div class="desc">
-  <button type="button" ng-click="blog.get(u)" style="float: right;">Read More ></button>
-  </div>
- </div> 
-</div>  
-   -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +33,7 @@ div#all {
 	text-align: center;
 	box-shadow: 1px 1px 2px #e6e6e6;
 	cursor: default;
-	background: #fff url(../images/bgimg.jpg) no-repeat center center
+	/* background: #fff url(../images/bgimg.jpg) no-repeat center center */
 }
 
 .view .mask, .view .content {
@@ -204,8 +175,8 @@ div#all {
 		<img src="images/blog.jpg" width="250" height="250"/>
 		<div class="mask"></div>
 		<div class="content">
-			<div >     
-				<h2>
+			<div >       
+				<h2>   
 					<span ng-bind="u.title"></span>
 				</h2>
 				<p>
