@@ -103,7 +103,7 @@ public class ApplicationContextConfig {
 	public EventDAO getEventDAO(SessionFactory sessionFactory) {
 		return new EventDAOImpl(sessionFactory);
 	}
-	@Autowired(required = true)
+	@Autowired(required = true)  
 	@Bean(name = "friendDAO")
 	public FriendDAO getFriendDAO(SessionFactory sessionFactory) {
 		return new FriendDAOImpl(sessionFactory);

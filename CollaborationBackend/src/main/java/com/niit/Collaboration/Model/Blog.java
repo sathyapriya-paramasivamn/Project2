@@ -3,12 +3,11 @@ package com.niit.Collaboration.Model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -16,10 +15,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Entity
 @Table(name = "blog")
-public class Blog { 
+public class Blog {  
 	@Id
 	@GeneratedValue
-	private int id;
+	private int id; 
 	private String username;
 	private String usermailid; 
 	private String title;
@@ -33,7 +32,7 @@ private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calend
 	 
 	public int getId() {  
 		return id;
-	}
+	}  
 
 	public void setId(int id) {
 		this.id = id;
@@ -41,7 +40,7 @@ private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calend
 
 	public String getTitle() {
 		return title;
-	}
+	}  
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -87,7 +86,7 @@ private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calend
 		this.usermailid = usermailid;
 	}
 
- 
+   
 
 }
   

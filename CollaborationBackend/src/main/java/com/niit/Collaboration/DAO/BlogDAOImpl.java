@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,17 +21,20 @@ public class BlogDAOImpl implements BlogDAO {
 	}
 
 	@Transactional
-	public List<Blog> list() {
+	public List<Blog> acceptedList() {
+		String hql = "from Blog where status = " + "'A'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
-		List<Blog> listBlog = sessionFactory.getCurrentSession().createQuery("from Blog").list();
-		return listBlog;
+		List<Blog> list = (List<Blog>) query.list();
+		
+		return list;
 	}
 
 	@Transactional
 	public void save(Blog blog) {
 		sessionFactory.getCurrentSession().save(blog);
 
-	}
+	}  
 
 	@Transactional
 	public void delete(int id) {
@@ -65,5 +69,19 @@ public class BlogDAOImpl implements BlogDAO {
 
 		return Usermailid;
 
+	}
+	@Transactional
+	public List<Blog> notAcceptedList() {
+		String hql = "from Blog where status = " + "'NA'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Blog> list = (List<Blog>) query.list();
+		
+		return list;
+	}
+
+	public List<Blog> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

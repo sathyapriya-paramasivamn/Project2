@@ -76,6 +76,6 @@ public class BlogTest {
    	job.setJobdetails("company ntt data, qualification BE, Address coimbatore");
    	job.setJobname("software developer");
    	jobDAO.save(job);
-}
+} 
 	  
 }

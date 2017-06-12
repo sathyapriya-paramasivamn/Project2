@@ -42,15 +42,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public void delete(int userid) {
+	public void delete(int id) {
 		User userToDelete = new User();
-		userToDelete.setId(userid);
+		userToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(userToDelete);
 	}
 
 	@Transactional  
-	public User getByUserid(int userid) {
-		String hql = "from userinfo where userid ='" + userid + "'";
+	public User getByUserid(int id) {
+		String hql = "from userinfo where id ='" + id + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -63,8 +63,8 @@ public class UserDAOImpl implements UserDAO {
 	}  
 
 	@Transactional
-	public User getByMailid(String mailid) {
-		String hql = "from userinfo where mailid ='" + mailid + "'";
+	public User getByUsermailid(String usermailid) {
+		String hql = "from userinfo where usermailid ='" + usermailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -84,7 +84,7 @@ public class UserDAOImpl implements UserDAO {
 	@Transactional
 	public User login(User user) {
 		System.out.println(user.getMailid());
-		System.out.println(user.getPassword());
+		System.out.println(user.getPassword());  
 		String hql = "from User where mailid=" + "'" + user.getMailid() + "'   and password = " + "'"+ user.getPassword() +"'";
 	
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -99,4 +99,4 @@ public class UserDAOImpl implements UserDAO {
 		return null;
 	}
 
-}
+} 
