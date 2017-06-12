@@ -43,7 +43,17 @@ public class BlogController {
 		List<Blog> listblog = blogDAO.list();
 		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
 	}
-
+	@GetMapping("/acceptedblog")
+	public ResponseEntity<List<Blog>> getacceptedBlogsList() {
+		List<Blog> listblog = blogDAO.acceptedList();
+		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedblog")
+	public ResponseEntity<List<Blog>> getnotAcceptedBlogList() {
+		List<Blog> listblog = blogDAO.notAcceptedList();
+		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
+	}
+ 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@DeleteMapping("/blogs/{id}")
 	public ResponseEntity deleteBlog(@PathVariable("id") int blogid) {
@@ -58,15 +68,17 @@ public class BlogController {
 		Blog blog = blogDAO.getById(id);  
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
-	@PostMapping("/blog")
+	@PostMapping("/blog") 
 	public ResponseEntity save(@RequestBody Blog blog, HttpSession session)
 	{
 		User user = (User) session.getAttribute("user");
 		System.out.println(user.getMailid());
-		System.out.println(user.getMobileno());
-		blog.setUsermailid(user.getMailid());
+ 		System.out.println(user.getMobileno());
+		blog.setUsermailid(user.getMailid());   
 		blog.setUsername(user.getName());
+		blog.setStatus("NA");    
 		blogDAO.save(blog);
+		//blogDAO.update(blog);
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
 	@PutMapping("/blog")
@@ -75,4 +87,4 @@ public class BlogController {
 		blogDAO.update(blog);
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
-}
+}  

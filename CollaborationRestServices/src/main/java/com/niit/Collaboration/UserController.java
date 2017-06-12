@@ -58,10 +58,10 @@ public class UserController {
 		User user = userDAO.getByUserid(id);  
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	@GetMapping("/users/mail/{id}")
+	@GetMapping("/users/usermail/{id}")
 	public ResponseEntity<User> getByMailid(@PathVariable("id") String id) {
 		
-		User user = userDAO.getByMailid(id);
+		User user = userDAO.getByUsermailid(id);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
  	}
 	
@@ -94,7 +94,7 @@ public class UserController {
 			  
 			
 			System.out.println(validUser.getMailid());
-			System.out.println(validUser.getName());
+			System.out.println(validUser.getName()); 
 			return new ResponseEntity<User>(validUser, HttpStatus.OK);
 		}
 	}
@@ -105,9 +105,9 @@ public class UserController {
 		if(user==null){
 			Error error =new Error("Unauthorized user.. Please Login..");  
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-		}
+		}  
 		else{
-			//user.setOnline(false);
+			//user.setOnline(false);  
 			userDAO.update(user);
 			session.removeAttribute("user");
 			session.invalidate();
