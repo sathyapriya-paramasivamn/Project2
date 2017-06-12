@@ -12,7 +12,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							$scope.orderByMe = function(x) {
 								$scope.myOrderBy = x;
 							}  
-  
+   
 							self.fetchAllUsers = function() {
 								console.log("fetchAllUsers...")
 								UserService  
@@ -113,7 +113,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 													
 												},
 												function(errResponse) {
-													console.error('Error while authenticate Users');
+									  				console.error('Error while authenticate Users');
 												});
 							};*/
   
@@ -121,11 +121,18 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 								UserService.login(self.user).then(function(response) {
 									console.log(response.status)
 									$scope.user = response.data;
-								
-									$rootScope.currentUser = response.data;
+								 
+									$rootScope.currentUser = response.data;  
 									$cookieStore.put("currentUser", response.data);
-									$location.path('/home')
-								}, function(response) {
+									 if($scope.user.role == 'STUDENT'){
+										 $location.path('/home')
+									  }else if($scope.user.role == 'ADMIN'){
+										  $location.path('/adminPage')
+									}else{
+										 $location.path('/blog')
+									}
+									
+								}, function(response) {  
 									console.log(response.status)
 									$scope.message = response.data.message
 									$location.path('/login')
@@ -159,10 +166,10 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 									self.createUser(self.user);
 								}
 								self.reset();
-							};
+							};  
 
 							self.reset = function() {
-								self.user = {userid:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+								self.user = {id:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 								$scope.myForm.$setPristine(); // reset Form
 							};
 

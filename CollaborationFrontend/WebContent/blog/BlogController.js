@@ -14,7 +14,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							
 							
 							fetchAllBlogs();
-							  reset();
+							  reset(); 
 							  function fetchAllBlogs(){
 							    	BlogService.fetchAllBlogs()
 							            .then(
@@ -28,8 +28,20 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							        );
 							    }
 
-							// self.fatchAllBlogs();
-							  	
+							// self.fatchAllBlogs(); 
+							  self.notAcceptedBlogs = function() {
+									console.log("notAcceptedBlogs...")
+									BlogService.notAcceptedBlogs()
+											.then(
+													function(d) {
+														//alert("Thank you for creating message")
+														self.blogss = d;
+													},
+													function(errResponse) {
+														console
+																.error('Error while creating notAcceptedBlogs.');
+													});
+								};	
 							self.createBlog = function(blog) {
 								console.log("createBlog...")
 								BlogService.createBlog(blog)
@@ -89,7 +101,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							self.submit = function() {
 								{
 									console.log('Saving New Blog', self.blog);
-									self.createBlog(self.blog);
+									self.createBlog(self.blog); 
 								}
 								self.reset();  
 							};

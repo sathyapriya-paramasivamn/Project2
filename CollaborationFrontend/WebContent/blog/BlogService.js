@@ -9,11 +9,27 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
     return {
          
             fetchAllBlogs: function() {
-            	console.log("calling fetchAllblogs ")
-                    return $http.get(BASE_URL+'/blog')
+            	console.log("calling fetchAllblogs ") 
+            	
+            	
+                    return $http.get(BASE_URL+'/acceptedblog')
                             .then(
                                     function(response){
-                                        return response.data;
+                                         return response.data;
+                                    	console.log(response)
+                                    },  
+                                   null
+                            );  
+            },   
+            
+            notAcceptedBlogs: function() {
+            	console.log("calling notAcceptedBlogs ") 
+            	
+            	
+                    return $http.get(BASE_URL+'/notAcceptedblog')
+                            .then(
+                                    function(response){
+                                         return response.data;
                                     	console.log(response)
                                     },  
                                    null

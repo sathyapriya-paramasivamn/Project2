@@ -216,8 +216,8 @@
 
 
 </head>
-<body ng-app="myApp">
-	<nav class="navbar navbar-inverse">
+<body ng-app="myApp" >
+	<nav class="navbar navbar-inverse" ng-controller="UserController as uc">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -270,7 +270,7 @@
 							class="glyphicon glyphicon-user"></span>register</a></li>
 							</ul>
 					<ul  class="nav navbar-nav navbar-right" >
-						<li><a href="#logout"><span
+						<li><a href=""  ng-click="uc.logout()"><span
 								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					</ul>
 			</div>

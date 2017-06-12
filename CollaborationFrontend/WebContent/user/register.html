@@ -15,7 +15,6 @@ input[type=text], input[type=password] {
 {
 text-align:left;
 } 
-
 /* Set a style for all buttons */
 /* button {
     background-color: #00aadc;
@@ -54,7 +53,6 @@ text-align:left;
     } 
 }*/
 //=== Drawing effect
-
 @mixin btn-border-drawing($color: #ccc, $hover: black, $width: 2px, $vertical: top, $horizontal: left, $duration: 0.25s) {
   box-shadow: inset 0 0 0 $width $color;
   color: $color;
@@ -73,7 +71,6 @@ text-align:left;
     #{$vertical}: 0; 
     #{$horizontal}: 0;
   }
-
   &::before {
     $h-side: if($horizontal == 'left', 'right', 'left');
     
@@ -104,11 +101,9 @@ text-align:left;
     &::after { transition-delay: 0s, $duration, 0s; }
   }
 }
-
 .draw-border {
   @include btn-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
 }
-
 //=== Button styling, semi-ignore
 .btn {
   background: none;
@@ -121,7 +116,6 @@ text-align:left;
   
   &:focus { outline: 2px dotted #55d7dc; }
 }
-
 //=== Pen styling, ignore
 body { 
   background: #1f1a25;
@@ -131,7 +125,6 @@ body {
   min-height: 100vh;
   
 }
-
 </style>
 <body>   
 
