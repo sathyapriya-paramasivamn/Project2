@@ -27,7 +27,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							            }
 							        );
 							    }
-
+   
 							// self.fatchAllBlogs(); 
 							  self.notAcceptedBlogs = function() {
 									console.log("notAcceptedBlogs...")
@@ -38,7 +38,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 														self.blogss = d;
 													},
 													function(errResponse) {
-														console
+										  				console
 																.error('Error while creating notAcceptedBlogs.');
 													});
 								};	
@@ -96,6 +96,13 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 								console.log($scope.bc);
 								$rootScope.viewblog=$scope.bc;
 								$location.path("/viewb");   
+							};  
+							self.getBlogAdmin=function (blogs){  
+								$scope.bc=blogs;   
+								console.log($scope.bc);
+								console.log("hai");  
+								$rootScope.adminvb=$scope.bc;
+								$location.path("/adminviewblog");   
 							};  
         
 							self.submit = function() {

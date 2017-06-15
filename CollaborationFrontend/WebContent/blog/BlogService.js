@@ -8,7 +8,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
 		
     return {
          
-            fetchAllBlogs: function() {
+            fetchAllBlogs: function() {  
             	console.log("calling fetchAllblogs ") 
             	
             	
@@ -47,7 +47,7 @@ app.service('BlogService', ['$http', '$q','$rootScope', function($http, $q,$root
                                         console.error('Error while creating Blog');
                                         return $q.reject(errResponse);
                                     }
-                            );
+                            ); 
             },
              
             updateBlog: function(Blog, id){

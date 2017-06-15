@@ -15,7 +15,7 @@ style type ="text/css">.abc:hover {
 </head>
 <body style="padding-left: 0em;">
 
-welcome !!
+welcome admin!!
 	<div class="column-content-region col-sm-3"
 		ng-controller="ForumController as fc">
 		<h3>Forums</h3>
@@ -32,27 +32,27 @@ welcome !!
 			<a href="" ng-click="fc.get(f)">Read More</a>
 		</div>
 
-	</div>
+	</div> 
 
 	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
-		ng-controller="BlogController as bc">
+		ng-controller="BlogController as bc" ng-init="bc.notAcceptedBlogs()">
 		<h3>Blogs</h3>
-		<div class="abc" ng-repeat="b in bc.blogs" ng-click="blog.get(b)">
+		<div class="abc" ng-repeat="b in bc.blogss" ng-click="blog.get(b)">
 			<h2>
 				<span ng-bind="b.title"></span>
 			</h2>
-			<!-- <p>
-				<span ng-bind="b.status"></span>
-			</p> -->
 			<p>
-				<span ng-bind="b.description"></span>
+				<span ng-bind="b.status"></span> 
+			</p>
+			<p> 
+				<span ng-bind="b.description"></span> 
 			</p>
 			<p>
 				<span ng-bind="b.timeStamp"></span>
 			</p>
-			<a href="" ng-click="bc.get(b)">Read More</a>
+			<a href="" ng-click="bc.getBlogAdmin(b)">Read More</a>
 		</div>  
-	</div>
+	</div> 
 
 	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
 		ng-controller="JobController as jc">
@@ -66,7 +66,7 @@ welcome !!
 			</p> 
 			<p>
 				<span ng-bind="j.jobdetails"></span>
-			</p>
+			</p>  
 			<a href="" ng-click="jc.get(j)">Read More</a>
 
 

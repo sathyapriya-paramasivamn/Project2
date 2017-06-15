@@ -4,15 +4,23 @@ app.config(function($routeProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home/home.html'
-	}).when('/home', {
+	})
+	.when('/home', {
 		templateUrl : 'home/home.html'
-	}).when('/adminPage', {
-		templateUrl : 'user/adminPage.html',
+	})
+	.when('/adminPage', {  
+		templateUrl : 'admin/adminPage.html',
 		controller : 'BlogController',
 		controllerAs : 'bc'
-
 	})
+  .when('/adminviewblog', {
+		templateUrl : 'admin/adblogdetails.html',
+		controller : 'BlogController', 
+		controllerAs : 'bc'  
+	}) 
 
+	
+	
 	.when('/login', {
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
@@ -39,8 +47,11 @@ app.config(function($routeProvider) {
 
 	}).when('/viewb', {
 		templateUrl : 'blog/blogdetails.html'
-	})
-
+	}) 
+	/*.when('/viewbc', {
+		templateUrl : 'blog/blogdetails1.html'
+	})*/
+ 
 	.when('/forum', {
 		templateUrl : 'forum/forum.html',
 		controller : 'ForumController',
@@ -57,7 +68,7 @@ app.config(function($routeProvider) {
 		controller : 'JobController',
 		controllerAs : 'jc'
 	}).when('/viewjob', {
-		templateUrl : 'job/viewjob.html',
+		templateUrl : 'job/viewjob.html', 
 		controller : 'JobController',
 		controllerAs : 'jc'
 
