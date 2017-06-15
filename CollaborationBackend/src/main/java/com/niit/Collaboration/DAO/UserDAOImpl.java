@@ -30,7 +30,7 @@ public class UserDAOImpl implements UserDAO {
 		return listUser;
 	}
 
-	@Transactional
+	@Transactional 
 	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);
 
@@ -50,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional  
 	public User getByUserid(int id) {
-		String hql = "from userinfo where id ='" + id + "'";
+		String hql = "from user where id ='" + id + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Transactional
 	public User getByUsermailid(String usermailid) {
-		String hql = "from userinfo where usermailid ='" + usermailid + "'";
+		String hql = "from user where usermailid ='" + usermailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
   
 	@Transactional
 	public User login(User user) {
-		System.out.println(user.getMailid());
+		System.out.println(user.getMailid()); 
 		System.out.println(user.getPassword());  
 		String hql = "from User where mailid=" + "'" + user.getMailid() + "'   and password = " + "'"+ user.getPassword() +"'";
 	
@@ -96,7 +96,7 @@ public class UserDAOImpl implements UserDAO {
 			return list.get(0);    
 			
 		}
-		return null;
-	}
+		return null;  
+	} 
 
 } 

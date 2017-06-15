@@ -28,7 +28,7 @@ public class BlogDAOImpl implements BlogDAO {
 		List<Blog> list = (List<Blog>) query.list();
 		
 		return list;
-	}
+	} 
 
 	@Transactional
 	public void save(Blog blog) {
@@ -38,7 +38,7 @@ public class BlogDAOImpl implements BlogDAO {
 
 	@Transactional
 	public void delete(int id) {
-		Blog blogToDelete = new Blog();
+		Blog blogToDelete = new Blog();  
 		blogToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(blogToDelete);
 	}
@@ -67,7 +67,7 @@ public class BlogDAOImpl implements BlogDAO {
 	public Blog getByUsermailid(String usermailid) {
 		Blog Usermailid = (Blog) sessionFactory.getCurrentSession().get(Blog.class, usermailid);
 
-		return Usermailid;
+		return Usermailid; 
 
 	}
 	@Transactional
@@ -78,7 +78,7 @@ public class BlogDAOImpl implements BlogDAO {
 		List<Blog> list = (List<Blog>) query.list();
 		
 		return list;
-	}
+	} 
 
 	public List<Blog> list() {
 		// TODO Auto-generated method stub

@@ -4,55 +4,60 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+   
 import org.springframework.stereotype.Component;
 @Component
 @Entity
-@Table(name = "comment")
-
+@Table(name ="comments")   
 public class Comment {
-	
+		
 	
 		@Id 
-		@GeneratedValue
+		@GeneratedValue    
 		private int cid;
-		/*@Id
-		@GeneratedValue(generator = "newGenerator")
-		@GenericGenerator(name = "newGenerator", strategy = "foreign", parameters = {
-		@Parameter(value = "Blog", name = "property") })
-		private String id;
-		public String getId() {  
-			return id;
-		}
-		public void setId(String id) {
-			this.id = id;
-		}*/
-		private String username;
-		private String usermailid; 
-		private String comment;
+		private String cname;
+		private String email;
+		private String title;
+		private int forumId;
+		private String forumName;
 		public int getCid() {
-			return cid; 
+			return cid;
 		}
 		public void setCid(int cid) {
 			this.cid = cid;
 		}
-		public String getUsername() {
-			return username;
+		public String getCname() {
+			return cname;
 		}
-		public void setUsername(String username) {
-			this.username = username;
+		public void setCname(String cname) {
+			this.cname = cname;
 		}
-		public String getUsermailid() {
-			return usermailid;
+		public String getEmail() {
+			return email;
 		}
-		public void setUsermailid(String usermailid) {
-			this.usermailid = usermailid;
+		public void setEmail(String email) {
+			this.email = email;
 		}
-		public String getComment() {
-			return comment;
+		public String getTitle() {
+			return title;
 		}
-		public void setComment(String comment) {
-			this.comment = comment;
-		}  
-  
-}  
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public int getForumId() {
+			return forumId;
+		}
+		public void setForumId(int forumId) {
+			this.forumId = forumId;
+		}
+		public String getForumName() {
+			return forumName;
+		}
+		public void setForumName(String forumName) {
+			this.forumName = forumName;
+		}
+		
+		
+		
+}       
+ 

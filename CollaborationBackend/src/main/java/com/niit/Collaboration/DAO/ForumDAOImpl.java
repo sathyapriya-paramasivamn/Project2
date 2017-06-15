@@ -3,7 +3,7 @@ package com.niit.Collaboration.DAO;
 import java.util.List;
 
 import javax.transaction.Transactional;
-
+ 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ public class ForumDAOImpl implements ForumDAO {
 
 	public ForumDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
-	}
+	}  
 
 	@Transactional
 	@SuppressWarnings("unchecked")
@@ -59,5 +59,7 @@ public class ForumDAOImpl implements ForumDAO {
 	public void update(Forum forum) {
 		sessionFactory.getCurrentSession().update(forum);
 	}
+	
+	
 
 }

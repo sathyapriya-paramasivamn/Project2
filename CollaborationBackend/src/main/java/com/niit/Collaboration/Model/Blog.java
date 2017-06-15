@@ -24,7 +24,7 @@ public class Blog {
 	private String title;
 	private String description;
 	private String status; 
-	
+	 
 private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 /*		 @OneToOne(cascade = CascadeType.ALL)
 		@JoinColumn(name = "id")
@@ -79,7 +79,7 @@ private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calend
 	}
 
 	public String getUsermailid() {
-		return usermailid;
+		return usermailid; 
 	}
 
 	public void setUsermailid(String usermailid) {
