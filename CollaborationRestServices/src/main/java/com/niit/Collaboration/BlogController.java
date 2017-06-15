@@ -70,15 +70,15 @@ public class BlogController {
 	}
 	@PostMapping("/blog") 
 	public ResponseEntity save(@RequestBody Blog blog, HttpSession session)
-	{
+	{ 
 		User user = (User) session.getAttribute("user");
 		System.out.println(user.getMailid());
  		System.out.println(user.getMobileno());
 		blog.setUsermailid(user.getMailid());   
 		blog.setUsername(user.getName());
 		blog.setStatus("NA");    
-		blogDAO.save(blog);
-		//blogDAO.update(blog);
+		blogDAO.save(blog); 
+		//blogDAO.update(blog); 
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
 	@PutMapping("/blog")

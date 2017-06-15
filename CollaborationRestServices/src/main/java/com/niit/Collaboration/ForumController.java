@@ -50,7 +50,7 @@ public class ForumController {
 	@PostMapping("/forum")
 	public ResponseEntity save(@RequestBody Forum forum, HttpSession session)
 	{
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("user"); 
 		System.out.println(user.getMailid());
 		System.out.println(user.getMobileno());
 		forum.setUsermailid(user.getMailid()); 

@@ -46,7 +46,7 @@ public class EventController {
 
 	@GetMapping("/event/{id}")
 	public ResponseEntity<Event>getByEid(@PathVariable("id") int id) {
-
+  
 		Event event = eventDAO.getByEid(id);  
 		
 		return new ResponseEntity<Event>(event, HttpStatus.OK);

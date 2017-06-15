@@ -112,6 +112,6 @@ public class UserController {
 			session.removeAttribute("user");
 			session.invalidate();
 			return new ResponseEntity<Void>(HttpStatus.OK);
-		}
+		}					
 	}
 }  
