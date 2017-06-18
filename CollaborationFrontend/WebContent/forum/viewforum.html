@@ -5,12 +5,12 @@
 <style type="text/css">
 .team_member {
   width:100%;
-  position:relative;
-  overflow:hidden;
+  position:relative; 
+  overflow:hidden; 
   height:250px;
 }
 
-.info {
+.info {  
   height:100%;
 }
 
@@ -110,7 +110,7 @@
    -webkit-transition: all .3s ease-out .1s;
 }
 
-.responsive_grid li:hover .info img,
+.responsive_grid li:hover .info img, 
 .responsive_grid li:focus .info img {
   width:210%;
   margin-left:-50%;
@@ -160,21 +160,20 @@ h5, h6, .info_reveal a {
    <button type="button" ng-click="fc.get(f)" style="float: right;">Read More ></button>
 
   </li></ul> -->
-  <div  ng-repeat="f in fc. forums"> 
+  <div ng-repeat="f in fc. forums"> 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <ul class="responsive_grid">
-  <li>
+  <li> 
     <div class="team_member">
        <div class="info">
          <img src="images/images.jpg" alt=""/>
-         <h5><span ng-bind="f.name"></span></h5>
          
-         <h6><span ng-bind="f. timeStamp"></span>  </h6>
-      </div>
+         
+         <h6><span ng-bind="f.message></span>  </h6>
+      </div> 
       <div class="info_reveal">
-        <h6> <span ng-bind="f.message"></span></h6>
-        <p></a></p>
-        <p></p>
+        <h6> <span ng-bind="f.timeStamp"></span></h6>
+        <h5><span ng-bind="f.name"></span></h5>
       </div>
     </div>
   </li>

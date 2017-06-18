@@ -100,7 +100,7 @@ app.controller('BlogController',['$scope','BlogService','$location','$rootScope'
 							self.getBlogAdmin=function (blogs){  
 								$scope.bc=blogs;   
 								console.log($scope.bc);
-								console.log("hai");  
+								console.log("hai");    
 								$rootScope.adminvb=$scope.bc;
 								$location.path("/adminviewblog");   
 							};  

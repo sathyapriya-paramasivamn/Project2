@@ -4,23 +4,18 @@ app.config(function($routeProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home/home.html'
-	})
-	.when('/home', {
+	}).when('/home', {
 		templateUrl : 'home/home.html'
-	})
-	.when('/adminPage', {  
+	}).when('/adminPage', {
 		templateUrl : 'admin/adminPage.html',
 		controller : 'BlogController',
 		controllerAs : 'bc'
-	})
-  .when('/adminviewblog', {
+	}).when('/adminviewblog', {
 		templateUrl : 'admin/adblogdetails.html',
-		controller : 'BlogController', 
-		controllerAs : 'bc'  
-	}) 
+		controller : 'BlogController',
+		controllerAs : 'bc'
+	})
 
-	
-	
 	.when('/login', {
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
@@ -47,28 +42,38 @@ app.config(function($routeProvider) {
 
 	}).when('/viewb', {
 		templateUrl : 'blog/blogdetails.html'
-	}) 
-	/*.when('/viewbc', {
-		templateUrl : 'blog/blogdetails1.html'
-	})*/
- 
+	})
+	/*
+	 * .when('/viewbc', { templateUrl : 'blog/blogdetails1.html' })
+	 */
+
 	.when('/forum', {
 		templateUrl : 'forum/forum.html',
 		controller : 'ForumController',
 		controllerAs : 'fc'
-	}).when('/viewforum', {
+	})
+
+	.when('/comment', {
+		templateUrl : 'forum/forumdetails.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
+	})
+
+	.when('/viewforum', {
 		templateUrl : 'forum/viewforum.html',
 		controller : 'ForumController',
 		controllerAs : 'fc'
 
 	}).when('/viewf', {
-		templateUrl : 'forum/forumdetails.html'
+		templateUrl : 'forum/forumdetails.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
 	}).when('/job', {
 		templateUrl : 'job/job.html',
 		controller : 'JobController',
 		controllerAs : 'jc'
 	}).when('/viewjob', {
-		templateUrl : 'job/viewjob.html', 
+		templateUrl : 'job/viewjob.html',
 		controller : 'JobController',
 		controllerAs : 'jc'
 

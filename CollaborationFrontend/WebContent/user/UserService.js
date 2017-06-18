@@ -18,7 +18,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                    null
                             );
             },
-              
+               
             myProfile: function() {
             	console.log("calling myProfile ")
                     return $http.get(BASE_URL+'/myProfile')

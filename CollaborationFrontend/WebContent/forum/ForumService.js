@@ -16,7 +16,7 @@ app.service('ForumService', ['$http', '$q','$rootScope', function($http, $q,$roo
                                         return response.data;
                                     },  
                                    null
-                            );  
+                            );   
             },
                                      
             createForum: function(Forum){
