@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,10 +16,11 @@ import org.springframework.stereotype.Component;
 @Table(name="forum")
 public class Forum {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.AUTO)
 private int forumid;
-private String name;
-private String message;
+
+private String name;   
+private String message; 
 private String username;
 private String usermailid; 
 private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
@@ -27,7 +29,7 @@ public String getName() {
 }
 public void setName(String name) {
 	this.name = name;
-}
+}   
 public int getForumid() {
 	return forumid;
 }

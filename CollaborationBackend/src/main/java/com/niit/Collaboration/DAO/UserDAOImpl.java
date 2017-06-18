@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
 		if (listUser != null && !listUser.isEmpty()) {
 			return listUser.get(0);
 		}
-		return null;
+		return null; 
   
 	}  
 
@@ -66,7 +66,7 @@ public class UserDAOImpl implements UserDAO {
 	public User getByUsermailid(String usermailid) {
 		String hql = "from user where usermailid ='" + usermailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked") 
 		List<User> listUser = (List<User>) (query).list();
 
 		if (listUser != null && !listUser.isEmpty()) {
@@ -95,7 +95,7 @@ public class UserDAOImpl implements UserDAO {
 		if (list != null && !list.isEmpty()) {
 			return list.get(0);    
 			
-		}
+		}  
 		return null;  
 	} 
 

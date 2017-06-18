@@ -17,11 +17,11 @@ import org.springframework.stereotype.Component;
 @Table(name = "blog")
 public class Blog {  
 	@Id
-	@GeneratedValue
+	@GeneratedValue 
 	private int id; 
 	private String username;
 	private String usermailid; 
-	private String title;
+	private String title; 
 	private String description;
 	private String status; 
 	 
@@ -54,7 +54,7 @@ private String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calend
 		this.description = description;
 	}
 
-	public String getStatus() {
+	public String getStatus()   {
 		return status;  
 	}
 

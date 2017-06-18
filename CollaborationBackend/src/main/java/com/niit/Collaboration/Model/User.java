@@ -17,12 +17,13 @@ public class User {
 	private int id;
 	private String name;
 	private String mailid;
-	private String password;
+	private String password; 
 	private String role;
 	private String mobileno;
 	private String residential;
 
 	private String pincode;
+	
 	public int getId() {
 		return id;
 	}
@@ -81,7 +82,7 @@ public class User {
 	}
 
 	public String getPincode() {
-		return pincode;
+		return pincode; 
 	}
 
 	public void setPincode(String pincode) {

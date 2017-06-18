@@ -28,7 +28,7 @@ public class BlogDAOImpl implements BlogDAO {
 		List<Blog> list = (List<Blog>) query.list();
 		
 		return list;
-	} 
+	}  
 
 	@Transactional
 	public void save(Blog blog) {
@@ -69,7 +69,7 @@ public class BlogDAOImpl implements BlogDAO {
 
 		return Usermailid; 
 
-	}
+	}   
 	@Transactional
 	public List<Blog> notAcceptedList() {
 		String hql = "from Blog where status = " + "'NA'";
@@ -77,10 +77,10 @@ public class BlogDAOImpl implements BlogDAO {
 		@SuppressWarnings("unchecked")
 		List<Blog> list = (List<Blog>) query.list();
 		
-		return list;
+		return list; 
 	} 
 
-	public List<Blog> list() {
+	public List<Blog> list() {  
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -15,7 +15,7 @@ import com.niit.Collaboration.Model.Comment;
 @Repository("CommentDAO")  
 public class CommentDAOImpl implements CommentDAO {
 
-	@Autowired
+	@Autowired   
 	private SessionFactory sessionFactory;
 
 	public CommentDAOImpl(SessionFactory sessionFactory) {
@@ -45,27 +45,27 @@ public class CommentDAOImpl implements CommentDAO {
 	@Transactional
 	public void delete(int cid) {
 		Comment commentToDelete = new Comment();
-		commentToDelete.setCid(cid);
+		commentToDelete.setCommentId(cid);
 		sessionFactory.getCurrentSession().delete(commentToDelete);
 
 	}
 
 	@Transactional
 	public Comment getByMailid(String mailid) {
-		String hql = "from comment where mailid ='" + mailid + "'";
+		String hql = "from comment where email ='" + mailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Comment> listComment = (List<Comment>) (query).list();
 
-		if (listComment != null && !listComment.isEmpty()) {
+		if (listComment != null && !listComment.isEmpty()) { 
 			return listComment.get(0);
-		}
+		}  
 		return null;
-	}
-
-	@Transactional
-	public Comment getByCid(int cid) {
-		String hql = "from Comment where cid ='" + cid + "'";
+	}    
+  
+	@Transactional  
+	public Comment getByCommentId(int commentId) {
+		String hql = "from Comment where commentId ='" + commentId + "'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Comment> listComment = (List<Comment>) query.list();
@@ -74,4 +74,14 @@ public class CommentDAOImpl implements CommentDAO {
 		}
 		return null;
 	}
+	@Transactional
+	public List<Comment> getComment(int forumid) {
+		String hql = "from Comment where forumId ='" + forumid + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Comment> listComment = (List<Comment>) query.list();
+		
+		return listComment;
+
+	}  
 } 

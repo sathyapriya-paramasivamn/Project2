@@ -9,6 +9,7 @@ import com.niit.Collaboration.DAO.EventDAO;
 import com.niit.Collaboration.DAO.ForumDAO;
 import com.niit.Collaboration.DAO.FriendDAO;
 import com.niit.Collaboration.DAO.JobDAO;
+import com.niit.Collaboration.DAO.ReplyDAO;
 import com.niit.Collaboration.DAO.UserDAO;
 import com.niit.Collaboration.Model.Blog;
 import com.niit.Collaboration.Model.Comment;
@@ -16,6 +17,7 @@ import com.niit.Collaboration.Model.Event;
 import com.niit.Collaboration.Model.Forum;
 import com.niit.Collaboration.Model.Friend;
 import com.niit.Collaboration.Model.Job;
+import com.niit.Collaboration.Model.Reply;
 import com.niit.Collaboration.Model.User;
  
 public class BlogTest {  
@@ -44,7 +46,9 @@ public class BlogTest {
 		JobDAO jobDAO=(JobDAO) context.getBean("JobDAO");
 		Job job=(Job)context.getBean("job");
 		
-		  
+		ReplyDAO replyDAO=(ReplyDAO) context.getBean("replyDAO");
+		Reply reply=(Reply)context.getBean("reply"); 
+		
 		CommentDAO commentDAO=(CommentDAO) context.getBean("commentDAO");
 		Comment comment=(Comment)context.getBean("comment");   
 		
@@ -63,8 +67,8 @@ public class BlogTest {
   user.setPassword("sa23");
   user.setRole("student");
   user.setResidential("coimbatore");  
-  user.setPincode("642222");      
-  //user.setOnline(0); 
+  user.setPincode("642222");        
+  //user.setOnline(0);   
 		userDAO.save(user); 
 	     
     event.setEventname("IEEE Conference");  
@@ -85,10 +89,20 @@ public class BlogTest {
    	job.setJobname("software developer");
    	jobDAO.save(job);
    	 
-   	comment.setCname("sai");
-   	comment.setEmail("sai@sathya.com");
-   	comment.setTitle("hi");
-   commentDAO.save(comment);     
-}    
+   	comment.setCommentName("sai");
+   	comment.setMailid("sai@sathya.com");  
+   	comment.setForumName("hi");
+   	comment.setContent("worried");
+   	comment.setForumId(123);  
+   	comment.setUserId(2);
+    commentDAO.save(comment);     
+
+	reply.setMailid("sai@gmail.com");
+	reply.setReplyId(2);
+	reply.setReplymsg("jkj");
+	reply.setTitle("discution");
+	replyDAO.save(reply); 
+	
+	}        
 	  
 } 

@@ -7,7 +7,7 @@ import com.niit.Collaboration.Model.User;
 public interface UserDAO {
 	public List<User> list();
 
-	public void save(User user);
+	public void save(User user); 
 
 	public void update(User user);
 
@@ -20,7 +20,7 @@ public interface UserDAO {
 	public User get(String empID);
 
 	public User login(User user);
-	
+	 
 
 	
 

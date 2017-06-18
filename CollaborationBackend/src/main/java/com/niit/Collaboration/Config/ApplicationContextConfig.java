@@ -26,6 +26,8 @@ import com.niit.Collaboration.DAO.FriendDAO;
 import com.niit.Collaboration.DAO.FriendDAOImpl;
 import com.niit.Collaboration.DAO.JobDAO;
 import com.niit.Collaboration.DAO.JobDAOImpl;
+import com.niit.Collaboration.DAO.ReplyDAO;
+import com.niit.Collaboration.DAO.ReplyDAOImpl;
 import com.niit.Collaboration.DAO.UserDAO;
 import com.niit.Collaboration.DAO.UserDAOImpl;
 import com.niit.Collaboration.Model.Blog;
@@ -34,6 +36,7 @@ import com.niit.Collaboration.Model.Event;
 import com.niit.Collaboration.Model.Forum;
 import com.niit.Collaboration.Model.Friend;
 import com.niit.Collaboration.Model.Job;
+import com.niit.Collaboration.Model.Reply;
 import com.niit.Collaboration.Model.User;
 
 @Configuration
@@ -54,7 +57,7 @@ public class ApplicationContextConfig {
   
 		return dataSource;   
 	}
-
+  
 	private Properties getHibernateProperties() {
 		Properties properties = new Properties();
 
@@ -74,12 +77,13 @@ public class ApplicationContextConfig {
 		sessionBuilder.addProperties(getHibernateProperties());
 
 		sessionBuilder.addAnnotatedClass(Blog.class);
-		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(User.class); 
 		sessionBuilder.addAnnotatedClass(Event.class);
 		sessionBuilder.addAnnotatedClass(Friend.class);
 		sessionBuilder.addAnnotatedClass(Forum.class);
 		sessionBuilder.addAnnotatedClass(Job.class);
 		sessionBuilder.addAnnotatedClass(Comment.class);
+		sessionBuilder.addAnnotatedClasses(Reply.class);
 		
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -106,7 +110,7 @@ public class ApplicationContextConfig {
 	@Bean(name = "eventDAO")
 	public EventDAO getEventDAO(SessionFactory sessionFactory) {
 		return new EventDAOImpl(sessionFactory);
-	}
+	}   
 	@Autowired(required = true)  
 	@Bean(name = "friendDAO")
 	public FriendDAO getFriendDAO(SessionFactory sessionFactory) {
@@ -128,6 +132,11 @@ public class ApplicationContextConfig {
 	public CommentDAO getCommentDAO(SessionFactory sessionFactory) {
 		return new CommentDAOImpl(sessionFactory);
 	}    
-}
+	@Autowired(required = true)  
+	@Bean(name = "replyDAO")  
+	public ReplyDAO getReplyDAO(SessionFactory sessionFactory) {
+		return new ReplyDAOImpl(sessionFactory);
+	}    
+} 
 
    
