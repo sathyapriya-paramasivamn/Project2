@@ -77,8 +77,8 @@ public class BlogController {
 		blog.setUsermailid(user.getMailid());   
 		blog.setUsername(user.getName());
 		blog.setStatus("NA");    
-		blogDAO.save(blog); 
-		//blogDAO.update(blog); 
+		blogDAO.save(blog);   
+		//blogDAO.update(blog);     
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
 	@PutMapping("/blog")

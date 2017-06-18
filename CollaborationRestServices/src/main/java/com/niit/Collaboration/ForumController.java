@@ -42,21 +42,22 @@ public class ForumController {
 		return new ResponseEntity(forumid, HttpStatus.OK);
 	}
 	@GetMapping("/forums/{id}")
-	public ResponseEntity<Forum> getForumByID(@PathVariable("id") int id) {
-
+	public ResponseEntity<Forum> getForumByID(@PathVariable( "id") int id) {
+  
 		Forum forum = forumDAO.getByForumid(id);
 		return new ResponseEntity<Forum>(forum, HttpStatus.OK);
 	}
 	@PostMapping("/forum")
 	public ResponseEntity save(@RequestBody Forum forum, HttpSession session)
 	{
-		User user = (User) session.getAttribute("user"); 
+		User user = (User) session.getAttribute("user");  
 		System.out.println(user.getMailid());
 		System.out.println(user.getMobileno());
 		forum.setUsermailid(user.getMailid()); 
-		forum.setUsername(user.getName());
-		forumDAO.save(forum);
-		return new ResponseEntity(forum, HttpStatus.OK);
+		forum.setUsername(user.getName()); 
+		  
+		forumDAO.save(forum); 
+		return new ResponseEntity(forum, HttpStatus.OK); 
 	}
 
 	@PutMapping("/forum")
