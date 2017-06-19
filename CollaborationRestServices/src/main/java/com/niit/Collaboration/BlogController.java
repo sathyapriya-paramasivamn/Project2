@@ -22,17 +22,11 @@ import com.niit.Collaboration.Model.User;
 @RestController
 public class BlogController {
 
-	@Autowired(required = true)
+	@Autowired
 	private BlogDAO blogDAO;
-
-	public BlogDAO getBlogDAO() {
-		return blogDAO;
-	}
-
-	public void setBlogDAO(BlogDAO blogDAO) {
-		this.blogDAO = blogDAO;
-	}
+  
 	
+	  
 	/*@GetMapping("/listAllblogNotFriends")
 	public ResponseEntity<List<Blog>> listAllblogNotFriends() {
 		List<Blog> listblog = blogDAO.list();
@@ -52,10 +46,10 @@ public class BlogController {
 	public ResponseEntity<List<Blog>> getnotAcceptedBlogList() {
 		List<Blog> listblog = blogDAO.notAcceptedList();
 		return new ResponseEntity<List<Blog>>(listblog, HttpStatus.OK);
-	}
+	} 
  
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	@DeleteMapping("/blogs/{id}")
+	@DeleteMapping("/blogs/{id}")  
 	public ResponseEntity deleteBlog(@PathVariable("id") int blogid) {
 		
 		blogDAO.delete(blogid);
@@ -65,26 +59,34 @@ public class BlogController {
 	@GetMapping("/blogs/{id}")
 	public ResponseEntity<Blog> getBlogByID(@PathVariable("id") int id) {
   
-		Blog blog = blogDAO.getById(id);  
+		Blog blog = blogDAO.getById(id);   
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
-	}
+	}     
 	@PostMapping("/blog") 
 	public ResponseEntity save(@RequestBody Blog blog, HttpSession session)
 	{ 
 		User user = (User) session.getAttribute("user");
-		System.out.println(user.getMailid());
+		System.out.println(user.getMailid());  
  		System.out.println(user.getMobileno());
-		blog.setUsermailid(user.getMailid());   
-		blog.setUsername(user.getName());
+		blog.setUsermailid(user.getMailid());     
+		blog.setUsername(user.getName());    
 		blog.setStatus("NA");    
-		blogDAO.save(blog);   
-		//blogDAO.update(blog);     
+		blogDAO.save(blog);      
+		//blogDAO.update(blog);       
 		return new ResponseEntity(blog, HttpStatus.OK);
 	}
-	@PutMapping("/blog")
+	@PutMapping("/acceptBlog")
+	public ResponseEntity acceptBlog(@RequestBody Blog blog){
+		blog.setStatus("A");
+		 blogDAO.update(blog);
+		return new ResponseEntity("No Blog found for id " + blog.getId(), HttpStatus.NOT_FOUND);
+	}
+
+	@PutMapping("/blog")  
 	public ResponseEntity update(@RequestBody Blog blog)
 	{
 		blogDAO.update(blog);
 		return new ResponseEntity(blog, HttpStatus.OK);
-	}
+	}  
 }  
+ 

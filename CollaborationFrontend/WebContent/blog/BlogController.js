@@ -1,120 +1,184 @@
 'use strict';
 
-app.controller('BlogController',['$scope','BlogService','$location','$rootScope','$cookieStore','$http',function($scope, BlogService, $location, $rootScope,$cookieStore, $http) {
+app.controller('BlogController',['$scope','BlogService','ReplyService','$location','$rootScope','$cookieStore','$http',function($scope, BlogService,ReplyService, $location, $rootScope,$cookieStore, $http) {
 							console.log("BlogController...")
 							var self = this;
-							self.blog = {id:'',title : '',status: '',description:'',};
-						//	self.blog = {id:'',title : '',status: '',description:''};
+							self.blog = {id:'',title : '',status: '',description:''};
+							self.reply={replyId:'',replymsg:'',mailid:'',Id:'',title:''}
+							/*self.reply= {replyId:'',replymsg:'',mailid:'',Id:'',title''}; */
+						//	self.blog = {id:'',title : '',status: '',description:''}; 
 							self.blogs = []; // json array
 
 						/*	$scope.orderByMe = function(x) {  
-								$scope.myOrderBy = x;
+								$scope.myOrderBy = x;  
 							}  */
+							$scope.rpl = {};
+							self.replys = []; 
+							self.submit = submit;   
+							self.update = update;  
+							self.get = get;
+							self.getReply = getReply;  
+							self.createReply = createReply;
+							self.createBlog=createBlog;  
+							self.notAcceptedBlogs=notAcceptedBlogs;
+							self.accept=accept;
+							self.getBlogAdmin=getBlogAdmin;
+							self.accept=accept;
 							
-							
-							
+							fetchAllBlogs();       
+							 
 							fetchAllBlogs();
-							  reset(); 
-							  function fetchAllBlogs(){
-							    	BlogService.fetchAllBlogs()
-							            .then(
-							            function(d) {
-							                self.blogs = d; 
-							                console.log(self.blogs)
-							            },
-							            function(errResponse){
-							                console.error('Error while fetching Blogs');
-							            }
-							        );
-							    }
+							  reset();  
+							  function fetchAllBlogs() {
+									BlogService.fetchAllBlogs().then(function(d) {
+										self.blogs = d; 
+										console.log(self.blogs)
+									}, function(errResponse) { 
+										console.error('Error while fetching blogs');
+									});  
+								}
    
 							// self.fatchAllBlogs(); 
-							  self.notAcceptedBlogs = function() {
-									console.log("notAcceptedBlogs...")
-									BlogService.notAcceptedBlogs()
-											.then(
+							  function notAcceptedBlogs() {
+									console.log("notAcceptedBlogs...")  
+									BlogService.notAcceptedBlogs()     
+											.then( 
 													function(d) {
 														//alert("Thank you for creating message")
-														self.blogss = d;
-													},
+								  						self.blogss = d;
+													},   
 													function(errResponse) {
 										  				console
-																.error('Error while creating notAcceptedBlogs.');
-													});
-								};	
-							self.createBlog = function(blog) {
-								console.log("createBlog...")
-								BlogService.createBlog(blog)
-										.then(
-												function(d) {
-													alert("Thank you for creating message")
-													$location.path("/viewblog")
-												},
-												function(errResponse) {
-													console
-															.error('Error while creating Blog.');
-												});
-							};
+																.error('Error while creating notAcceptedblogs.');
+											  		});
+								};	  
 
-							self.reject = function(id) {
-						 		console.log("reject...")
-								var reason = prompt("Please enter the reason");
-								BlogService.reject(id, reason).then(
-										function(d) {
-											self.blog = d;
-											self.fetchAllBlogs
-											$location.path("/manage_Blogs")
-											alert(self.Blog.errorMessage)
+								function createBlog(blog) {   
+									console.log("createblog...")
+									BlogService.createBlog(blog).then(function(d) {
+										alert("Thank you for creating message")
+										$location.path("/viewblog") 
+									}, function(errResponse) { 
+										console.error('Error while creating blog.');
+									});
+								};    
 
-										}, null);
-							};
+								function reject(id) {
+									console.log("reject...")
+									var reason = prompt("Please enter the reason");
+								BlogService.reject(id, reason).then(function(d) {
+										self.blog = d;
+										self.fetchAllBlogs
+										$location.path("/manage_Blogs")
+										alert(self.Blog.errorMessage)
 
-							self.updateBlog = function(currentBlog) {
-								console.log("updateBlog...")
-								BlogService.updateBlog(currentBlog).then(
-										self.fetchAllBlogs, null);
-							};
+									}, null);
+								}; 
+								 function updateBlog(currentBlog) {
+										console.log("updateBlog...")
+										BlogService.updateBlog(currentBlog).then(
+												self.fetchAllBlog, null);
+									};
 
-							self.update = function() {
-								{
-									console.log('Update the Blog details',
-											$rootScope.currentBlog);
-									self.updateBlog($rootScope.currentBlog);
-								}
-					 			self.reset();
-							};
+									function update() {  
+										{
+											console.log('Update the blog details',
+													$rootScope.currentBlog);
+											self.updateBlog($rootScope.currentBlog);
+										}
+										self.reset();
+									};
   
-							
-							
+							  
+							  
 
 							// self.fetchAllBlogs(); //calling the method    
 
 							// better to call fetchAllBlogs -> after login ???
 
-							self.get=function (blog){  
-								$scope.bc=blog;
-								console.log($scope.bc);
-								$rootScope.viewblog=$scope.bc;
-								$location.path("/viewb");   
-							};  
-							self.getBlogAdmin=function (blogs){  
-								$scope.bc=blogs;   
+									function get(blog){
+										ReplyService.fetchAllReplys(blog.id) .then(function(d) {
+											self.blogReplys = d;
+											$rootScope.breply = d;   
+											console.log($rootScope.breply);
+											console.log(self.blogreplys);
+											$scope.bc=blog; 
+											$scope.rpl=d;      
+											console.log($scope.bc);  
+											console.log($scope.rpl);
+											console.log("fetchingAllReplysss...")
+											   
+											$rootScope.viewBlog=$scope.bc;
+											console.log($rootScope.viewBlog);  
+											$rootScope.rt=$scope.rpl;
+											$location.path("/viewb");   
+										}, function(errResponse) { 
+											console.error('Error while fetching reply');
+										});
+									   
+									         
+								};    
+								function createReply(reply) { 
+									console.log("createreply...")
+
+									$scope.recentBlog = $rootScope.viewBlog;
+									console.log($scope.recentBlog);
+									ReplyService.createReply(reply).then(function(d) {
+										self.Blog = d;
+
+										alert("Thank you for creating message")
+										$location.path("/home")
+									}, function(errResponse) {
+										console.error('Error while creating reply.');
+									});
+								};  
+								       
+								
+								function getReply(id){
+									console.log("fetchingAllreply...")
+									ReplyService.fetchAllReplys(id) .then(function(d) {
+										self.blogReplys = d;
+										console.log(self.blogReplys)
+									}, function(errResponse) {  
+										console.error('Error while fetching Replys');
+									});
+								};
+								
+								
+								   
+								
+								
+							function getBlogAdmin(blogs){  
+								
+								$scope.bc=blogs;    
 								console.log($scope.bc);
 								console.log("hai");    
-								$rootScope.adminvb=$scope.bc;
+							 	$rootScope.adminvb=$scope.bc;
 								$location.path("/adminviewblog");   
 							};  
-        
-							self.submit = function() {
+          
+							function submit() {
 								{
-									console.log('Saving New Blog', self.blog);
-									self.createBlog(self.blog); 
+									console.log('Saving New Blog', self.blog); 
+									self.createBlog(self.blog);
 								}
-								self.reset();  
+								self.reset();
+							}; 
+							
+							function accept(adminvb) {
+								{
+									console.log('accept the Blog details')
+										
+									BlogService.accept(adminvb);
+									$location.path("/admin")
+								}   
+								    
 							};
 							 function reset(){
 								 self.blog = {id:null,title : '',status: '',description:''};
+								 self.reply={replyId:'null',replymsg:'',mailid:'',Id:'',title:''}
 							       //$scope.myform.$setPristine(); //reset Form
 							    }
-							      
+							        
 						} ]);
+  

@@ -4,17 +4,36 @@
 <meta charset="ISO-8859-1">
 <title>blog details</title>
 <style type="text/css">
-</style>
-</head>   
+</style>   
+</head>    
 <body>
 <div><h4 style= "margin: 0px 0px 10px 0px; margin-left: 85%;"></h4></div>
-<div><h1 style="margin-top: 2em;">{{viewblog.title}}</h1><br>
-<h5>{{viewblog.status}}<br>{{viewblog.timeStamp}}<br></h5> 
-<br>
-<h4>{{viewblog.description}}</h4></div>
+<div><h1 style="margin-top: 2em;">{{viewBlog.title}}</h1><br>   
+<h5>{{viewBlog.status}}<br>{{viewBlog.timeStamp}}<br></h5> 
+<br>  
+<h4>{{viewBlog.description}}</h4></div>    
+  
+ <form ng-submit="bc.createReply(bc.reply)">    
+		  
+			<textarea placeholder="Enterreply Here.." class="form-control" ng-model="bc.reply.replymsg"></textarea>
+  
+			<button type="submit">reply</button> 
+	</form>  
+	<div ng-repeat="rv in rt"> 
+     
+		<h3>              
+			mailid: <span ng-bind="rv.mailid"></span>
+		</h3>    
+    
+	           
+            
+		<h5>     
+			Reply: <span ng-bind="rv.replymsg"></span>
+		</h5>
+		<br> 
+		<hr>    
+	</div>        
 
- REPLY:<br />   
-  <textarea name='comment' id='comment'  ng-model="" ></textarea><br />
-   <input type='submit' value='send message'/>  
+	</div>   
 </body> 
 </html>         

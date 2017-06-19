@@ -151,16 +151,16 @@ h5, h6, .info_reveal a {
 </head>
 <body>
 
-<!-- <ul>
+<!-- <ul> 
 <li ng-repeat="f in fc. forums">   
 <span ng-bind="f.name"></span> 
- <span ng-bind="f.message"></span>
- <p>{{f.message}}</p>
+ <span ng-bind="f.message"></span> 
+ <p>{{f.message}}</p> 
      <p>hello</p>     
    <button type="button" ng-click="fc.get(f)" style="float: right;">Read More ></button>
 
   </li></ul> -->
-  <div ng-repeat="f in fc. forums"> 
+  <div ng-repeat="f in fc. forums" ng-controller="ForumController as fc" ng-init="fc.notAcceptedForums()"> 
   
 <link href='https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <ul class="responsive_grid">
@@ -173,12 +173,12 @@ h5, h6, .info_reveal a {
          <h6><span ng-bind="f.message></span>  </h6>
       </div> 
       <div class="info_reveal">
-        <h6> <span ng-bind="f.timeStamp"></span></h6>
+        <h6> <span ng-bind="f.timeStamp"></span></h6>  
         <h5><span ng-bind="f.name"></span></h5> 
       </div>
     </div>
   </li>
-  </ul> 
+  </ul>  
 </div>
 
 

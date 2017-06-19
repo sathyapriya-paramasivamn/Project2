@@ -6,17 +6,24 @@ app.config(function($routeProvider) {
 		templateUrl : 'home/home.html'
 	}).when('/home', {
 		templateUrl : 'home/home.html'
-	}).when('/adminPage', {
+	})
+	.when('/adminPage', {
 		templateUrl : 'admin/adminPage.html',
-		controller : 'BlogController',
-		controllerAs : 'bc'
-	}).when('/adminviewblog', {
+		controller : 'ForumController',
+		controllerAs : 'fc'
+	}) 
+	.when('/adminviewblog', {
 		templateUrl : 'admin/adblogdetails.html',
 		controller : 'BlogController',
 		controllerAs : 'bc'
-	})
-
-	.when('/login', {
+	})  
+.when('/adminviewforum', {
+		templateUrl : 'admin/adforumdetails.html',
+		controller : 'ForumController',
+		controllerAs : 'fc'
+	}) 
+ 
+	.when('/login', {  
 		templateUrl : 'user/login.html',
 		controller : 'UserController',
 		controllerAs : 'uc'
@@ -40,8 +47,10 @@ app.config(function($routeProvider) {
 		controller : 'BlogController',
 		controllerAs : 'bc'
 
-	}).when('/viewb', {
-		templateUrl : 'blog/blogdetails.html'
+	}).when('/viewb', { 
+		templateUrl : 'blog/blogdetails.html',
+		controller : 'BlogController',
+		controllerAs : 'bc'
 	})
 	/*
 	 * .when('/viewbc', { templateUrl : 'blog/blogdetails1.html' })
@@ -52,7 +61,7 @@ app.config(function($routeProvider) {
 		controller : 'ForumController',
 		controllerAs : 'fc'
 	})
-
+  
 	.when('/comment', {
 		templateUrl : 'forum/forumdetails.html',
 		controller : 'ForumController',
@@ -80,7 +89,7 @@ app.config(function($routeProvider) {
 	}).when('/viewj', {
 		templateUrl : 'job/jobdetails.html'
 	})
-
+ 
 	.otherwise({
 		templateUrl : 'home/home.html'
 	});

@@ -30,8 +30,8 @@ public class CommentController {
 	@Autowired
 
 	private CommentDAO commentDAO;
- 
-	@Autowired
+    
+	@Autowired  
 	private ForumDAO forumDAO;
 	@GetMapping("/comment")     
 	public ResponseEntity<List<Comment>> getComments() {

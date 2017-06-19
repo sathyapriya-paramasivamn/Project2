@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.ForumDAO;
-
+import com.niit.Collaboration.Model.Blog;
 import com.niit.Collaboration.Model.Forum;
 import com.niit.Collaboration.Model.User;
 
-
+ 
 @RestController
 public class ForumController {
 	@Autowired
@@ -31,6 +31,16 @@ public class ForumController {
 	@GetMapping("/forum")
 	public ResponseEntity<List<Forum>> getForums() {
 		List<Forum> listforum = forumDAO.list();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	@GetMapping("/acceptedforum")
+	public ResponseEntity<List<Forum>> getacceptedForumsList() {
+		List<Forum> listforum = forumDAO.acceptedList();
+		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
+	}
+	@GetMapping("/notAcceptedforum") 
+	public ResponseEntity<List<Forum>> getnotAcceptedForumList() {
+		List<Forum> listforum = forumDAO.notAcceptedList();
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
 	}
   
@@ -55,17 +65,22 @@ public class ForumController {
 		System.out.println(user.getMobileno());
 		forum.setUsermailid(user.getMailid()); 
 		forum.setUsername(user.getName()); 
-		  
-		forumDAO.save(forum); 
+		forum.setStatus("NA");     
+		forumDAO.save(forum);    
 		return new ResponseEntity(forum, HttpStatus.OK); 
+	} 
+	@PutMapping("/acceptForum")
+	public ResponseEntity acceptBlog(@RequestBody Forum forum){
+		forum.setStatus("A");
+		forumDAO.update(forum);
+		return new ResponseEntity("No Blog found for id " + forum.getForumid(), HttpStatus.NOT_FOUND);
 	}
-
-	@PutMapping("/forum")
+	@PutMapping("/forum") 
 	public ResponseEntity update(@RequestBody Forum forum)
 	{
 		forumDAO.update(forum);
 		return new ResponseEntity(forum, HttpStatus.OK); 
 	}
-
+     
 }
    

@@ -13,46 +13,45 @@ style type ="text/css">.abc:hover {
 }
 </style>
 </head>
-<body style="padding-left: 0em;">
-
+<body style="padding-left: 0em;">  
+  
 welcome admin!!
 	<div class="column-content-region col-sm-3"
-		ng-controller="ForumController as fc">
+		ng-controller="ForumController as fc" ng-init="fc.notAcceptedForums()">  
 		<h3>Forums</h3>
-		<div class="abc" ng-repeat="f in fc.forums" ng-click="forum.get(f)">
+		<div class="abc" ng-repeat="f in fc.forumss" ng-click="forum.get(f)">  
 			<h5>
-				<span ng-bind="f.name"></span>
+				<span ng-bind="f.name"></span> 
 			</h5>
-			<h6>
+			<h6> 
 				<span ng-bind="f.message"></span>  
 			</h6>
 			<h6>
 				<span ng-bind="f.timeStamp"></span>
 			</h6>
-			<a href="" ng-click="fc.get(f)"><b>Read More</b></a>
+			<a href="" ng-click="fc.getForumAdmin(f)"><b>Read More</b></a>
 		</div>
-  
-	</div> 
+     
+	</div>  
 
-	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
-		ng-controller="BlogController as bc" ng-init="bc.notAcceptedBlogs()">
+	<div class="column-content-region col-sm-3" style="margin-left: 2em;"ng-controller="BlogController as bc" ng-init="bc.notAcceptedBlogs()">
 		<h3>Blogs</h3>
 		<div class="abc" ng-repeat="b in bc.blogss" ng-click="blog.get(b)">
 			<h2>
-				<span ng-bind="b.title"></span>
+				<span ng-bind="b.title"></span> 
 			</h2>
-			<p>
+			<p> 
 				<span ng-bind="b.status"></span> 
 			</p> 
 			<p> 
 				<span ng-bind="b.description"></span> 
-			</p>
+			</p>    
 			<p>
 				<span ng-bind="b.timeStamp"></span>
 			</p>
 			<a href="" ng-click="bc.getBlogAdmin(b)"><b>Read More</b></a>
 		</div>  
-	</div> 
+	</div>  
 
 	<div class="column-content-region col-sm-3" style="margin-left: 2em;"
 		ng-controller="JobController as jc">
@@ -66,12 +65,12 @@ welcome admin!!
 			</p> 
 			<p>
 				<span ng-bind="j.jobdetails"></span>
-			</p>  
-			<a href="" ng-click="jc.get(j)"><b>Read More</b></a>
+			</p>    
+			<a href="" ng-click="jc.get(j)"><b>Read More</b></a>  
 
-
-
-		</div>  
+  
+   
+		</div>     
 	</div>
 </body>
 </html>

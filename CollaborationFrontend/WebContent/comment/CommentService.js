@@ -3,7 +3,7 @@
 app.service('CommentService', ['$http', '$q','$rootScope', function($http, $q,$rootScope){
 	
 	console.log("CommentService...")
-	
+	  
 	var BASE_URL='http://localhost:8085/CollaborationRestServices/'
 		
     return {
@@ -12,10 +12,10 @@ app.service('CommentService', ['$http', '$q','$rootScope', function($http, $q,$r
             	console.log("calling fetchAllComments ")
                     return $http.get(BASE_URL+'/comment/'+forumid) 
                             .then(  
-                                    function(response){   
+                                    function(response){    
                                         return response.data;
                                     },  
-                                   null 
+                                   null  
                             );  
             }, 
                                        
