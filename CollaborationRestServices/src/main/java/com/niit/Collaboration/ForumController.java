@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.Collaboration.DAO.ForumDAO;
-import com.niit.Collaboration.Model.Blog;
+
 import com.niit.Collaboration.Model.Forum;
 import com.niit.Collaboration.Model.User;
 
@@ -33,7 +33,7 @@ public class ForumController {
 		List<Forum> listforum = forumDAO.list();
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
 	}
-	@GetMapping("/acceptedforum")
+	@GetMapping("/acceptedforum") 
 	public ResponseEntity<List<Forum>> getacceptedForumsList() {
 		List<Forum> listforum = forumDAO.acceptedList();
 		return new ResponseEntity<List<Forum>>(listforum, HttpStatus.OK);
@@ -70,10 +70,10 @@ public class ForumController {
 		return new ResponseEntity(forum, HttpStatus.OK); 
 	} 
 	@PutMapping("/acceptForum")
-	public ResponseEntity acceptBlog(@RequestBody Forum forum){
+	public ResponseEntity acceptForum(@RequestBody Forum forum){
 		forum.setStatus("A");
 		forumDAO.update(forum);
-		return new ResponseEntity("No Blog found for id " + forum.getForumid(), HttpStatus.NOT_FOUND);
+		return new ResponseEntity("No forum found for id " + forum.getForumid(), HttpStatus.NOT_FOUND);
 	}
 	@PutMapping("/forum") 
 	public ResponseEntity update(@RequestBody Forum forum)
@@ -81,6 +81,6 @@ public class ForumController {
 		forumDAO.update(forum);
 		return new ResponseEntity(forum, HttpStatus.OK); 
 	}
-     
+       
 }
    

@@ -27,11 +27,11 @@ public class UserController {
 	@Autowired
 	private UserDAO userDAO;
 
-	public UserDAO getUserDAO() {
+	public UserDAO getUserDAO() {  
 		return userDAO;
 	}
 
-	public void setUserDAO(UserDAO userDAO) {
+	public void setUserDAO(UserDAO userDAO) {   
 		this.userDAO = userDAO;
 	}
 
