@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>friend request</title>  
+<style type="text/css">
+.button  
+  {
+  background-color:#565454;
+  padding: 7px 4px;  
+  }  
+</style>  
+</head>
+<body>  
+<h2></h2> 
+	<div ng-init="uc.fetchAllUsers()"></div> 
+	<div  ng-repeat="u in uc.users" ng-if="u.name!=currentUser.name">     
+	<h3>
+		<span ng-bind="u.name"></span></h3>    
+		<a href="" ng-click="uc.sendreq(u)"><button type="button" class="button"> send friend request </button></a>
+			
+         <!-- <button type="button"> cantelfriend </button> --> 
+  
+	</div>  
+</body>    
+</html>  
+     

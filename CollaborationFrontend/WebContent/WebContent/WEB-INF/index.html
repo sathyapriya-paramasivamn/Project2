@@ -1,0 +1,288 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>education</title>
+<style>
+body {  
+	background-image:url('images/aa.jpg'); 
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%; 
+}       
+ 
+.navbar {
+	margin-bottom: 0; 
+	border-radius: 0;  
+}
+
+.dropbtn {
+	background-color: black;
+	color: white;  
+	padding: 16px;
+	font-size: 16px;  
+	border: none;   
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: gray;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);  
+	z-index: 1;
+}
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block; 
+}
+
+.dropdown-content a:hover {
+	background-color: gray
+}  
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color:black;
+} 
+
+.show {
+	display: block;
+} 
+
+.team_member {
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	height: 250px;
+}
+
+.info {
+	height: 100%;
+}
+
+.info img {
+	width: 100%;
+	transition: all .4s ease-out .1s;
+	-moz-transition: all .4s ease-out .1s;
+	-webkit-transition: all .4s ease-out .1s;
+}
+
+.info h5 {
+	padding: 10px 10px 0 0;
+	margin: 0 0 10px 3px;
+	line-height: 1em;
+	opacity: 1;
+	transition: all .2s ease-out .1s;
+	-moz-transition: all .2s ease-out .1s;
+	-webkit-transition: all .2s ease-out .1s;
+	font-size: 1.125em;
+}
+
+.info h6 {
+	padding: 0 10px 0 0;
+	font-size: 12px;
+	margin: 0 0 0 3px;
+	line-height: 1em;
+	text-transform: uppercase;
+	color: #999;
+	opacity: 1;
+	transition: all .2s ease-out .1s;
+	-moz-transition: all .2s ease-out .1s;
+	-webkit-transition: all .2s ease-out .1s;
+}
+
+.info_reveal {
+	height: 100%;
+	transition: all .3s ease-in 0s;
+	-moz-transition: all .3s ease-in 0s;
+	-webkit-transition: all .23s ease-in 0s;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: -100%;
+	background: gray;
+}
+
+.info_reveal h6 {
+	padding: 20px 8px 5px 8px;
+	line-height: 1.1em;
+	margin-bottom: 20px;
+	color: #fff;
+	font-size: 1em;
+}
+
+.info_reveal p {
+	padding: 0 8px;
+	font-size: 15px;
+	line-height: 1.2em;
+	color: gray;
+	font-weight: 400;
+}
+
+.info_reveal a {
+	color: gray;
+	word-break: break-word;
+	text-decoration: none;
+}
+
+.info_reveal a:hover {
+	color: gray;
+}
+
+.responsive_grid {
+	display: block;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.responsive_grid li1 {
+	cursor: pointer;
+	width: 16.66667%;
+	padding: 0 10px 10px;
+	display: block;
+	height: auto;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.responsive_grid li1:hover .info_reveal, .responsive_grid li1:focus .info_reveal
+	{
+	left: 0;
+	top: 0;
+	transition: all .3s ease-out .1s;
+	-moz-transition: all .3s ease-out .1s;
+	-webkit-transition: all .3s ease-out .1s;
+}
+
+.responsive_grid li1:hover .info img, .responsive_grid li1:focus .info img
+	{
+	width: 210%;
+	margin-left: -50%;
+	transition: all .4s ease-in 0s;
+	-moz-transition: all .4s ease-in 0s;
+	-webkit-transition: all .4s ease-in 0s;
+}
+
+.responsive_grid li:hover .info h5, .responsive_grid li:focus .info h5,
+	.responsive_grid li:hover .info h6, .responsive_grid li:focus .info h6
+	{
+	opacity: 0;
+	transition: opacity .2s linear 0s;
+	-moz-transition: opacity .2s linear 0s;
+	-webkit-transition: opacity .2s linear 0s;
+}  
+    
+</style>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="user/UserController.js"></script>
+<script type="text/javascript" src="user/UserService.js"></script>
+<script type="text/javascript" src="forum/ForumController.js"></script> 
+<script type="text/javascript" src="forum/ForumService.js"></script>
+<script type="text/javascript" src="blog/BlogController.js"></script>
+<script type="text/javascript" src="blog/BlogService.js"></script>
+<script type="text/javascript" src="job/JobController.js"></script>
+<script type="text/javascript" src="job/JobService.js"></script>
+<script type="text/javascript" src="comment/CommentService.js"></script>   
+<script type="text/javascript" src="reply/ReplyService.js"></script>
+<script type="text/javascript" src="friend/FriendService.js"></script>      
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet"
+	href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:700&subset=latin,latin-ext'
+	rel='stylesheet' type='text/css'>
+
+
+</head>
+<body ng-app="myApp" >  
+<font color="white">  
+	<nav class="navbar navbar-inverse" ng-controller="UserController as uc">
+		<div class="container-fluid">  
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">EDUCATION</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active">   
+					<a href="#home">Home</a></li> 
+     
+					<div class="dropdown">
+						<button class="dropbtn">Blog</button>
+						<div class="dropdown-content">  
+							<a href="#blog" ng-show="currentUser.role=='ADMIN'">ADD</a>
+							<a href="#viewblog">VIEW</a>
+						</div>
+					</div> 
+
+
+
+
+					<div class="dropdown">  
+						<button class="dropbtn">Forum</button>
+						<div class="dropdown-content">
+							<a href="#forum" ng-show="currentUser.role=='ADMIN'">ADD</a> <a href="#viewforum">VIEW</a>
+						</div>
+					</div> 
+  
+					<div class="dropdown">
+						<button class="dropbtn">Job</button>
+						<div class="dropdown-content">
+							<a href="#job" ng-show="currentUser.role=='ADMIN'">ADD</a> <a href="#viewjob">VIEW</a>
+
+						</div>
+					</div>  
+ 
+				<!-- 	<li><a href="#event">Event</a></li>  
+					<li><a href="#">prepare</a></li> -->
+		             <li><a href="#friend"  ng-show="currentUser.name">friend</a></li>  
+
+				</ul>  
+				<ul  class="nav navbar-nav navbar-right" >
+					<li><a href="#login" ng-hide="currentUser.name"><span
+							class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="#register" ng-hide="currentUser.name"><span
+							class="glyphicon glyphicon-user"></span>register</a></li>
+							</ul>
+					<ul  class="nav navbar-nav navbar-right" >
+						<li><a href=""  ng-click="uc.logout()" ng-show="currentUser.name"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					</ul>
+			</div>
+		</div>       
+	</nav>  
+	
+	<div ng-view></div>  
+	</font> 
+</body>
+</html>
