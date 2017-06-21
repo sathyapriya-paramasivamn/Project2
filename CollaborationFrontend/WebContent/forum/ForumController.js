@@ -25,7 +25,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 			self.accept=accept;
 			self.getForumAdmin=getForumAdmin;
 			fetchAllForums();
-			
+			  
 			reset();  
 			function fetchAllForums() {
 				ForumService.fetchAllForums().then(function(d) {
@@ -61,7 +61,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				});
 			};    
    
-		function reject(id) {
+		function reject(id) {  
 				console.log("reject...")
 				var reason = prompt("Please enter the reason");
 				ForumService.reject(id, reason).then(function(d) {

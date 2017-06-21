@@ -2,12 +2,13 @@
 <html>
 
 <style>
-<link ref="text/css">
+<link ref="text/css"> 	
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700);
 body {
   background: #999;
   padding: 40px; 
   font-family: "Open Sans Condensed", sans-serif;
+  background-image:url('images/bf.jpg');
 }
 #bg {
   position: fixed;
@@ -20,7 +21,7 @@ body {
   -webkit-filter: blur(5px);    
 }
 form {
-  position: relative;
+  position: relative;  
   width: 250px;
   margin: 0 auto;
   background: rgba(130,130,130,.3);
@@ -128,7 +129,7 @@ form button[type=submit] {
 					class="help-block">Password is required</span>
 			</div>
 			<div class="form-actions">
-				<button type="submit"
+				<button type="submit" 
 					ng-disabled="form.$invalid"
 					class="btn btn-primary"  ng-click="login()">Login</button>
 				<a href="#/register" class="btn btn-link">Register</a>

@@ -33,7 +33,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 										.then(
 												function(d) {
 													alert("Thank you for creating message")
-													$location.path("/index")
+													$location.path("/home")
 												},
 												function(errResponse) {
 													console
@@ -78,7 +78,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 								console.log($scope.jc);
 								$rootScope.viewjob=$scope.jc;
 								$location.path("/viewj");     
-							};  
+							};   
 							  
 
 							// self.fetchAllBlogs(); //calling the  method    

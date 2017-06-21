@@ -89,7 +89,13 @@ app.config(function($routeProvider) {
 	}).when('/viewj', {
 		templateUrl : 'job/jobdetails.html'
 	})
- 
+ .when('/friend',{
+	 templateUrl : 'friend/friend.html',
+	 controller : 'UserController',
+	 controllerAs : 'uc'  
+	 
+ })
+	
 	.otherwise({
 		templateUrl : 'home/home.html'
 	});

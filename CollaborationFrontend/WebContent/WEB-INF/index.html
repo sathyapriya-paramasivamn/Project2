@@ -4,24 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>education</title>
 <style>
-/* body {
-	background: radial-gradient(ellipse at bottom left, rgba(104, 128, 138, 0.4)
-		10%, rgba(138, 114, 76, 0) 40%),
-		linear-gradient(to bottom, rgba(57, 173, 219, .25),
-		rgba(42, 60, 87, 0.4)), linear-gradient(135deg, #670d10, #092756);
-} */
+body {  
+	background-image:url('images/aa.jpg'); 
+	background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%; 
+}     
  
 .navbar {
-	margin-bottom: 0;
-	border-radius: 0;
+	margin-bottom: 0; 
+	border-radius: 0;  
 }
 
 .dropbtn {
 	background-color: black;
 	color: white;  
 	padding: 16px;
-	font-size: 16px;
-	border: none;
+	font-size: 16px;  
+	border: none;   
 	cursor: pointer;
 }
 
@@ -42,7 +43,7 @@
 	color: black;
 	padding: 12px 16px;
 	text-decoration: none;
-	display: block;
+	display: block; 
 }
 
 .dropdown-content a:hover {
@@ -54,12 +55,12 @@
 }
 
 .dropdown:hover .dropbtn {
-	background-color: gray;
-}
+	background-color:black;
+} 
 
 .show {
 	display: block;
-}
+} 
 
 .team_member {
 	width: 100%;
@@ -183,7 +184,7 @@
 	transition: opacity .2s linear 0s;
 	-moz-transition: opacity .2s linear 0s;
 	-webkit-transition: opacity .2s linear 0s;
-}
+}  
     
 </style>
 <link rel="stylesheet"
@@ -206,7 +207,8 @@
 <script type="text/javascript" src="job/JobController.js"></script>
 <script type="text/javascript" src="job/JobService.js"></script>
 <script type="text/javascript" src="comment/CommentService.js"></script>   
-  <script type="text/javascript" src="reply/ReplyService.js"></script>   
+<script type="text/javascript" src="reply/ReplyService.js"></script>
+<script type="text/javascript" src="friend/FriendService.js"></script>      
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://www.w3schools.com/lib/w3-theme-black.css">
@@ -218,9 +220,10 @@
 
 
 </head>
-<body ng-app="myApp" >
+<body ng-app="myApp" >  
+<font color="white">  
 	<nav class="navbar navbar-inverse" ng-controller="UserController as uc">
-		<div class="container-fluid">
+		<div class="container-fluid">  
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
@@ -231,73 +234,55 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li class="active">
-					<a href="#home">Home</a></li>
+					<li class="active">   
+					<a href="#home">Home</a></li> 
      
 					<div class="dropdown">
 						<button class="dropbtn">Blog</button>
 						<div class="dropdown-content">  
-							<a href="#blog">ADD</a>
+							<a href="#blog" ng-show="currentUser.role=='ADMIN'">ADD</a>
 							<a href="#viewblog">VIEW</a>
 						</div>
-					</div>
+					</div> 
 
 
 
 
-					<div class="dropdown">
+					<div class="dropdown">  
 						<button class="dropbtn">Forum</button>
 						<div class="dropdown-content">
-							<a href="#forum">ADD</a> <a href="#viewforum">VIEW</a>
+							<a href="#forum" ng-show="currentUser.role=='ADMIN'">ADD</a> <a href="#viewforum">VIEW</a>
 						</div>
-					</div>
-
+					</div> 
+  
 					<div class="dropdown">
 						<button class="dropbtn">Job</button>
 						<div class="dropdown-content">
-							<a href="#job">ADD</a> <a href="#viewjob">VIEW</a>
+							<a href="#job" ng-show="currentUser.role=='ADMIN'">ADD</a> <a href="#viewjob">VIEW</a>
 
 						</div>
-					</div>
-
-					<li><a href="#event">Event</a></li>
-					<li><a href="#">prepare</a></li>
-		
+					</div>  
+ 
+				<!-- 	<li><a href="#event">Event</a></li>  
+					<li><a href="#">prepare</a></li> -->
+		             <li><a href="#friend"  ng-show="currentUser.name">friend</a></li>  
 
 				</ul>  
 				<ul  class="nav navbar-nav navbar-right" >
-					<li><a href="#login"><span
+					<li><a href="#login" ng-hide="currentUser.name"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href="#register"><span
+					<li><a href="#register" ng-hide="currentUser.name"><span
 							class="glyphicon glyphicon-user"></span>register</a></li>
 							</ul>
 					<ul  class="nav navbar-nav navbar-right" >
-						<li><a href=""  ng-click="uc.logout()"><span
+						<li><a href=""  ng-click="uc.logout()" ng-show="currentUser.name"><span
 								class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 					</ul>
 			</div>
-		</div>
-	</nav>
-	<!-- <ul1 class="responsive_grid">
-  <li1>
-    <div class="team_member">  
-       <div class="info">
-         
-         <h5>{{blog.title}}</h5>
-         <h6></h6> 
-      </div>
-      <div class="info_reveal">
-        <h6><br/></h6>
-        <p><a href="#"></a></p>
-        <p></p>
-      </div>
-    </div>
-  </li1> 
- 
-</ul1> -->
-
-
-
-	<div ng-view></div>
+		</div>       
+	</nav>  
+	
+	<div ng-view></div>  
+	</font> 
 </body>
 </html>

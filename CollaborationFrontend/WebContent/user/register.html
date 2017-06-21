@@ -105,22 +105,17 @@ text-align:left;
   @include btn-border-drawing(#58afd1, #ffe593, 4px, bottom, right);
 }
 //=== Button styling, semi-ignore
-.btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  line-height: 1.5;
-  font: 700 1.2rem 'Roboto Slab', sans-serif;
-  padding: 1em 2em;
-  letter-spacing: 0.05rem;
-  
+.btn {background-color: #555555;}
+     
   &:focus { outline: 2px dotted #55d7dc; }
-}
+  
+} 
+ 
 //=== Pen styling, ignore
 body { 
   background: #1f1a25;
   display: flex; 
-  align-items: center;
+  align-items: center;   
   justify-content: center;
   min-height: 100vh;
   
@@ -148,11 +143,11 @@ body {
       <input type="text" placeholder="Enter pincode" name="pincode" required ng-model="uc.user.pincode">
 <label><b>Role</b></label>
 <select ng-model="uc.user.role" >
-    <option value="Alumni">Alumni</option>
-  <option value="student">Student</option>
-  <option value="Employee">Employee</option>
+    <option value="ALUMNI">ALUMNI</option>
+  <option value="STUDENT">STUDENT</option>
+  <option value="EMPLOYEE">EMPLOYEE</option>
    
-</select>
+</select> 
     <!-- <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <input type="submit" class="signupbtn" name="submit" value="Sign Up">
