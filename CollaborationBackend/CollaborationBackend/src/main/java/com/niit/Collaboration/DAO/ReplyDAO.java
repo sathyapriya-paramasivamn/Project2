@@ -1,4 +1,4 @@
-package com.niit.Collaboration.DAO;
+ package com.niit.Collaboration.DAO;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public List<Reply> list();
 	public List<Reply> getReply(int id);
 	
 	public void save(Reply reply);
-
+ 
 	public void update(Reply reply);
     
 	public void delete(int replyId);  

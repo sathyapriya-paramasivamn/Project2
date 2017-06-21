@@ -80,9 +80,15 @@ public class BlogTest {
   	forum.setMessage("school system will change"); 
   	forumDAO.save(forum);
   	forum.setStatus("na");
-      
-  	  
-  	friend.setStatus("friend");   
+   
+  	
+    friend.setFriendid(2);
+    friend.setUserid(382);
+  	friend.setFriendname("jvbjdf");
+  	friend.setStatus("friend");
+  	friend.setUsername("sai");  
+  	
+  	friend.setStatus("friend");    
    	friendDAO.save(friend);  
 
    	job.setJobcategory("software engineer");

@@ -138,5 +138,5 @@ public class ApplicationContextConfig {
 		return new ReplyDAOImpl(sessionFactory);
 	}    
 } 
-
+ 
    
