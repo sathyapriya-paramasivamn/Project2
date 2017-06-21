@@ -25,7 +25,7 @@ public class User {
 	private String pincode;
 	
 	public int getId() {
-		return id;
+		return id; 
 	}
 
 	public void setId(int id) {

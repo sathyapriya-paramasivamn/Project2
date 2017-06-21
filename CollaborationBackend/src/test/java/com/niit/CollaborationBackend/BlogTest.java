@@ -79,9 +79,16 @@ public class BlogTest {
   	forum.setName("Discussion board");
   	forum.setMessage("school system will change"); 
   	forumDAO.save(forum);
-      
-  	  
-  	friend.setStatus("friend");   
+  	forum.setStatus("na");
+   
+  	
+    friend.setFriendid(2);
+    friend.setUserid(382);
+  	friend.setFriendname("jvbjdf");
+  	friend.setStatus("friend");
+  	friend.setUsername("sai");  
+  	
+  	friend.setStatus("friend");    
    	friendDAO.save(friend);  
 
    	job.setJobcategory("software engineer");

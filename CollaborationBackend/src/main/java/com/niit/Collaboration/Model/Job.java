@@ -14,13 +14,13 @@ public class Job {
 	@Id
 	@GeneratedValue
 private int jobid;	
-private String jobname;
+private String jobname; 
 private String jobcategory;
 private String jobdetails;
 public int getJobid() {
 	return jobid;
 }
-public void setJobid(int jobid) {
+public void setJobid(int jobid) { 
 	this.jobid = jobid;
 }
 public String getJobname() {
@@ -39,8 +39,8 @@ public String getJobdetails() {
 	return jobdetails;
 }
 public void setJobdetails(String jobdetails) {
-	this.jobdetails = jobdetails;
-}
+	this.jobdetails = jobdetails;  
+}  
 
 
 }

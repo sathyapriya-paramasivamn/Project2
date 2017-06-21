@@ -59,7 +59,7 @@ public class BlogDAOImpl implements BlogDAO {
 
 	@Transactional
 	public void update(Blog blog) {
-		sessionFactory.getCurrentSession().update(blog);
+		sessionFactory.getCurrentSession().saveOrUpdate(blog);
 
 	}
 

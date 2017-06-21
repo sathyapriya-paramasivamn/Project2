@@ -9,19 +9,20 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.niit.Collaboration.Model.Comment;
 import com.niit.Collaboration.Model.Reply;
 @Repository("ReplyDAO")   
 public class ReplyDAOImpl implements ReplyDAO {
 	
-	@Autowired   
+	@Autowired    
 	private SessionFactory sessionFactory;
 
 	public ReplyDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+	 
 	@SuppressWarnings("unchecked")
-	@Transactional
+	@Transactional   
 	public List<Reply> list() {
 		List<Reply> listReply = (List<Reply>) sessionFactory.getCurrentSession().createCriteria(Reply.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
@@ -43,17 +44,36 @@ public class ReplyDAOImpl implements ReplyDAO {
 		sessionFactory.getCurrentSession().delete(replyToDelete);
 
 	}
-	
-	
+	 
 	@Transactional
-	public Reply getByReplyId(int replyId) {
+	public List<Reply> getReply(int id) {
+		String hql = "from Reply where Id ='" + id + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Reply> listReply = (List<Reply>) query.list();
+		
+		return listReply;
+	}
+	@Transactional
+	public Reply getByMailid(String mailid) {
+		String hql = "from Reply where mailid ='" + mailid + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Reply> listReply = (List<Reply>) query.list();
+		if (listReply != null && !listReply.isEmpty()) { 
+			return listReply.get(0);
+		}  
+		return null;
+	}  
+	@Transactional
+	public Reply getByreplyId(int replyId) {
 		String hql = "from Reply where replyId ='" + replyId + "'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Reply> listReply = (List<Reply>) query.list();
 		if (listReply != null && !listReply.isEmpty()) { 
 			return listReply.get(0);
-		}
+		}  
 		return null;
 	}
 

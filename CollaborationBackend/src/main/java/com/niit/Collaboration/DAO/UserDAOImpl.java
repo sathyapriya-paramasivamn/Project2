@@ -22,14 +22,14 @@ public class UserDAOImpl implements UserDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Transactional
+	@Transactional 
 	public List<User> list() {
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listUser;
-	}
-
+	} 
+ 
 	@Transactional 
 	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);

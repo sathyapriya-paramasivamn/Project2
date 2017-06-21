@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 public class Reply {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int replyId;
+	private int replyId; 
 	private String replymsg;
-	private String mailid;
+	private String mailid; 
 	private int Id;
 	private String title; 
 	
