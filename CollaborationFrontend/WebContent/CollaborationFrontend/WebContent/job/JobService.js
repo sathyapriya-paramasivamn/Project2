@@ -31,7 +31,7 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                                         return $q.reject(errResponse);
                                     }
                             );
-            },
+            },  
              
             updateJob: function(Job, id){
             	console.log("calling fetchAllJobs ")
@@ -45,12 +45,12 @@ app.service('JobService', ['$http', '$q','$rootScope', function($http, $q,$rootS
                                         return $q.reject(errResponse);
                                     }
                             );
-            },
+            }, 
              
               
-       
-           
          
+           
+           
     };
  
 }]);

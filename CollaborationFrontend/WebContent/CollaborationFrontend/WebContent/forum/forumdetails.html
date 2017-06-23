@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>forum details</title>   
+<style type="text/css">  
+.body
+{    
+ 	background-image: url('images/educa.jpg');    
+	 background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    height: 100%;
+}  
+    .button  
+  {
+  background-color:#565454;
+  padding: 7px 4px;  
+  }  
+  
+  
+  
+</style>  
+</head> 
+<body>     
+	<!-- <h4 style="margin: 0px 0px 10px 0px; margin-left: 85%;"></h4>
+	<h1 style="margin-top: 2em;"> -->    
+	{{viewForum.name}}</h1><br>   
+	<h5>{{viewForum.message}}<br>{{viewForum.timeStamp}}<br></h5>
+	<br> 
+	 <form ng-submit="fc.createComment(fc.comment)">  
+		  
+			<textarea placeholder="Enter Comment Here.." class="form-control"ng-model="fc.comment.content"></textarea>
+			      
+			<button type="submit" class="button">Comment</button> 
+	</form> 
+	<div class ="" ng-repeat="cv in ct"> 
+ 
+		<h3>          
+			Name: <span ng-bind="cv.commentName"></span>
+		</h3> 
+    
+	<!-- 	<td>{{cv.commentName}}</td>  -->       
+          
+       
+		<h5>    
+			Comment: <span ng-bind="cv.content"></span>
+		</h5>
+		<br>
+		<hr>  
+	</div>      
+
+	</div> 
+</body>
+</html> 

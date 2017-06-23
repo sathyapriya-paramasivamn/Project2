@@ -7,10 +7,10 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
 	var BASE_URL='http://localhost:8085/CollaborationRestServices/'
 		
     return {
-         
+           
             fetchAllUsers: function() {
             	console.log("calling fetchAllUsers ")
-                    return $http.get(BASE_URL+'/listAllUsersNotFriends')
+                    return $http.get(BASE_URL+'/users')
                             .then(
                                     function(response){
                                         return response.data;
@@ -18,7 +18,7 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                    null
                             );
             },
-              
+               
             myProfile: function() {
             	console.log("calling myProfile ")
                     return $http.get(BASE_URL+'/myProfile')
@@ -80,13 +80,13 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                                         console.error('Error while updating user');
                                         return $q.reject(errResponse);
                                     }
-                            );
+                              );
             },
              
               
             logout: function(){
             	console.log('logout....')
-                return $http.get(BASE_URL+'/user/logout')
+                return $http.get(BASE_URL+'/logout')
                         .then(
                                 function(response){
                                     return response.data;
@@ -103,7 +103,9 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
                 return $http.post(BASE_URL+'login',user)
                         .then(
                                 function(response){
-                                    return response.data;   //user json object
+                                    return response; 
+                                  /*  $scope.userId=user.userid;
+                                    $scope.userName=user.name;*///user json object
                                 }, 
                                null
                         );

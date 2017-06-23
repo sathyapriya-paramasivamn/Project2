@@ -171,9 +171,9 @@ div#all {
    <button type="button" ng-click="bc.get(u)" style="float: right;">Read More ></button>
   </li></ul>  -->
 
-	<div class="view view-second" ng-repeat="u in bc.blogs">
-		<img src="images/blog.jpg" width="250" height="250"/>
-		<div class="mask"></div>
+	<div class="view view-second" ng-repeat="u in bc.blogs" ng-controller="BlogController as bc" ng-init="bc.notAcceptedBlogs()">
+		<img src="images/blog.jpg" width="250" height="250"/> 
+		<div class="mask"></div> 
 		<div class="content">
 			<div >       
 				<h2>   

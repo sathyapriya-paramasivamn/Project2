@@ -1,25 +1,41 @@
 'use strict';
 
-app.controller('UserController',['$scope','UserService','$location','$rootScope','$cookieStore','$http',function($scope, UserService, $location, $rootScope,$cookieStore, $http) {
+app.controller('UserController',['$scope','UserService','FriendService','$location','$rootScope','$cookieStore','$http',function($scope, UserService,FriendService, $location, $rootScope,$cookieStore, $http) {
 							console.log("UserController...")
 							var self = this;
-							self.user = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+						
+							self.user = {id:'',name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
 
-							self.currentUser = {name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
-  
+							self.currentUser = {id:'',name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+                            self.friend={fid:'',friendid:'',friendname:'',status:'',userid:'',username:''};
 							self.users = []; // json array
+							self.friends = []; // json array
+							var arr=[]; 
+							var i=0;
+							
 
 							$scope.orderByMe = function(x) {
 								$scope.myOrderBy = x;
-							}
-
+							}  
+							
+						
+   
 							self.fetchAllUsers = function() {
 								console.log("fetchAllUsers...")
-								UserService  
-										.fetchAllUsers()
+								UserService.fetchAllUsers()
 										.then(function(d) {
 												self.users = d;
-												},
+												for(i=0; i<self.users.length; i++)
+												{
+												if(self.users[i].role!='ADMIN'){
+														arr.push(self.users[i])
+																										
+											}
+												 }
+												self.us=arr;
+												console.log(self.us)
+											//	$location.path("/friend")
+												}, 
 												function(errResponse) {
 													console.error('Error while fetching Users');
 												});
@@ -28,7 +44,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							// self.fatchAllUsers();
 
 							self.createUser = function(user) {
-								console.log("createUser...")
+								console.log("createUser...")  
 								UserService.createUser(user)
 										.then(
 												function(d) {
@@ -42,8 +58,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							self.myProfile = function() {
 								console.log("myProfile...")
-								UserService
-										.myProfile()
+								UserService.myProfile()
 										.then(function(d) {
 													self.user = d;
 													$location.path("/myProfile")
@@ -55,8 +70,7 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 
 							self.accept = function(id) {
 								console.log("accept...")
-								UserService
-										.accept(id)
+								UserService.accept(id)
 										.then(function(d) {
 													self.user = d;
 													self.fetchAllUsers
@@ -113,18 +127,26 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 													
 												},
 												function(errResponse) {
-													console.error('Error while authenticate Users');
+									  				console.error('Error while authenticate Users');
 												});
 							};*/
   
 							self.login = function() {
 								UserService.login(self.user).then(function(response) {
 									console.log(response.status)
-									$scope.user = response.data
-									$rootScope.currentUser = response.data;
+									$scope.user = response.data;
+								 
+									$rootScope.currentUser = response.data;  
 									$cookieStore.put("currentUser", response.data);
-									$location.path('/blog')
-								}, function(response) {
+									 if($scope.user.role == 'STUDENT'){
+										 $location.path('/home')
+									  }else if($scope.user.role == 'ADMIN'){
+										  $location.path('/adminPage')
+									}else{
+										 $location.path('/blog')
+									}
+									
+								}, function(response) {  
 									console.log(response.status)
 									$scope.message = response.data.message
 									$location.path('/login')
@@ -132,13 +154,26 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 							};
 							self.logout = function() {
 								console.log("logout")
-								$rootScope.currentUser = {};
+								$rootScope.currentUser = {};  
 								$cookieStore.remove('currentUser');
 								UserService.logout()
-								$location.path('/');
+								$location.path('/login');
 
 							}
-
+    
+						self.sendreq = function(friendUser){  
+                            console.log("sending friend request...")
+                            FriendService.createFriend(friendUser).then(function(d) {
+                                console.log(d)                    
+                                  $location.path("/friend")
+                                    },
+                                              function(errResponse) {
+                                                console.error('Error while creating friend..');
+                                            });}
+                        
+                         
+							
+							
 							// self.fetchAllUsers(); //calling the method    
 
 							// better to call fetchAllUsers -> after login ???  
@@ -150,18 +185,19 @@ app.controller('UserController',['$scope','UserService','$location','$rootScope'
 									self.authenticate(self.user);
 								}
 
-							};*/
-
+							};*/   
+ 
 							self.submit = function() {
 								{
 									console.log('Saving New User', self.user);
 									self.createUser(self.user);
 								}
-								self.reset();
-							};
-
+								self.reset(); 
+							};  
+        
 							self.reset = function() {
-								self.user = {userid:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+								self.user = {id:null,name : '',mailid : '',password : '',role : '',mobileno: '',residential : '',pincode: ''};
+								self.friend={fid:null,friendid:'',friendname:'',status:'',userid:'',username:''};
 								$scope.myForm.$setPristine(); // reset Form
 							};
 

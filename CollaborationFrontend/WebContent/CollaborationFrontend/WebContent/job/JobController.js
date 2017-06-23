@@ -16,7 +16,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 							    	JobService.fetchAllJobs()
 							            .then(
 							            function(d) {
-							                self.jobs = d;
+							                self.jobs = d; 
 							                console.log(self.jobs)
 							            },
 							            function(errResponse){
@@ -33,7 +33,7 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 										.then(
 												function(d) {
 													alert("Thank you for creating message")
-													$location.path("/index")
+													$location.path("/home")
 												},
 												function(errResponse) {
 													console
@@ -73,10 +73,15 @@ app.controller('JobController',['$scope','JobService','$location','$rootScope','
 					 			self.reset();
 							};
 
-							
-							
+							self.get=function (job){  
+								$scope.jc=job;
+								console.log($scope.jc);
+								$rootScope.viewjob=$scope.jc;
+								$location.path("/viewj");     
+							};   
+							  
 
-							// self.fetchAllBlogs(); //calling the method    
+							// self.fetchAllBlogs(); //calling the  method    
 
 							// better to call fetchAllBlogs -> after login ???
 
