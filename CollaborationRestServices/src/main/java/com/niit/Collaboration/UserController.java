@@ -1,5 +1,7 @@
 package com.niit.Collaboration;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.niit.Collaboration.DAO.FriendDAO;
 import com.niit.Collaboration.DAO.UserDAO;
+import com.niit.Collaboration.Model.Friend;
 import com.niit.Collaboration.Model.User;
 
 @RestController
@@ -26,19 +30,17 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
+  
 
-	public UserDAO getUserDAO() {  
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {   
-		this.userDAO = userDAO;
-	}
 
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> getUsers() {
+	public ResponseEntity<List<User>> getUsers(HttpSession session) {
+		
 		List<User> listuser = userDAO.list();
 		return new ResponseEntity<List<User>>(listuser, HttpStatus.OK);
+
+		
+		
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -51,7 +53,7 @@ public class UserController {
 		userDAO.delete(userid);
 		return new ResponseEntity(userid, HttpStatus.OK);
 	}
-
+ 
 	@GetMapping("/users/{id}")
 	public ResponseEntity<User> getUserByID(@PathVariable("id") int id) {
 
@@ -98,7 +100,7 @@ public class UserController {
 			return new ResponseEntity<User>(validUser, HttpStatus.OK);
 		}
 	}
-
+  
 	@RequestMapping(value="/logout",method=RequestMethod.PUT)
 	public ResponseEntity<?> logout(HttpSession session){
 		User user=(User)session.getAttribute("user");
@@ -106,7 +108,7 @@ public class UserController {
 			Error error =new Error("Unauthorized user.. Please Login..");  
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}  
-		else{
+		else{   
 			//user.setOnline(false);  
 			userDAO.update(user);
 			session.removeAttribute("user");
@@ -114,4 +116,4 @@ public class UserController {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}					
 	}
-}  
+}    
