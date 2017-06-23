@@ -4,7 +4,8 @@ app.config(function($routeProvider) {
 
 	$routeProvider.when('/', {
 		templateUrl : 'home/home.html'
-	}).when('/home', {
+	})
+	.when('/home', {
 		templateUrl : 'home/home.html'
 	})
 	.when('/adminPage', {
@@ -17,7 +18,7 @@ app.config(function($routeProvider) {
 		controller : 'BlogController',
 		controllerAs : 'bc'
 	})  
-.when('/adminviewforum', {
+	.when('/adminviewforum', {
 		templateUrl : 'admin/adforumdetails.html',
 		controller : 'ForumController',
 		controllerAs : 'fc'
@@ -61,22 +62,22 @@ app.config(function($routeProvider) {
 		controller : 'ForumController',
 		controllerAs : 'fc'
 	})
-  
+    
 	.when('/comment', {
-		templateUrl : 'forum/forumdetails.html',
+ 		templateUrl : 'forum/forumdetails.html',
 		controller : 'ForumController',
 		controllerAs : 'fc'
 	})
 
 	.when('/viewforum', {
 		templateUrl : 'forum/viewforum.html',
-		controller : 'ForumController',
+	 	controller : 'ForumController',
 		controllerAs : 'fc'
 
 	}).when('/viewf', {
 		templateUrl : 'forum/forumdetails.html',
 		controller : 'ForumController',
-		controllerAs : 'fc'
+		controllerAs : 'fc'  
 	}).when('/job', {
 		templateUrl : 'job/job.html',
 		controller : 'JobController',
@@ -95,7 +96,7 @@ app.config(function($routeProvider) {
 	 controllerAs : 'uc'  
 	 
  })
-	
+	 
 	.otherwise({
 		templateUrl : 'home/home.html'
 	});
