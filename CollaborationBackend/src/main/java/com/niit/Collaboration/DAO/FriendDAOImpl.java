@@ -64,7 +64,7 @@ public void update(Friend friend) {
 }  
 @Transactional
 public List<Friend> getuser(int id) {
-	String hql = "from User where  ='" + id + "'";
+	String hql = "from User where id ='" + id + "'";
 	org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 	@SuppressWarnings("unchecked")
 	List<Friend> listFriend = (List<Friend>) query.list();
@@ -86,6 +86,11 @@ public List<Friend> notAcceptedList() {
 	@SuppressWarnings("unchecked")
 	List<Friend> list = (List<Friend>) query.list();
 	return list;
+	
+}
+@Transactional
+public List<Friend> list(int friendid) {
+	return null;
 	
 }
 }
