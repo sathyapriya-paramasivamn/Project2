@@ -14,40 +14,49 @@ public class Friend {
 	@Id
 	@GeneratedValue
 	private int fid;
+	private int friendid;   
+	private String friendname; 
+	private String status; 
+	private int userid;
+	private String username;
 	public int getFid() {
 		return fid;
 	}
-
 	public void setFid(int fid) {
 		this.fid = fid;
 	}
-
-	private String friendid;
-	private String status; 
-	private String userid;
-
-	public String getFriendid() {
-		return friendid;
+	public String getFriendname() {
+		return friendname;
 	}
-
-	public void setFriendid(String friendid) {
-		this.friendid = friendid;
+	public void setFriendname(String friendname) {
+		this.friendname = friendname;
 	}
-
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String getUserid() {
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public int getFriendid() {
+		return friendid;
+	}
+	public void setFriendid(int friendid) {
+		this.friendid = friendid;
+	}
+	public int getUserid() {
 		return userid;
 	}
-
-	public void setUserid(String userid) {
+	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+	 
 
+	
 }

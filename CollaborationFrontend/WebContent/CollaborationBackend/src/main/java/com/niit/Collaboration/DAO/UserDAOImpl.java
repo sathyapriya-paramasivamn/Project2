@@ -22,15 +22,15 @@ public class UserDAOImpl implements UserDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Transactional
+	@Transactional 
 	public List<User> list() {
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) sessionFactory.getCurrentSession().createCriteria(User.class)
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 		return listUser;
-	}
-
-	@Transactional
+	} 
+ 
+	@Transactional 
 	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);
 
@@ -42,15 +42,15 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Transactional
-	public void delete(int userid) {
+	public void delete(int id) {
 		User userToDelete = new User();
-		userToDelete.setId(userid);
+		userToDelete.setId(id);
 		sessionFactory.getCurrentSession().delete(userToDelete);
 	}
 
-	@Transactional
-	public User getByUserid(int userid) {
-		String hql = "from userinfo where userid ='" + userid + "'";
+	@Transactional  
+	public User getByUserid(int id) {
+		String hql = "from user where id ='" + id + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) (query).list();
@@ -58,15 +58,15 @@ public class UserDAOImpl implements UserDAO {
 		if (listUser != null && !listUser.isEmpty()) {
 			return listUser.get(0);
 		}
-		return null;
+		return null; 
   
 	}  
 
 	@Transactional
-	public User getByMailid(String mailid) {
-		String hql = "from userinfo where mailid ='" + mailid + "'";
+	public User getByUsermailid(String usermailid) {
+		String hql = "from user where usermailid ='" + usermailid + "'";
 		Query query = (Query) sessionFactory.getCurrentSession().createQuery(hql);
-		@SuppressWarnings("unchecked")
+		@SuppressWarnings("unchecked") 
 		List<User> listUser = (List<User>) (query).list();
 
 		if (listUser != null && !listUser.isEmpty()) {
@@ -80,11 +80,11 @@ public class UserDAOImpl implements UserDAO {
 		User user = (User) sessionFactory.getCurrentSession().get(User.class, empID);
 		return user;
 	}
-
+  
 	@Transactional
 	public User login(User user) {
-		System.out.println(user.getMailid());
-		System.out.println(user.getPassword());
+		System.out.println(user.getMailid()); 
+		System.out.println(user.getPassword());  
 		String hql = "from User where mailid=" + "'" + user.getMailid() + "'   and password = " + "'"+ user.getPassword() +"'";
 	
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
@@ -95,8 +95,8 @@ public class UserDAOImpl implements UserDAO {
 		if (list != null && !list.isEmpty()) {
 			return list.get(0);    
 			
-		}
-		return null;
-	}
+		}  
+		return null;  
+	} 
 
-}
+} 

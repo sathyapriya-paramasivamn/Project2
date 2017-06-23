@@ -4,13 +4,17 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 import com.niit.Collaboration.Model.Friend;
 
-@Repository("FriendDAO")
+
+
+@Repository("FriendDAO") 
 
 public class FriendDAOImpl implements FriendDAO {
 
@@ -18,7 +22,7 @@ public class FriendDAOImpl implements FriendDAO {
 	private SessionFactory sessionFactory;
 	public FriendDAOImpl(SessionFactory sessionFactory) {
 		
-		this.sessionFactory = sessionFactory;
+		this.sessionFactory = sessionFactory;  
 	}
 	@SuppressWarnings("unchecked")
 	@Transactional
@@ -36,16 +40,16 @@ public class FriendDAOImpl implements FriendDAO {
 
 	}
 @Transactional
-	public Friend getByFid(int fid) {
-	Friend Fid = (Friend) sessionFactory.getCurrentSession().get(Friend.class, fid);
+	public Friend getByFriendid(int friendid) {
+	Friend Friendid = (Friend) sessionFactory.getCurrentSession().get(Friend.class, friendid);
 
-	return Fid;
+	return Friendid;
 	}
 @Transactional
 public Friend getByStatus(String status) {
 	Friend Status = (Friend) sessionFactory.getCurrentSession().get(Friend.class, status);
 
-	return Status;
+	return Status;  
 
 }
 @Transactional
@@ -57,7 +61,36 @@ public void save(Friend friend) {
 public void update(Friend friend) {
 	
 	sessionFactory.getCurrentSession().update(friend);
+}  
+@Transactional
+public List<Friend> getuser(int id) {
+	String hql = "from User where id ='" + id + "'";
+	org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<Friend> listFriend = (List<Friend>) query.list();
+	
+	return listFriend;  
+} 
+@Transactional
+public List<Friend> acceptedList() {
+	String hql = "from Friend where status = " + "'A'";
+	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<Friend> list = (List<Friend>) query.list();
+	return list;
 }
-
-
+@Transactional
+public List<Friend> notAcceptedList() {
+	String hql = "from Friend where status = " + "'P'";
+	Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<Friend> list = (List<Friend>) query.list();
+	return list;
+	
+}
+@Transactional
+public List<Friend> list(int friendid) {
+	return null;
+	
+}
 }
