@@ -26,7 +26,7 @@ public class ForumController {
 	@Autowired
 	private ForumDAO forumDAO;
 
-	
+	 
 
 	@GetMapping("/forum")
 	public ResponseEntity<List<Forum>> getForums() {
@@ -78,7 +78,7 @@ public class ForumController {
 	@PutMapping("/forum") 
 	public ResponseEntity update(@RequestBody Forum forum)
 	{
-		forumDAO.update(forum);
+		forumDAO.update(forum); 
 		return new ResponseEntity(forum, HttpStatus.OK); 
 	}
        

@@ -30,90 +30,103 @@ public class UserController {
 
 	@Autowired
 	private UserDAO userDAO;
-  
-
+ 
+	@Autowired
+	private FriendDAO friendDAO;  
 
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> getUsers(HttpSession session) {
+	public List<User> getUsers(HttpSession session) {
 		
-		List<User> listuser = userDAO.list();
-		return new ResponseEntity<List<User>>(listuser, HttpStatus.OK);
+		List<User> userList = userDAO.list();
+		
+		return userList;
 
-		
-		
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity deleteUser(@PathVariable("id") int userid) {
-		User user = userDAO.getByUserid(userid);
+	public ResponseEntity<List<User>> deleteUser(@PathVariable int id) {
+		User user = userDAO.getById(id);
 		if (user == null) {
-			return new ResponseEntity("No User found for getByUserid " + userid, HttpStatus.NOT_FOUND);
+			return new ResponseEntity("No User found for ID " + id, HttpStatus.NOT_FOUND);
 		}
-		userDAO.delete(userid);
-		return new ResponseEntity(userid, HttpStatus.OK);
+		userDAO.delete(id);
+		return new ResponseEntity(id, HttpStatus.OK);
 	}
- 
-	@GetMapping("/users/{id}")
-	public ResponseEntity<User> getUserByID(@PathVariable("id") int id) {
 
-		User user = userDAO.getByUserid(id);  
+	// http://localhost:8080/CollaborationResetService/user/niit
+	@GetMapping("/userid/{id}")
+	public ResponseEntity getUserByID(@PathVariable("id") int id) {
+
+		User user = userDAO.getById(id);
+		if (user == null) {
+			return new ResponseEntity("No User found for ID " + id, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity(user, HttpStatus.OK);
+	}
+
+	@GetMapping("/username/{name}")
+	public ResponseEntity<User> getUserByID(@PathVariable("name") String name) {
+
+		User user = userDAO.getByName(name);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-	@GetMapping("/users/usermail/{id}")
-	public ResponseEntity<User> getByMailid(@PathVariable("id") String id) {
-		
-		User user = userDAO.getByUsermailid(id);
+
+	@GetMapping("/usermail/{email}")
+	public ResponseEntity<User> getByMailid(@PathVariable("mailid") String email) {
+
+		User user = userDAO.getByMailid(email);
+	
+ 
+		if (user == null) {
+			return new ResponseEntity("No User found for email " + email, HttpStatus.NOT_FOUND);
+		}
+
 		return new ResponseEntity<User>(user, HttpStatus.OK);
- 	}
-	
-	
+	} 
 
 	@PostMapping("/user")
-	public ResponseEntity save(@RequestBody User user)
-	{
-		//user.setOnline(false);
+	public ResponseEntity save(@RequestBody User user) {
 		userDAO.save(user);
 		return new ResponseEntity(user, HttpStatus.OK);
 	}
-	@PutMapping("/user")  
-	public ResponseEntity update(@RequestBody User user)
-	{
-		userDAO.update(user);
+
+	@PutMapping("/user")
+	public ResponseEntity update(@RequestBody User user) {
+		userDAO.saveOrUpdate(user);
 		return new ResponseEntity(user, HttpStatus.OK);
-	}	
-	  
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity<?> login(@RequestBody User user,HttpServletRequest request) {
-	HttpSession session = request.getSession();
+	public ResponseEntity<?> login(@RequestBody User user, HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		User validUser = userDAO.login(user);
 		if (validUser == null) {
 			Error error = new Error("Invalid credentials.. please enter valid username and password");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
-		} 
-		else { 
+		} else {
 			session.setAttribute("user", validUser);
-			  
-			
+
 			System.out.println(validUser.getMailid());
-			System.out.println(validUser.getName()); 
+			System.out.println(validUser.getName());
+			User user1 = (User) session.getAttribute("user");
+			System.out.println(user1.getRole());
+			System.out.println(user1.getMobileno());
 			return new ResponseEntity<User>(validUser, HttpStatus.OK);
 		}
 	}
-  
-	@RequestMapping(value="/logout",method=RequestMethod.PUT)
-	public ResponseEntity<?> logout(HttpSession session){
-		User user=(User)session.getAttribute("user");
-		if(user==null){
-			Error error =new Error("Unauthorized user.. Please Login..");  
-			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-		}  
-		else{   
-			//user.setOnline(false);  
-			userDAO.update(user);
+
+	@RequestMapping(value = "/logout", method = RequestMethod.PUT)
+	public ResponseEntity<?> logout(HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			Error error = new Error("Unauthorized user.. Please Login..");
+			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
+		} else {
+			// user.setOnline(false);  
+			userDAO.saveOrUpdate(user);
 			session.removeAttribute("user");
 			session.invalidate();
 			return new ResponseEntity<Void>(HttpStatus.OK);
-		}					
+		} 
 	}
 }    

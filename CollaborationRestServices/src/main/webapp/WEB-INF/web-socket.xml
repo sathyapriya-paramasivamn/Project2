@@ -5,13 +5,13 @@
 	   	xmlns:websocket="http://www.springframework.org/schema/websocket"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		xmlns="http://www.springframework.org/schema/beans">
-
+ 
  
 	<websocket:message-broker
 		application-destination-prefix="/app">
    
   
-		<websocket:stomp-endpoint path="/chat_forum">
+		<websocket:stomp-endpoint path="/Chat">
 			<websocket:sockjs />
 		</websocket:stomp-endpoint>
 
