@@ -112,5 +112,5 @@ app.service('UserService', ['$http', '$q','$rootScope', function($http, $q,$root
         }
          
     };
- 
+  
 }]);

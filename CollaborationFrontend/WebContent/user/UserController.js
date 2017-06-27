@@ -12,8 +12,9 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 							self.friends = []; // json array
 							var arr=[]; 
 							var i=0;
-							
-
+							var j=0;
+							  
+ 
 							$scope.orderByMe = function(x) {
 								$scope.myOrderBy = x;
 							}  
@@ -21,7 +22,11 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 						
    
 							self.fetchAllUsers = function() {
+								self.asd = null;
+								self.us = '';  
 								console.log("fetchAllUsers...")
+								$scope.loginUser =$rootScope.currentUser;
+								console.log("fetchUserList...")
 								UserService.fetchAllUsers()
 										.then(function(d) {
 												self.users = d;
@@ -34,8 +39,29 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 												 }
 												self.us=arr;
 												console.log(self.us)
+												console.log("fetchAllRequestedFriend...")
+												FriendService.fetchAllRequestedfriends($scope.loginUser.id).then(function(d) {
+										        self.friends = d;
+										        console.log(self.friends)	
 											//	$location.path("/friend")
+										        for(j=0; j<self.us.length; j++){
+													for(i=0; i<self.friends.length; i++){
+													if(self.friends[i].friendid === self.us[j].id){
+														self.us.splice(j, 1);
+														console.log(self.us)
+													}
+												}
+											}
+											self.asd = self.us;
+											
+											 
 												}, 
+												function(errResponse) {
+													console.error('Error while fetching Friends');
+												} );
+								
+								
+							},
 												function(errResponse) {
 													console.error('Error while fetching Users');
 												});
@@ -50,7 +76,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 												function(d) {
 													alert("Thank you for registration")
 													$location.path("/login")
-												},
+												}, 
 												function(errResponse) {
 													console.error('Error while creating User.');
 												});
@@ -72,7 +98,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								console.log("accept...")
 								UserService.accept(id)
 										.then(function(d) {
-													self.user = d;
+													self.user = d;  
 													self.fetchAllUsers
 													$location.path("/manage_users")
 													alert(self.user.errorMessage)
@@ -112,24 +138,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								self.reset();
 							};
 
-							/*self.authenticate = function(user) { 
-								console.log("authenticate...")
-								UserService.authenticate(user)
-										.then(function(d) {
-													self.user = d;
-													
-														console.log("Valid credentials. Navigating to home page")
-													
-															console.log("You are admin")
-															self.fetchAllUsers();
-															console.log("Valid credentials. Navigating to admin page")
-														
-													
-												},
-												function(errResponse) {
-									  				console.error('Error while authenticate Users');
-												});
-							};*/
+						
   
 							self.login = function() {
 								UserService.login(self.user).then(function(response) {
@@ -138,7 +147,7 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								 
 									$rootScope.currentUser = response.data;  
 									$cookieStore.put("currentUser", response.data);
-									 if($scope.user.role == 'STUDENT'){
+									 if($scope.user.role == 'STUDENT'){ 
 										 $location.path('/home')
 									  }else if($scope.user.role == 'ADMIN'){
 										  $location.path('/adminPage')
@@ -169,30 +178,52 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
                                     },
                                               function(errResponse) {
                                                 console.error('Error while creating friend..');
-                                            });}
-                        
-                         
+                                            });} 
+                          
+						self.requestedFriend = function() {
+							$rootScope.loginUser =$rootScope.currentUser;
+							console.log("GetAllRequestedFriends...")
+							FriendService.fetchRequestedfriends($rootScope.loginUser.name).then(function(d) {
+												self.reqFriend = d;
+												console.log(self.reqFriend)
+											},function(errResponse) {  
+												console.error('Error while fetching By Friend Name');
+											});
+						};
+						
+						self.acceptFriend = function(reqFriend) {
+							
+								
+									console.log('accept the friend request')
+									FriendService.updateFriendReq(reqFriend);
+									
+									console.log('Accepted')
+								$location.path("/friend")
+								
+								
+							};
+							
+							self.AcceptedFriendCurrentUser = function() {
+								$rootScope.loginUser =$rootScope.currentUser;
+								console.log("GetAllAcceptedFriendCurrentUser...")
+								FriendService.fetchAcceptedFriends($rootScope.loginUser.name).then(function(d) {
+													self.accFriend = d;
+													
+													console.log(self.accFriend)
+								 					console.error('Error while fetching Accepted list');
+												});
+							};  
 							
 							
-							// self.fetchAllUsers(); //calling the method    
-
-							// better to call fetchAllUsers -> after login ???  
-
-						/*	self.login = function() {
-								{
-									console.log('login validation????????',
-											self.user);
-									self.authenticate(self.user);
-								}
-
-							};*/   
+							
+							 
  
 							self.submit = function() {
 								{
-									console.log('Saving New User', self.user);
+									console.log('Saving New User', self.user); 
 									self.createUser(self.user);
 								}
-								self.reset(); 
+						 		self.reset(); 
 							};  
         
 							self.reset = function() {
@@ -200,5 +231,5 @@ app.controller('UserController',['$scope','UserService','FriendService','$locati
 								self.friend={fid:null,friendid:'',friendname:'',status:'',userid:'',username:''};
 								$scope.myForm.$setPristine(); // reset Form
 							};
-
+  
 						} ]);

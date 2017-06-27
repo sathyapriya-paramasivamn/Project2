@@ -10,6 +10,7 @@ input[type=text], input[type=password] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-color:black;
 } 
 .label
 {
@@ -128,34 +129,34 @@ body {
  <form ng-submit="uc.submit()" name="myForm" style="width: 250px" method="post"> 
   <div class="container">
    <label><b>Name</b></label>
-      <input type="text" placeholder="Enter Name" name="name" required ng-model="uc.user.name">
+      <font color="black"><input type="text" placeholder="Enter Name" name="name" required ng-model="uc.user.name"></font>
 
       <label><b>Mailid</b></label>
-      <input type="text" placeholder="Enter mailid" name="mailid" required ng-model="uc.user.mailid">
+       <font color="black"><input type="text" placeholder="Enter mailid" name="mailid" required ng-model="uc.user.mailid"></font>
 
       <label><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" required ng-model="uc.user.password"> 
+       <font color="black"><input type="password" placeholder="Enter Password" name="password" required ng-model="uc.user.password"> </font>
       <label><b>mobileno</b></label>
-      <input type="text" placeholder="Enter mobileno" name="mobileno" required ng-model="uc.user.mobileno">
+      <font color="black"><input type="text" placeholder="Enter mobileno" name="mobileno" required ng-model="uc.user.mobileno"></font>
       <label><b>residential</b></label>
-      <input type="text" placeholder="Enter residential" name="residential" required ng-model="uc.user.residential">
+     <font color="black"> <input type="text" placeholder="Enter residential" name="residential" required ng-model="uc.user.residential"></font>
       <label><b>pincode</b></label>
-      <input type="text" placeholder="Enter pincode" name="pincode" required ng-model="uc.user.pincode">
+      <font color="black"><input type="text" placeholder="Enter pincode" name="pincode" required ng-model="uc.user.pincode"></font>
 <label><b>Role</b></label>
-<select ng-model="uc.user.role" >
-    <option value="ALUMNI">ALUMNI</option>
+ <font color="black"><select ng-model="uc.user.role" >
+   <option value="ALUMNI">ALUMNI</option>
   <option value="STUDENT">STUDENT</option>
-  <option value="EMPLOYEE">EMPLOYEE</option>
-   
-</select> 
+<option value="EMPLOYEE">EMPLOYEE</option>  
+    
+</select> </font>  
     <!-- <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <input type="submit" class="signupbtn" name="submit" value="Sign Up">
     </div>   -->
-  <button type="submit" class="btn draw-border"  value="Sign up" >signup</button>
-  <button type="cancel" class="btn draw-border" value="cancel" >cancel</button>
+  <font color="black"><button type="submit" class="btn draw-border"  value="Sign up" >signup</button></font>
+  <font color="black"><button type="cancel" class="btn draw-border" value="cancel" >cancel</button></font>
   </div>
 </form>
-
-</body>
+   
+</body> 
 </html>

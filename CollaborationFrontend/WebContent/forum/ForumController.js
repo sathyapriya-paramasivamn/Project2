@@ -16,7 +16,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 			$scope.cmt = {};
 			self.comments = []; 
 			self.submit = submit;   
-			self.update = update;  
+			self.update = update;   
 			self.get = get;
 			self.getComment = getComment;
 			self.createComment = createComment;
@@ -66,12 +66,12 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 				var reason = prompt("Please enter the reason");
 				ForumService.reject(id, reason).then(function(d) {
 					self.forum = d;
-					self.fetchAllForums
+					self.fetchAllForums 
 					$location.path("/manage_Forums")
 					alert(self.Forum.errorMessage)
 
 				}, null);
-			}; 
+			};   
 
 		 function updateForum(currentForum) {
 				console.log("updateForum...")
@@ -91,7 +91,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
  
 			function accept(adminvf) {
 				{
-					console.log('accept the Blog details')
+					console.log('accept the forum details')
 						
 					ForumService.accept(adminvf);
 					$location.path("/admin")
@@ -100,7 +100,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 			function submit() {
 				{
 					console.log('Saving New Forum', self.forum);
-					self.createForum(self.forum);
+					self.createForum(self.forum); 
 				}
 				self.reset();
 			}; 
@@ -112,7 +112,7 @@ app.controller('ForumController', ['$scope','ForumService','CommentService','$lo
 						console.log($rootScope.fcomment);
 						console.log(self.forumComments);
 						$scope.fc=forum; 
-						$scope.cmt=d;      
+						$scope.cmt=d;        
 						console.log($scope.fc);  
 						console.log($scope.cmt);
 						console.log("fetchingAllComments...")

@@ -75,7 +75,7 @@ body {
 }
 
 .info img {
-	width: 100%;
+	width: 100%; 
 	transition: all .4s ease-out .1s;
 	-moz-transition: all .4s ease-out .1s;
 	-webkit-transition: all .4s ease-out .1s;
@@ -209,9 +209,10 @@ body {
 <script type="text/javascript" src="job/JobService.js"></script>
 <script type="text/javascript" src="comment/CommentService.js"></script>   
 <script type="text/javascript" src="reply/ReplyService.js"></script>
+<script type="text/javascript" src="friend/FriendController.js"></script>
 <script type="text/javascript" src="friend/FriendService.js"></script>      
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
+<link rel="stylesheet" 
 	href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -259,12 +260,13 @@ body {
 						<div class="dropdown-content">
 							<a href="#job" ng-show="currentUser.role=='ADMIN'">ADD</a> <a href="#viewjob">VIEW</a>
 
-						</div>
+						</div> 
 					</div>  
  
 				<!-- 	<li><a href="#event">Event</a></li>  
 					<li><a href="#">prepare</a></li> -->
-		             <li><a href="#friend"  ng-show="currentUser.name">friend</a></li>  
+		             <li><a href="#friend"  ng-show="currentUser.name">friend</a></li>
+		             <li><a href="#chat"  ng-show="currentUser.name">Chat</a></li>  
 
 				</ul>  
 				<ul  class="nav navbar-nav navbar-right" >

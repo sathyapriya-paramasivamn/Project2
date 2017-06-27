@@ -5,8 +5,11 @@ app.config(function($routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl : 'home/home.html'
 	})
-	.when('/home', {
+	.when('/home', { 
 		templateUrl : 'home/home.html'
+	})
+	.when('/chat', {
+		templateUrl : 'Chat/Chat.html'
 	})
 	.when('/adminPage', {
 		templateUrl : 'admin/adminPage.html',
@@ -51,7 +54,7 @@ app.config(function($routeProvider) {
 	}).when('/viewb', { 
 		templateUrl : 'blog/blogdetails.html',
 		controller : 'BlogController',
-		controllerAs : 'bc'
+		controllerAs : 'bc' 
 	})
 	/*
 	 * .when('/viewbc', { templateUrl : 'blog/blogdetails1.html' })
@@ -77,7 +80,7 @@ app.config(function($routeProvider) {
 	}).when('/viewf', {
 		templateUrl : 'forum/forumdetails.html',
 		controller : 'ForumController',
-		controllerAs : 'fc'  
+		controllerAs : 'fc'    
 	}).when('/job', {
 		templateUrl : 'job/job.html',
 		controller : 'JobController',
@@ -94,10 +97,13 @@ app.config(function($routeProvider) {
 	 templateUrl : 'friend/friend.html',
 	 controller : 'UserController',
 	 controllerAs : 'uc'  
-	 
+	  
  })
-	 
+ 
+ 
+
+   
 	.otherwise({
 		templateUrl : 'home/home.html'
-	});
+	});  
 });
