@@ -12,19 +12,19 @@ import org.springframework.stereotype.Component;
 @Table(name = "friend")
 public class Friend {
 	@Id
-	@GeneratedValue
+	@GeneratedValue   
 	private int fid;
-	private int friendid;   
+	private int friendid;    
 	private String friendname; 
 	private String status; 
 	private int userid;
 	private String username;
-	public int getFid() {
+	public int getFid() { 
 		return fid;
 	}
 	public void setFid(int fid) {
-		this.fid = fid;
-	}
+		this.fid = fid;  
+	} 
 	public String getFriendname() {
 		return friendname;
 	}
@@ -37,7 +37,7 @@ public class Friend {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	 
 	public String getUsername() {
 		return username;
 	}

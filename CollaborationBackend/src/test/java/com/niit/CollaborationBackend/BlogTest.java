@@ -3,6 +3,7 @@ package com.niit.CollaborationBackend;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.niit.Collaboration.DAO.BlogDAO;
+import com.niit.Collaboration.DAO.ChatDAO;
 import com.niit.Collaboration.DAO.CommentDAO;
 
 import com.niit.Collaboration.DAO.EventDAO;
@@ -12,6 +13,7 @@ import com.niit.Collaboration.DAO.JobDAO;
 import com.niit.Collaboration.DAO.ReplyDAO;
 import com.niit.Collaboration.DAO.UserDAO;
 import com.niit.Collaboration.Model.Blog;
+import com.niit.Collaboration.Model.Chat;
 import com.niit.Collaboration.Model.Comment;
 import com.niit.Collaboration.Model.Event;
 import com.niit.Collaboration.Model.Forum;
@@ -22,7 +24,7 @@ import com.niit.Collaboration.Model.User;
  
 public class BlogTest {  
 	public static void main (String[] args) {
-
+ 
 	    
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		 context.scan("com.niit.*");  
@@ -40,7 +42,7 @@ public class BlogTest {
 		ForumDAO forumDAO=(ForumDAO) context.getBean("ForumDAO");
 		Forum forum=(Forum)context.getBean("forum");
 		
-		FriendDAO friendDAO=(FriendDAO) context.getBean("FriendDAO");
+		FriendDAO friendDAO=(FriendDAO) context.getBean("FriendDAO");  
 		Friend friend=(Friend)context.getBean("friend");
 		
 		JobDAO jobDAO=(JobDAO) context.getBean("JobDAO");
@@ -51,7 +53,10 @@ public class BlogTest {
 		
 		CommentDAO commentDAO=(CommentDAO) context.getBean("commentDAO");
 		Comment comment=(Comment)context.getBean("comment");   
-		
+		 
+		ChatDAO chatDAO=(ChatDAO) context.getBean("ChatDAO");
+		Chat chat=(Chat)context.getBean("chat");   
+		 
 		  
 	blog.setUsermailid("abi@gmail.com");
 	blog.setUsername("abi");   
@@ -77,12 +82,12 @@ public class BlogTest {
   	eventDAO.save(event);
         
   	forum.setName("Discussion board");
-  	forum.setMessage("school system will change"); 
+  	forum.setMessage("school system will change");  
   	forumDAO.save(forum);
-  	forum.setStatus("na");
+  	forum.setStatus("na");  
    
   	
-    friend.setFriendid(2);
+    friend.setFid(2);
     friend.setUserid(382);
   	friend.setFriendname("jvbjdf");
   	friend.setStatus("friend");
@@ -109,6 +114,14 @@ public class BlogTest {
 	reply.setReplymsg("jkj");
 	reply.setTitle("discution");
 	replyDAO.save(reply); 
+	
+	chat.setMessage("hii");
+	chat.setReciver("abi");
+	chat.setRid(1066);
+	chat.setSender("sai");
+	chat.setSid(382);  
+	chatDAO.save(chat);
+	
 	
 	}        
 	  

@@ -6,7 +6,9 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +32,7 @@ public class UserDAOImpl implements UserDAO {
 		return listUser;
 	} 
  
-	@Transactional 
+	@Transactional   
 	public void save(User user) {
 		sessionFactory.getCurrentSession().save(user);
 
@@ -97,6 +99,37 @@ public class UserDAOImpl implements UserDAO {
 			
 		}  
 		return null;  
+	}
+
+	public void saveOrUpdate(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+@Transactional
+	public User getById(int id) {
+	User userById = (User) sessionFactory.getCurrentSession().get(User.class, id);
+
+	return userById;
+	}
+@Transactional
+	public User getByName(String name) {
+	String hql = "from User where name =" + "'" + name + "'";
+	org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+	@SuppressWarnings("unchecked")
+	List<User> listUser = (List<User>) query.list();
+
+	if (listUser != null && !listUser.isEmpty()) {
+		return listUser.get(0);
+	}
+	return null;
+	}  
+@Transactional
+	public User getByMailid(String email) {
+	
+	User userByMailid = (User) sessionFactory.getCurrentSession().get(User.class, email);
+	return userByMailid;
 	} 
 
-} 
+}
+
+	
